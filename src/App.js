@@ -1,4 +1,9 @@
 import './App.css';
+import NavBar from './components/NavBar/NavBar';
+import HomePage from './pages/HomePage/HomePage'
+import AboutPage from './pages/AboutPage/AboutPage'
+import CohortPage from './pages/CohortPage/CohortPage';
+import { Routes, Route } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 
 const CLIENT_ID = '18b849ea0dd132f6729a'
@@ -55,6 +60,12 @@ function App() {
   return (
     <div className="App">
       <main>
+        <NavBar />
+        <Routes>
+          <Route path="/" element={ <HomePage /> }/>
+          <Route path='/about' element={ <AboutPage /> } />
+          <Route path='/cohort' element={ <CohortPage /> } />
+        </Routes>
         <div className='login'>
           {localStorage.getItem('accessToken') ?
             <>
