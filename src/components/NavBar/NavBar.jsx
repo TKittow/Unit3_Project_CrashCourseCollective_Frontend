@@ -14,7 +14,7 @@ export default function NavBar() {
             <Nav.Link as={Link} to='/'>Home</Nav.Link>
             <Nav.Link as={Link} to='/about'>About</Nav.Link>
             <Nav.Link as={Link} to='/cohort'>Cohort</Nav.Link>
-            <Nav.Link as={Link} to='/'>My Page</Nav.Link>
+            <Nav.Link as={Link} to='/profilepage'>My Page</Nav.Link>
             <Nav.Link as={Link} to='/'>Login</Nav.Link>
             <NavDropdown title="Settings">
               <NavDropdown.Item href="#action3">Report</NavDropdown.Item>
