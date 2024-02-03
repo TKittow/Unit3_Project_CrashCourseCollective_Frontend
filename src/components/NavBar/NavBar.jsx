@@ -1,18 +1,30 @@
 import { Link } from 'react-router-dom'
+import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap'
+
+
+
 import './NavBar.css'
 
 export default function NavBar() {
   return (
-    <nav>
-        <Link to='/'>Home</Link>
-        &nbsp; | &nbsp;
-        <Link to='/about'>About</Link>
-        &nbsp; | &nbsp;
-        <Link to='/cohort'>Cohort</Link>
-        &nbsp; | &nbsp;
-        <Link to='/myPage'>My Page</Link>
-        &nbsp; | &nbsp;
-        <Link to='/login'>Login</Link>
-    </nav>
+    <Navbar sticky="top" bg="light" data-bs-theme="light">
+        <Container>
+          <Navbar.Brand as={Link} to='/'>CCC(logo?)</Navbar.Brand>
+          <Nav className="me-auto">
+            <Nav.Link as={Link} to='/'>Home</Nav.Link>
+            <Nav.Link as={Link} to='/about'>About</Nav.Link>
+            <Nav.Link as={Link} to='/cohort'>Cohort</Nav.Link>
+            <Nav.Link as={Link} to='/'>My Page</Nav.Link>
+            <Nav.Link as={Link} to='/'>Login</Nav.Link>
+            <NavDropdown title="Settings">
+              <NavDropdown.Item href="#action3">Report</NavDropdown.Item>
+              <NavDropdown.Item href="#action4">Something Else</NavDropdown.Item>
+              <NavDropdown.Item href="#action4">Random meme</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item href="#action5">Log Out</NavDropdown.Item>
+            </NavDropdown>
+          </Nav>
+        </Container>
+    </Navbar>
   )
 }
