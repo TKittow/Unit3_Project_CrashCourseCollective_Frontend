@@ -20,9 +20,18 @@ export const UsersProvider = ({children}) => {
         }
     }
 
+    function getUsers() {
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/users`)
+        .then(response => {
+            setUsers(response.data)
+        })
+        .catch(error => console.error("Error fetching users", error))
+    }
+
     return (
         <UserContext.Provider value={{
-            addUser
+            addUser,
+            getUsers
         }}
         >
             {children}

@@ -4,7 +4,7 @@ import HomePage from './pages/HomePage/HomePage'
 import AboutPage from './pages/AboutPage/AboutPage'
 import CohortPage from './pages/CohortPage/CohortPage'
 import ProfilePage from './pages/ProfilePage/ProfilePage'
-import MyDetailsPage from './pages/MyDetailsPage/MyDetailsPage'
+import EditProfilePage from './pages/EditProfilePage/EditProfilePage'
 import { Routes, Route } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { Button } from 'react-bootstrap'
@@ -130,7 +130,7 @@ async function loginUser() {
             <Route path='/about' element={ <AboutPage /> } />
             <Route path='/cohort' element={ <CohortPage /> } />
             <Route path='/profilepage' element={ <ProfilePage /> } />
-            <Route path='/mydetails' element={ <MyDetailsPage /> } />
+            <Route path='/editprofilepage' element={ <EditProfilePage userData={userData} /> } />
             <Route path='/login' />
           </Routes>
         <div className='login'>
