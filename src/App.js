@@ -9,7 +9,7 @@ import { Routes, Route } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { Button } from 'react-bootstrap'
 import AddProjectModal from './components/AddProjectModal';
-import { useUsers, useProjects } from './context/UserContext'
+import { useUsers } from './context/UserContext'
 
 const CLIENT_ID = '18b849ea0dd132f6729a'
 // Need to remove the above, as it should be in the backend,
@@ -19,7 +19,8 @@ function App() {
   const [rerender, setRerender] = useState(false)
   const [userData, setUserData] = useState({})
   const [showModal, setShowModal] = useState(false)
-  const { addUser } = useUsers()
+  const { addUser, projects, getProjects } = useUsers()
+  //! 'projects' as above will be moved to the project card
 
 useEffect(() => {
   const queryString = window.location.search
@@ -71,12 +72,16 @@ async function getUserData() {
 }
 
 useEffect(() => {
-  getProjects()
   if (userData.login) {
     loginUser()
   }
   // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [userData.login])
+
+useEffect(() => {
+  getProjects()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+}, [])
 
 async function loginUser() {
   const newUser = {
@@ -146,7 +151,7 @@ async function loginUser() {
         <div className='projectGrid'>
           {/* // display public projects for non logged in users */}
           <Button variant='primary' onClick={() => setShowModal(true)}>Add Project</Button>
-          <AddProjectModal show={showModal} handleClose={handleClose} data={userData}/>
+          <AddProjectModal show={showModal} handleClose={handleClose} userData={userData}/>
         </div>
         
       </main>

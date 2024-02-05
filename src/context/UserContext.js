@@ -45,6 +45,7 @@ export const UsersProvider = ({children}) => {
 
     return (
         <UserContext.Provider value={{
+            projects,
             addUser,
             addProject,
             getProjects
