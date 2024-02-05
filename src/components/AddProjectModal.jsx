@@ -1,25 +1,27 @@
 import { Button, Form, Modal } from "react-bootstrap"
 import { useRef } from 'react'
+import { useProjects } from '../context/UserContext'
 
-export default function AddProjectModal({show, handleClose, AddProject, data}) {
+export default function AddProjectModal({show, handleClose, data}) {
 
     // ? Use Ref needed when ?
     const collabRef = useRef()
     const titleRef = useRef()
     const descriptionRef = useRef()
     const deploymentLinkRef = useRef()
+    const {addProject, getProjects } = useProjects()
     console.log(data)
 
     async function handleSubmit(e){
         e.preventDefault()
-        const projectData ={
+        await addProject({
             projectName: titleRef.current.value,
             username: data.login,
             collaborators: collabRef.current.value,
             description: descriptionRef.current.value,
             deploymentLink: deploymentLinkRef.current.value
-        }
-        await AddProject(projectData)
+        })
+        getProjects()
         handleClose()
     }
   return (

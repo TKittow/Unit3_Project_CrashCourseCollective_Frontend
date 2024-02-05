@@ -8,6 +8,7 @@ export function useUsers() {
 }
 
 export const UsersProvider = ({children}) => {
+    const [projects, setProjects] = useState([])
     const [users, setUsers] = useState([])
 
     async function addUser(newUser) {
@@ -20,9 +21,33 @@ export const UsersProvider = ({children}) => {
         }
     }
 
+
+    function getProjects(){
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/projects`)
+        .then(response => {
+            setProjects(response.data)
+        })
+        .catch(err => {
+            console.error('Error fetchiing projects', err)
+        })
+    }
+
+    async function addProject(newProject){
+        try{
+            const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/project/add`, newProject)
+            setProjects([...projects, response.data])
+        } catch (err) {
+            console.error("Error adding Project", err)
+        }
+    }
+
+    //Edit Projects
+
     return (
         <UserContext.Provider value={{
-            addUser
+            addUser,
+            addProject,
+            getProjects
         }}
         >
             {children}
