@@ -9,3 +9,7 @@
   width: 70vmin;
 }
 
+.cardHolder{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}

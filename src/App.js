@@ -10,6 +10,8 @@ import { useEffect, useState } from 'react'
 import { Button } from 'react-bootstrap'
 import AddProjectModal from './components/AddProjectModal';
 import { useUsers } from './context/UserContext'
+import { useProjects } from './context/ProjectContext';
+import ProjectCard from './components/ProjectCard';
 
 const CLIENT_ID = '18b849ea0dd132f6729a'
 // Need to remove the above, as it should be in the backend,
@@ -19,7 +21,9 @@ function App() {
   const [rerender, setRerender] = useState(false)
   const [userData, setUserData] = useState({})
   const [showModal, setShowModal] = useState(false)
-  const { addUser, projects, getProjects } = useUsers()
+  const { addUser} = useUsers()
+  const { projects, getProjects } = useProjects()
+  
   //! 'projects' as above will be moved to the project card
 
 useEffect(() => {
@@ -71,6 +75,7 @@ async function getUserData() {
   })
 }
 
+
 useEffect(() => {
   if (userData.login) {
     loginUser()
@@ -78,10 +83,8 @@ useEffect(() => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [userData.login])
 
-useEffect(() => {
-  getProjects()
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-}, [])
+
+
 
 async function loginUser() {
   const newUser = {
@@ -106,7 +109,10 @@ async function loginUser() {
     setShowModal(false)
   }
 
- 
+  useEffect(() => {
+    getProjects()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <div className="App">
@@ -153,7 +159,15 @@ async function loginUser() {
           <Button variant='primary' onClick={() => setShowModal(true)}>Add Project</Button>
           <AddProjectModal show={showModal} handleClose={handleClose} userData={userData}/>
         </div>
-        
+        <div className='cardHolder'>
+          {projects.map((project, idx) => {
+            return (
+            
+            <ProjectCard project={project} key={idx}/>
+            
+            )
+          })}
+        </div>
       </main>
     </div>
   );
