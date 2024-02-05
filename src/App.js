@@ -6,11 +6,9 @@ import CohortPage from './pages/CohortPage/CohortPage'
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import { Routes, Route } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-<<<<<<< HEAD
+import { Button } from 'react-bootstrap'
 import AddProjectModal from './components/AddProjectModal';
-=======
 import { useUsers } from './context/UserContext'
->>>>>>> 1598bb332759c5f8f9c8e982e5a6e55cf2eedbca
 
 const CLIENT_ID = '18b849ea0dd132f6729a'
 // Need to remove the above, as it should be in the backend,
@@ -19,11 +17,8 @@ const CLIENT_ID = '18b849ea0dd132f6729a'
 function App() {
   const [rerender, setRerender] = useState(false)
   const [userData, setUserData] = useState({})
-<<<<<<< HEAD
   const [showModal, setShowModal] = useState(false)
-=======
   const { addUser } = useUsers()
->>>>>>> 1598bb332759c5f8f9c8e982e5a6e55cf2eedbca
 
 
 
@@ -81,6 +76,7 @@ useEffect(() => {
   if (userData.login) {
     loginUser()
   }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [userData.login])
 
 async function loginUser() {
@@ -164,6 +160,7 @@ async function loginUser() {
         </div>
         <div className='projectGrid'>
           {/* // display public projects for non logged in users */}
+          <Button variant='primary' onClick={() => setShowModal(true)}>Add Budget</Button>
           <AddProjectModal show={showModal} handleClose={handleClose} AddProject={addProject}/>
         </div>
         
