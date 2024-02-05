@@ -160,8 +160,8 @@ async function loginUser() {
         </div>
         <div className='projectGrid'>
           {/* // display public projects for non logged in users */}
-          <Button variant='primary' onClick={() => setShowModal(true)}>Add Budget</Button>
-          <AddProjectModal show={showModal} handleClose={handleClose} AddProject={addProject}/>
+          <Button variant='primary' onClick={() => setShowModal(true)}>Add Project</Button>
+          <AddProjectModal show={showModal} handleClose={handleClose} AddProject={addProject} data={userData}/>
         </div>
         
       </main>
