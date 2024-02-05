@@ -122,7 +122,7 @@ async function loginUser() {
             <Route path='/' element={ <HomePage userData={userData} /> } />
             <Route path='/about' element={ <AboutPage userData={userData}/> } />
             <Route path='/cohort' element={ <CohortPage /> } />
-            <Route path='/profilepage' element={ <ProfilePage /> } />
+            <Route path='/profilepage' element={ <ProfilePage userData={userData} /> } />
             <Route path='/editprofilepage' element={ <EditProfilePage userData={userData}/> } />
             <Route path='/login' />
           </Routes>
