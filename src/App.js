@@ -4,12 +4,12 @@ import HomePage from './pages/HomePage/HomePage'
 import AboutPage from './pages/AboutPage/AboutPage'
 import CohortPage from './pages/CohortPage/CohortPage'
 import ProfilePage from './pages/ProfilePage/ProfilePage'
-import MyDetailsPage from './pages/MyDetailsPage/MyDetailsPage'
+import EditProfilePage from './pages/EditProfilePage/EditProfilePage'
 import { Routes, Route } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { Button } from 'react-bootstrap'
 import AddProjectModal from './components/AddProjectModal';
-import { useUsers, useProjects } from './context/UserContext'
+import { useUsers } from './context/UserContext'
 
 const CLIENT_ID = '18b849ea0dd132f6729a'
 // Need to remove the above, as it should be in the backend,
@@ -19,7 +19,7 @@ function App() {
   const [rerender, setRerender] = useState(false)
   const [userData, setUserData] = useState({})
   const [showModal, setShowModal] = useState(false)
-  const { addUser } = useUsers()
+  const { addUser, getProjects } = useUsers()
 
 useEffect(() => {
   const queryString = window.location.search
@@ -112,7 +112,7 @@ async function loginUser() {
             <Route path='/about' element={ <AboutPage /> } />
             <Route path='/cohort' element={ <CohortPage /> } />
             <Route path='/profilepage' element={ <ProfilePage /> } />
-            <Route path='/mydetails' element={ <MyDetailsPage /> } />
+            <Route path='/editprofilepage' element={ <EditProfilePage userData={userData} /> } />
             <Route path='/login' />
           </Routes>
         <div className='login'>

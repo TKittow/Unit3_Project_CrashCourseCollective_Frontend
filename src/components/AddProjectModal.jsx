@@ -10,7 +10,7 @@ export default function AddProjectModal({show, handleClose, data}) {
     const descriptionRef = useRef()
     const deploymentLinkRef = useRef()
     const {addProject, getProjects } = useProjects()
-    console.log(data)
+    // console.log(data)
 
     async function handleSubmit(e){
         e.preventDefault()

@@ -14,7 +14,7 @@ export default function NavBar() {
             <Nav.Link as={Link} to='/profilepage'>My Page</Nav.Link>
             <Nav.Link as={Link} to='/'>Login</Nav.Link>
             <NavDropdown title="Settings">
-              <NavDropdown.Item href="/mydetails">Edit My Details</NavDropdown.Item>
+              <NavDropdown.Item href="/editprofilepage">Edit My Details</NavDropdown.Item>
               <NavDropdown.Item href="#action4">Report</NavDropdown.Item>
               <NavDropdown.Item href="#action4">Something Else</NavDropdown.Item>
               <NavDropdown.Divider />

@@ -40,6 +40,13 @@ export const UsersProvider = ({children}) => {
             console.error("Error adding Project", err)
         }
     }
+    function getUsers() {
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/users`)
+        .then(response => {
+            setUsers(response.data)
+        })
+        .catch(error => console.error("Error fetching users", error))
+    }
 
     //Edit Projects
 
@@ -47,8 +54,11 @@ export const UsersProvider = ({children}) => {
         <UserContext.Provider value={{
             addUser,
             addProject,
-            getProjects
+            getProjects,
+            getUsers
         }}
+    
+
         >
             {children}
         </UserContext.Provider>
