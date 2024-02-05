@@ -1,8 +1,5 @@
 import { Link } from 'react-router-dom'
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap'
-
-
-
 import './NavBar.css'
 
 export default function NavBar() {
@@ -17,9 +14,9 @@ export default function NavBar() {
             <Nav.Link as={Link} to='/profilepage'>My Page</Nav.Link>
             <Nav.Link as={Link} to='/'>Login</Nav.Link>
             <NavDropdown title="Settings">
-              <NavDropdown.Item href="#action3">Report</NavDropdown.Item>
+              <NavDropdown.Item href="/mydetails">Edit My Details</NavDropdown.Item>
+              <NavDropdown.Item href="#action4">Report</NavDropdown.Item>
               <NavDropdown.Item href="#action4">Something Else</NavDropdown.Item>
-              <NavDropdown.Item href="#action4">Random meme</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action5">Log Out</NavDropdown.Item>
             </NavDropdown>

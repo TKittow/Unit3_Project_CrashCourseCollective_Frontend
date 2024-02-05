@@ -3,7 +3,8 @@ import NavBar from './components/NavBar/NavBar'
 import HomePage from './pages/HomePage/HomePage'
 import AboutPage from './pages/AboutPage/AboutPage'
 import CohortPage from './pages/CohortPage/CohortPage'
-import ProfilePage from './pages/ProfilePage/ProfilePage';
+import ProfilePage from './pages/ProfilePage/ProfilePage'
+import MyDetailsPage from './pages/MyDetailsPage/MyDetailsPage'
 import { Routes, Route } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { useUsers } from './context/UserContext'
@@ -37,7 +38,6 @@ useEffect(() => {
           setRerender(!rerender)
           getUserData()
           console.log(userData.login)
-          loginUser()
         }
       } catch (error) {
         console.error("Error fetching access token:", error)
@@ -73,14 +73,17 @@ useEffect(() => {
   if (userData.login) {
     loginUser()
   }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [userData.login])
 
 async function loginUser() {
   const newUser = {
-    username: userData.login
+    username: userData.login,
+    gitUrl: userData.html_url
   }
   if (userData.login) {
-    await addUser(newUser);
+    await addUser(newUser)
+    console.log(`User ${userData.login}, gitUrl: ${userData.html_url} added to the database`)
   } else {
     console.error("No username available in userData");
   }
@@ -101,6 +104,7 @@ async function loginUser() {
             <Route path='/about' element={ <AboutPage /> } />
             <Route path='/cohort' element={ <CohortPage /> } />
             <Route path='/profilepage' element={ <ProfilePage /> } />
+            <Route path='/mydetails' element={ <MyDetailsPage /> } />
             <Route path='/login' />
           </Routes>
         <div className='login'>
