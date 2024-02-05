@@ -1,5 +1,6 @@
 import './App.css';
 import { useEffect, useState } from 'react'
+import AddProjectModal from './components/AddProjectModal';
 
 const CLIENT_ID = '18b849ea0dd132f6729a'
 // Need to remove the above, as it should be in the backend,
@@ -8,6 +9,7 @@ const CLIENT_ID = '18b849ea0dd132f6729a'
 function App() {
   const [rerender, setRerender] = useState(false)
   const [userData, setUserData] = useState({})
+  const [showModal, setShowModal] = useState(false)
 
 
 
@@ -54,6 +56,29 @@ async function getUserData() {
   }
 
 
+  //? Modal Logic
+  function handleClose(){
+    setShowModal(false)
+  }
+
+  async function addProject(projectData) {
+    try {
+        const response = await fetch('/project/add', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(projectData)
+        });
+        if (response.ok) {
+            console.log('Nailed It! (Project added)');
+        } else {
+            console.error('Whomp Whomp, didnt add the project :(');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
 
   return (
     <div className="App">
@@ -88,6 +113,7 @@ async function getUserData() {
         </div>
         <div className='projectGrid'>
           {/* // display public projects for non logged in users */}
+          <AddProjectModal show={showModal} handleClose={handleClose} AddProject={addProject}/>
         </div>
         
       </main>

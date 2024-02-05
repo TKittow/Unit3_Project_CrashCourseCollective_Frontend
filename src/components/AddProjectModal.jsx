@@ -1,20 +1,21 @@
 import { Button, Form, Modal } from "react-bootstrap"
 import { useRef } from 'react'
 
-export default function AddProjectModal({show, handleClose}) {
+export default function AddProjectModal({show, handleClose, AddProject}) {
 
     // ? Use Ref needed when ?
-    const collabRef = useRef([])
+    const collabRef = useRef()
     const titleRef = useRef()
     const descriptionRef = useRef()
 
     async function handleSubmit(e){
         e.preventDefault()
-        await addProject({
+        const projectData ={
             title: titleRef.current.value,
             collaborators: collabRef.current.value,
             description: descriptionRef.current.value
-        })
+        }
+        await AddProject(projectData)
         handleClose()
     }
   return (
@@ -31,7 +32,7 @@ export default function AddProjectModal({show, handleClose}) {
                 <Form.Group className="mb-3" controlId="collabs">
                     <Form.Label>Collaborators</Form.Label>
                     {/* Should this fetch from a select menu of those in your  */}
-                    <Form.Control ref={collabRef} type="number" required />
+                    <Form.Control ref={collabRef} type="text" required />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="description">
                     <Form.Label>description</Form.Label>
