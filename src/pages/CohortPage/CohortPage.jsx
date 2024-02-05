@@ -1,4 +1,4 @@
-export default function Cohort() {
+export default function CohortPage() {
   return (
     <div>Cohort</div>
   )

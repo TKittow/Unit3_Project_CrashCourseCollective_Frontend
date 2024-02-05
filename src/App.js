@@ -1,6 +1,16 @@
 import './App.css';
+import NavBar from './components/NavBar/NavBar'
+import HomePage from './pages/HomePage/HomePage'
+import AboutPage from './pages/AboutPage/AboutPage'
+import CohortPage from './pages/CohortPage/CohortPage'
+import ProfilePage from './pages/ProfilePage/ProfilePage';
+import { Routes, Route } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+<<<<<<< HEAD
 import AddProjectModal from './components/AddProjectModal';
+=======
+import { useUsers } from './context/UserContext'
+>>>>>>> 1598bb332759c5f8f9c8e982e5a6e55cf2eedbca
 
 const CLIENT_ID = '18b849ea0dd132f6729a'
 // Need to remove the above, as it should be in the backend,
@@ -9,7 +19,11 @@ const CLIENT_ID = '18b849ea0dd132f6729a'
 function App() {
   const [rerender, setRerender] = useState(false)
   const [userData, setUserData] = useState({})
+<<<<<<< HEAD
   const [showModal, setShowModal] = useState(false)
+=======
+  const { addUser } = useUsers()
+>>>>>>> 1598bb332759c5f8f9c8e982e5a6e55cf2eedbca
 
 
 
@@ -20,17 +34,22 @@ useEffect(() => {
   
   if(codeParam && !localStorage.getItem('accessToken')) {
     async function getAccessToken() {
-      await fetch(`http://localhost:4000/getAccessToken?code=${codeParam}`, {
-        method:'GET'
-      }).then ((response) => {
-        return response.json()
-      }).then((data) =>{
-        console.log(data);
+      try {
+        const response = await fetch(`http://localhost:4000/getAccessToken?code=${codeParam}`, {
+          method:'GET'
+      })
+      const data = await response.json()
+        console.log(data)
         if(data.access_token) {
           localStorage.setItem('accessToken', data.access_token) // setItem does not force a rerender on react. We want it to so we can show a state with the user being logged in
           setRerender(!rerender)
+          getUserData()
+          console.log(userData.login)
+          loginUser()
         }
-      })
+      } catch (error) {
+        console.error("Error fetching access token:", error)
+      }
     }
     getAccessToken()
   }
@@ -47,8 +66,32 @@ async function getUserData() {
     return response.json()
   }).then((data) => {
     console.log(data)
-    setUserData(data)
+    if (data.login) {
+      setUserData(data)
+    } else {
+      console.error('GitHub user data does not contain username')
+    }
   })
+  .catch((error) => {
+    console.error('error fetching user data:', error)
+  })
+}
+
+useEffect(() => {
+  if (userData.login) {
+    loginUser()
+  }
+}, [userData.login])
+
+async function loginUser() {
+  const newUser = {
+    username: userData.login
+  }
+  if (userData.login) {
+    await addUser(newUser);
+  } else {
+    console.error("No username available in userData");
+  }
 }
 
   function gitHubLogin(){ 
@@ -83,6 +126,14 @@ async function getUserData() {
   return (
     <div className="App">
       <main>
+          <NavBar />
+          <Routes>
+            <Route path='/' element={ <HomePage /> } />
+            <Route path='/about' element={ <AboutPage /> } />
+            <Route path='/cohort' element={ <CohortPage /> } />
+            <Route path='/profilepage' element={ <ProfilePage /> } />
+            <Route path='/login' />
+          </Routes>
         <div className='login'>
           {localStorage.getItem('accessToken') ?
             <>
