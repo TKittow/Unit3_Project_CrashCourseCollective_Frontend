@@ -27,6 +27,7 @@ export default function ProjectCard({project}) {
     }, [project.username]); // Run the effect when project.username changes
 
     let altText = `${project.username}'s avatar`
+// console.log(project.username)
 
   return (
 
