@@ -85,7 +85,10 @@ export const UsersProvider = ({children}) => {
             cohorts,
             addUser,
             getUsers,
+<<<<<<< HEAD
             //getProjects,
+=======
+>>>>>>> 56abe65 (edit user working on fe)
             getUserDetails,
             sendEditUser,
             getCohorts
