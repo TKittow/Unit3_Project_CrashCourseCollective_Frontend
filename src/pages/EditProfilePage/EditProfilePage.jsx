@@ -6,7 +6,7 @@ import Row from 'react-bootstrap/Row'
 import { useUsers } from "../../context/UserContext"
 
 export default function EditProfilePage({userData}) {
-  const { userDetails, sendEditUser, getUserDetails, getCohorts, cohorts, userDetailsF } = useUsers()
+  const { userDetails, getUserDetails, getCohorts, cohorts, userDetailsF, sendEditUser } = useUsers()
   const [editUser, setEditUser] = useState(null)
   
   const [formData, setFormData] = useState({
@@ -19,9 +19,12 @@ export default function EditProfilePage({userData}) {
 
   // console.log(loggedInUser)
 
-  async function handleSubmit(loggedInUser) {
-    const body = { ...formData, _id : loggedInUser._id }
-    setEditUser(loggedInUser._id, body)
+  async function saveEdit(userDetails, e) {
+    e.preventDefault()
+
+    const body = { ...formData, username: userDetails.username }
+    await sendEditUser(userDetails.username, body)
+
     setEditUser(null)
     setFormData({    
       fullName: '',
@@ -30,29 +33,24 @@ export default function EditProfilePage({userData}) {
       cohort: '', 
       aboutMe: ''
     })
+    console.log("formdata: ", formData)
   }
 
+  // function handleChange(e) {
+  //   console.log(e.target.value)    
+  //   setFormData({ ...formData, [e.target.name] : e.target.value })
+  // }
+
   function handleChange(e) {
-    console.log(e.target.value)    
-    setFormData({ ...formData, [e.target.name] : e.target.value })
+    const { name, value } = e.target
+    setFormData(prevFormData => ({ ...prevFormData, [name]: value }))
   }
 
   useEffect(() => {
     getCohorts()
     console.log("userdetails front end:", userDetailsF)
-    // if (userDetails.username) {
-      // const loggedInUser = getUserDetails(userDetails.username)
-      getUserDetails(userDetailsF.username)
-
-      console.log("user details back end:", userDetails)
-
-      setFormData({
-        fullName: userDetails.fullName || '',
-        email: userDetails.email || '',
-        linkedIn: userDetails.linkedIn || '',
-        cohort: userDetails.cohort || '',
-        aboutMe: userDetails.aboutMe || '',
-      })
+    // getUserDetails(userDetailsF.username)
+    console.log("user details back end:", userDetails)
   }, [])
 
   return (
@@ -61,7 +59,7 @@ export default function EditProfilePage({userData}) {
     ?
     <>
     <p>Edit My Details</p>
-    <Form>
+    <Form onSubmit={(e) => saveEdit(userDetails, e)}>
       <Row className="mb-3">
         <Form.Group as={Col} controlId="formGridEmail">
           <Form.Label>Full Name</Form.Label>
@@ -78,7 +76,9 @@ export default function EditProfilePage({userData}) {
           <Form.Control 
           type="email" 
           name="email"
-          placeholder={userDetails.email} />
+          placeholder={userDetails.email} 
+          onChange={(e) => handleChange(e)} 
+          />
         </Form.Group>
       </Row>
 
@@ -88,18 +88,24 @@ export default function EditProfilePage({userData}) {
           <Form.Control 
           type="text"
           name="linkedIn"
-          placeholder={userDetails.linkedIn}/>
+          placeholder={userDetails.linkedIn}
+          onChange={(e) => handleChange(e)} 
+          />
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridState">
           <Form.Label>Cohort</Form.Label>
           <Form.Select 
-          defaultValue="Choose...">
-            <option>Choose...</option>
+          name="cohortName"
+          defaultValue={userDetails.cohort ? userDetails.cohort : 'Choose...'}
+          onChange={(e) => handleChange(e)}
+          >
+            <option disabled>Choose...</option>
             {cohorts.map((cohort) => (
-            <option key={cohort._id} value={cohort._id}>
-              {cohort.cohortName}</option>
-              ))}
+              <option key={cohort._id} value={cohort._id}>
+                {cohort._id === userDetails.cohort ? cohort.cohortName : cohort.cohortName}
+              </option>
+            ))}
           </Form.Select>
         </Form.Group>
       </Row>
@@ -109,15 +115,14 @@ export default function EditProfilePage({userData}) {
         <Form.Control 
         type="text"
         name="aboutMe"
-        placeholder={userDetails.aboutMe} />
+        placeholder={userDetails.aboutMe} 
+        onChange={(e) => handleChange(e)} 
+        />
       </Form.Group>
 
       <Button 
       variant="primary" 
-      type="submit"
-      onClick={() => {
-        handleSubmit(userDetails)
-      }}>
+      type="submit">
         Submit
       </Button>
     </Form>

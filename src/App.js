@@ -7,8 +7,6 @@ import ProfilePage from './pages/ProfilePage/ProfilePage'
 import EditProfilePage from './pages/EditProfilePage/EditProfilePage'
 import { Routes, Route } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { Button } from 'react-bootstrap'
-import AddProjectModal from './components/AddProjectModal';
 import { useUsers } from './context/UserContext'
 import { useProjects } from './context/ProjectContext';
 import ProjectCard from './components/ProjectCard';
@@ -20,9 +18,8 @@ const CLIENT_ID = process.env.REACT_APP_CLIENT_ID
 function App() {
   const [rerender, setRerender] = useState(false)
   const [userData, setUserData] = useState({})
-  const [showModal, setShowModal] = useState(false)
   const { addUser } = useUsers()
-  const { projects, getProjects } = useProjects()
+  const { projects, } = useProjects()
   
   //! 'projects' as above will be moved to the project card
 
@@ -34,7 +31,7 @@ useEffect(() => {
   if(codeParam && !localStorage.getItem('accessToken')) {
     async function getAccessToken() {
       try {
-        const response = await fetch(`http://localhost:4000/getAccessToken?code=${codeParam}`, {
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/getAccessToken?code=${codeParam}`, {
           method:'GET'
       })
       const data = await response.json()
@@ -54,7 +51,7 @@ useEffect(() => {
 }, []) // empty array to make the use effect only run once
 
 async function getUserData() {
-  await fetch('http://localhost:4000/getUserData', {
+  await fetch(`${process.env.REACT_APP_BACKEND_URL}/getUserData`, {
     method: 'GET',
     headers: {
       'Authorization' : 'Bearer ' + localStorage.getItem('accessToken')
@@ -104,28 +101,12 @@ async function loginUser() {
   }
 
 
-  //? Modal Logic
-  function handleClose(){
-    setShowModal(false)
-  }
-
-  useEffect(() => {
-    getProjects()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+ 
 
   return (
     <div className="App">
       <main>
-          <NavBar />
-          <Routes>
-            <Route path='/' element={ <HomePage userData={userData} /> } />
-            <Route path='/about' element={ <AboutPage userData={userData}/> } />
-            <Route path='/cohort' element={ <CohortPage /> } />
-            <Route path='/profilepage' element={ <ProfilePage userData={userData} /> } />
-            <Route path='/editprofilepage' element={ <EditProfilePage userData={userData}/> } />
-            <Route path='/login' />
-          </Routes>
+      <NavBar />
         <div className='login'>
           {localStorage.getItem('accessToken') ?
             <>
@@ -145,20 +126,16 @@ async function loginUser() {
             </>
           }
         </div>
-        <div className='projectGrid'>
-          {/* // display public projects for non logged in users */}
-          <Button variant='primary' onClick={() => setShowModal(true)}>Add Project</Button>
-          <AddProjectModal show={showModal} handleClose={handleClose} userData={userData}/>
-        </div>
-        <div className='cardHolder'>
-          {projects.map((project, idx) => {
-            return (
-            
-            <ProjectCard project={project} key={idx}/>
-            
-            )
-          })}
-        </div>
+        <hr/>
+          <Routes>
+            <Route path='/' element={ <HomePage userData={userData} projects={projects}/> } />
+            <Route path='/about' element={ <AboutPage userData={userData}/> } />
+            <Route path='/cohort' element={ <CohortPage /> } />
+            <Route path='/profilepage' element={ <ProfilePage userData={userData} /> } />
+            <Route path='/editprofilepage' element={ <EditProfilePage userData={userData}/> } />
+            <Route path='/login' />
+          </Routes>
+        
       </main>
     </div>
   );

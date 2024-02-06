@@ -12,14 +12,17 @@ export default function ProjectCard({project}) {
       const fetchAvatarFromDatabase = async () => {
         try {
           // Send a request to your backend to retrieve the user's avatar URL
-          const response = await axios.get(`/users/${project.username}`); // Example endpoint: /api/users/:username
-          if (response.data && response.data.avatarUrl) {
-            setAvatarUrl(response.data.avatarUrl);
+          const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/users/${project.username}`); 
+          console.log(res.data)
+            console.log(res.data.avatarUrl)
+          if (res.data && res.data.avatarUrl) {
+            setAvatarUrl(res.data.avatarUrl);
+            
           } else {
-            console.log("User's avatar not found in the database");
+            // console.log("User's avatar not found in the database");
           }
         } catch (error) {
-          console.error('Error fetching avatar from the database:', error);
+        //   console.error('Error fetching avatar from the database:', error);
         }
       };
   
@@ -29,6 +32,7 @@ export default function ProjectCard({project}) {
   
 
     let altText = `${project.username}'s avatar`
+console.log(project.username)
 
   return (
 
@@ -37,8 +41,17 @@ export default function ProjectCard({project}) {
 
 
     <div style={{backgroundcolor: 'red'}}>
-        {avatarUrl && <img src={avatarUrl} alt={altText} style={{ width: '50px', height: '50px' }} />}
-        HI
+        <div>
+            {avatarUrl && <img src={avatarUrl} alt={altText} style={{ width: '50px', height: '50px' }} />}
+        </div>
+        <div>
+            {project.projectName}
+        </div>
+        <div>
+        {project.username}
+        </div>
+        
+        hi
     </div>
     
   )
