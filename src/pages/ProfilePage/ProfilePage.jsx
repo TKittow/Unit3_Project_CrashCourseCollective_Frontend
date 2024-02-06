@@ -1,24 +1,20 @@
 //! Imports
+import { Button } from 'react-bootstrap'
 import { useState } from 'react'
 import AddProjectModal from '../../components/AddProjectModal'
 import ProjectCard from '../../components/ProjectCard'
 
 
 export default function ProfilePage({ userData, projects }){
-const [modalOpen, setModalOpen] = useState(false)
+const [showModal, setShowModal] = useState(false)
 
 function openModal() {
-    setModalOpen(true)
+    showModal(true)
 }
 function closeModal() {
-    setModalOpen(false)
+    setShowModal(false)
 }
 
-function renderProjects() {
-    return projects.map((project) => (
-        <ProjectCard key={project.id} project={project} />
-    ))
-}
 
 return (
     <div className="profilePage">        
@@ -31,12 +27,9 @@ return (
             </div>
         </div>
 
-        <button onClick={openModal}>Add Project</button>
-
-        <div className="projectGrid">
-            {renderProjects()}
-        </div>
-        {modalOpen && <AddProjectModal onClose={closeModal} />}
+        <Button variant='primary' onClick={() => setShowModal(true)}>Add Project</Button>
+          <AddProjectModal openModal={showModal} closeModal={closeModal} userData={userData}/>
+        
     </div>
 )
 
