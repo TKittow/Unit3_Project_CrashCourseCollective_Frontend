@@ -1,26 +1,32 @@
 //! Imports
 import { useState } from 'react'
 import AddProjectModal from '../../components/AddProjectModal'
-import ProjectCard from '../../components/ProjectCard'
+import {Button } from 'react-bootstrap'
+import { useProjects } from '../../context/ProjectContext'
+import { useEffect } from 'react'
 
 
-export default function ProfilePage({ userData, projects }){
-const [modalOpen, setModalOpen] = useState(false)
+export default function ProfilePage({ userData }){
+const [showModal, setShowModal] = useState(false)
+  const { getProjects } = useProjects()
 
-function openModal() {
-    setModalOpen(true)
-}
-function closeModal() {
-    setModalOpen(false)
-}
+ //? Modal Logic
+ function handleClose(){
+    setShowModal(false)
+  }
 
-function renderProjects() {
-    return projects.map((project) => (
-        <ProjectCard key={project.id} project={project} />
-    ))
-}
+  useEffect(() => {
+    getProjects()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
 return (
+  <>
+    {/* // display public projects for non logged in users */}
+    <Button variant='primary' onClick={() => setShowModal(true)}>Add Project</Button>
+    <AddProjectModal show={showModal} handleClose={handleClose} userData={userData}/>
+  {/* Where the ProjectCard was */}
+
     <div className="profilePage">        
         <div className='userInfo'>
             <img src={userData.avatar_url} alt="UserImage" className='profileImage'/>
@@ -29,15 +35,9 @@ return (
                 <p>{userData.info}</p>  {/* we will need to add in an info part so the user can complete. */}
                 <span>{userData.html_url}</span>
             </div>
-        </div>
-
-        <button onClick={openModal}>Add Project</button>
-
-        <div className="projectGrid">
-            {renderProjects()}
-        </div>
-        {modalOpen && <AddProjectModal onClose={closeModal} />}
+        </div>      
     </div>
+    </>
 )
 
 }

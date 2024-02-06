@@ -7,11 +7,8 @@ import ProfilePage from './pages/ProfilePage/ProfilePage'
 import EditProfilePage from './pages/EditProfilePage/EditProfilePage'
 import { Routes, Route } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { Button } from 'react-bootstrap'
-import AddProjectModal from './components/AddProjectModal';
 import { useUsers } from './context/UserContext'
 import { useProjects } from './context/ProjectContext';
-import ProjectCard from './components/ProjectCard';
 
 const CLIENT_ID = '18b849ea0dd132f6729a'
 // Need to remove the above, as it should be in the backend,
@@ -20,9 +17,8 @@ const CLIENT_ID = '18b849ea0dd132f6729a'
 function App() {
   const [rerender, setRerender] = useState(false)
   const [userData, setUserData] = useState({})
-  const [showModal, setShowModal] = useState(false)
   const { addUser } = useUsers()
-  const { projects, getProjects } = useProjects()
+  const { projects, } = useProjects()
   
   //! 'projects' as above will be moved to the project card
 
@@ -104,28 +100,12 @@ async function loginUser() {
   }
 
 
-  //? Modal Logic
-  function handleClose(){
-    setShowModal(false)
-  }
-
-  useEffect(() => {
-    getProjects()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+ 
 
   return (
     <div className="App">
       <main>
-          <NavBar />
-          <Routes>
-            <Route path='/' element={ <HomePage userData={userData} /> } />
-            <Route path='/about' element={ <AboutPage userData={userData}/> } />
-            <Route path='/cohort' element={ <CohortPage /> } />
-            <Route path='/profilepage' element={ <ProfilePage userData={userData} /> } />
-            <Route path='/editprofilepage' element={ <EditProfilePage userData={userData}/> } />
-            <Route path='/login' />
-          </Routes>
+      <NavBar />
         <div className='login'>
           {localStorage.getItem('accessToken') ?
             <>
@@ -145,20 +125,16 @@ async function loginUser() {
             </>
           }
         </div>
-        <div className='projectGrid'>
-          {/* // display public projects for non logged in users */}
-          <Button variant='primary' onClick={() => setShowModal(true)}>Add Project</Button>
-          <AddProjectModal show={showModal} handleClose={handleClose} userData={userData}/>
-        </div>
-        <div className='cardHolder'>
-          {projects.map((project, idx) => {
-            return (
-            
-            <ProjectCard project={project} key={idx}/>
-            
-            )
-          })}
-        </div>
+        <hr/>
+          <Routes>
+            <Route path='/' element={ <HomePage userData={userData} projects={projects}/> } />
+            <Route path='/about' element={ <AboutPage userData={userData}/> } />
+            <Route path='/cohort' element={ <CohortPage /> } />
+            <Route path='/profilepage' element={ <ProfilePage userData={userData} /> } />
+            <Route path='/editprofilepage' element={ <EditProfilePage userData={userData}/> } />
+            <Route path='/login' />
+          </Routes>
+        
       </main>
     </div>
   );
