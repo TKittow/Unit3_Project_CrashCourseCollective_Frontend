@@ -85,7 +85,6 @@ export const UsersProvider = ({children}) => {
             cohorts,
             addUser,
             getUsers,
-            getProjects,
             getUserDetails,
             editUser,
             getCohorts
