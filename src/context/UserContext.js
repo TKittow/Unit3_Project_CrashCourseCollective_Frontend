@@ -72,7 +72,6 @@ export const UsersProvider = ({children}) => {
         .then(response => {
             setCohorts(response.data)
         })
-        .then(() => getCohorts())
         .catch(error => console.error("Error fetching cohorts", error))
     }
 
