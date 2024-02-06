@@ -9,10 +9,11 @@ import { Routes, Route } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { useUsers } from './context/UserContext'
 import { useProjects } from './context/ProjectContext';
+import ProjectCard from './components/ProjectCard';
+import Cookies from 'js-cookie'
 
-const CLIENT_ID = '18b849ea0dd132f6729a'
-// Need to remove the above, as it should be in the backend,
-// Front end doesnt like to pull through from an import
+const CLIENT_ID = process.env.REACT_APP_CLIENT_ID
+
 
 function App() {
   const [rerender, setRerender] = useState(false)
@@ -89,7 +90,7 @@ async function loginUser() {
   }
   if (userData.login) {
     await addUser(newUser)
-    console.log(`User ${userData.login}, gitUrl: ${userData.html_url} added to the database`)
+    Cookies.set('userData', JSON.stringify(newUser), { expires: 7})
   } else {
     console.error("No username available in userData")
   }
