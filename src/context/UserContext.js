@@ -20,6 +20,8 @@ export const UsersProvider = ({children}) => {
             console.log(newUser)
             setUserDetailsF(newUser)
             getUserDetails(newUser.username)
+            getCohorts()
+            getUsers()
         }
         catch(e) {
             console.error("Error adding User", e)

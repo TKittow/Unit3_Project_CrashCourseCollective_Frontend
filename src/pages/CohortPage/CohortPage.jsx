@@ -1,18 +1,15 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useUsers } from "../../context/UserContext"
+import UserCard from "../../components/UserCard"
 
 export default function CohortPage() {
-  const { getCohorts, cohorts, userDetails } = useUsers()
-
-  useEffect(() => {
-    getCohorts()
-  },[])
+  const [userCohort, setUserCohort] = useState(null)
+  const { cohorts, userDetails } = useUsers()
 
   function getUserCohort() {
     const cohortId = userDetails.cohort
-    const userCohort = cohorts.find(cohort => cohort._id === cohortId)
-    console.log(userCohort)
-    return userCohort
+    const foundCohort = cohorts.find(cohort => cohort._id === cohortId)
+    setUserCohort(foundCohort)
   }
 
   useEffect(() => {
@@ -21,16 +18,16 @@ export default function CohortPage() {
     }
   },[])
 
-  const userCohort = getUserCohort()
-
   return (
     <>
-    <div>My Cohort {userCohort.cohortName}</div>
-    <ul>
+    {userCohort && (
+        <div>My Cohort {userCohort.cohortName}</div>
+      )}
+      <div>
         {userCohort && userCohort.alumni.map(user => (
-          <li key={user._id}>{user}</li>
+          <UserCard key={user._id} userId={user} />
         ))}
-      </ul>
+      </div>
     </>
   )
 }

@@ -8,13 +8,14 @@ import { useUsers } from "../../context/UserContext"
 export default function EditProfilePage() {
   const { userDetails, getCohorts, cohorts, userDetailsF, sendEditUser } = useUsers()
   const [editUser, setEditUser] = useState(null)
+  const [formSubmitted, setFormSubmitted] = useState(false)
   
   const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    linkedIn: '',
+    fullName: userDetails.fullName,
+    email: userDetails.email,
+    linkedIn: userDetails.linkedIn,
     cohort: '', 
-    aboutMe: ''
+    aboutMe: userDetails.aboutMe
   })
 
   async function saveEdit(userDetails, e) {
@@ -25,11 +26,10 @@ export default function EditProfilePage() {
       await sendEditUser(userDetails.username, body)
       setFormData(body)
       setEditUser(null)
-      console.log("formdata: ", formData)
+      setFormSubmitted(true)      
     } catch (error) {
       console.error(error)
     }
-
   }
 
   function handleChange(e) {
@@ -62,6 +62,7 @@ export default function EditProfilePage() {
           <Form.Control 
           type="text" 
           name="fullName"
+          value={formData.fullName}
           placeholder={userDetails.fullName}
           onChange={(e) => handleChange(e)} 
           />
@@ -72,6 +73,7 @@ export default function EditProfilePage() {
           <Form.Control 
           type="email" 
           name="email"
+          value={formData.email}
           placeholder={userDetails.email} 
           onChange={(e) => handleChange(e)} 
           />
@@ -84,6 +86,7 @@ export default function EditProfilePage() {
           <Form.Control 
           type="text"
           name="linkedIn"
+          value={formData.linkedIn}
           placeholder={userDetails.linkedIn}
           onChange={(e) => handleChange(e)} 
           />
@@ -123,8 +126,10 @@ export default function EditProfilePage() {
       <Form.Group className="mb-3" controlId="formGridAddress1">
         <Form.Label>About Me</Form.Label>
         <Form.Control 
-        type="text"
+        as="textarea"
+        rows={6}
         name="aboutMe"
+        value={formData.aboutMe}
         placeholder={userDetails.aboutMe} 
         onChange={(e) => handleChange(e)} 
         />
@@ -136,6 +141,7 @@ export default function EditProfilePage() {
         Submit
       </Button>
     </Form>
+    {formSubmitted ? <div>Form submitted</div> : null } 
     </>
     : 
     <p>Sign in to see your profile</p>
