@@ -36,7 +36,7 @@ export default function ProjectCard({project}) {
     
 
 
-    <div style={{backgroundColor: 'red'}}>
+    <div style={{backgroundcolor: 'red'}}>
         {avatarUrl && <img src={avatarUrl} alt={altText} style={{ width: '50px', height: '50px' }} />}
         HI
     </div>
