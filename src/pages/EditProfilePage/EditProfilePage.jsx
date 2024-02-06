@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form'
 import Row from 'react-bootstrap/Row'
 import { useUsers } from "../../context/UserContext"
 
-export default function EditProfilePage({userData}) {
+export default function EditProfilePage() {
   const { userDetails, getUserDetails, getCohorts, cohorts, userDetailsF, sendEditUser } = useUsers()
   const [editUser, setEditUser] = useState(null)
   
@@ -17,29 +17,19 @@ export default function EditProfilePage({userData}) {
     aboutMe: ''
   })
 
-  // console.log(loggedInUser)
-
   async function saveEdit(userDetails, e) {
     e.preventDefault()
 
+    const updatedFormData = { ...formData }
+    // Get the selected cohort value from the form data
+    updatedFormData.cohort = e.target.elements.cohortName.value;
     const body = { ...formData, username: userDetails.username }
     await sendEditUser(userDetails.username, body)
 
     setEditUser(null)
-    setFormData({    
-      fullName: '',
-      email: '',
-      linkedIn: '',
-      cohort: '', 
-      aboutMe: ''
-    })
+    setFormData(updatedFormData)
     console.log("formdata: ", formData)
   }
-
-  // function handleChange(e) {
-  //   console.log(e.target.value)    
-  //   setFormData({ ...formData, [e.target.name] : e.target.value })
-  // }
 
   function handleChange(e) {
     const { name, value } = e.target
@@ -48,6 +38,13 @@ export default function EditProfilePage({userData}) {
 
   useEffect(() => {
     getCohorts()
+    setFormData({
+      fullName: userDetails.fullName,
+      email: userDetails.email,
+      linkedIn: userDetails.linkedIn,
+      cohort: userDetails.cohort,
+      aboutMe: userDetails.aboutMe
+    })
     console.log("userdetails front end:", userDetailsF)
     // getUserDetails(userDetailsF.username)
     console.log("user details back end:", userDetails)
@@ -95,10 +92,10 @@ export default function EditProfilePage({userData}) {
 
         <Form.Group as={Col} controlId="formGridState">
           <Form.Label>Cohort</Form.Label>
-          <Form.Select 
+          {/* <Form.Select 
           name="cohortName"
           defaultValue={userDetails.cohort ? userDetails.cohort : 'Choose...'}
-          onChange={(e) => handleChange(e)}
+          onChange={handleChange}
           >
             <option disabled>Choose...</option>
             {cohorts.map((cohort) => (
@@ -106,7 +103,32 @@ export default function EditProfilePage({userData}) {
                 {cohort._id === userDetails.cohort ? cohort.cohortName : cohort.cohortName}
               </option>
             ))}
-          </Form.Select>
+          </Form.Select> */}
+          <Form.Select 
+  name="cohortName"
+  defaultValue={userDetails.cohort ? userDetails.cohort : 'Choose...'}
+  onChange={handleChange}
+>
+  <option disabled>Choose...</option>
+  {/* Find the index of the user's cohort in the cohorts array */}
+  {userDetails.cohort && cohorts.find(cohort => cohort._id === userDetails.cohort) && (
+    <option key={userDetails.cohort} value={userDetails.cohort}>
+      {cohorts.find(cohort => cohort._id === userDetails.cohort).cohortName}
+    </option>
+  )}
+  {/* Map over the remaining cohorts */}
+  {cohorts.map((cohort) => {
+    // Skip the user's cohort
+    if (cohort._id !== userDetails.cohort) {
+      return (
+        <option key={cohort._id} value={cohort._id}>
+          {cohort.cohortName}
+        </option>
+      );
+    }
+    return null;
+  })}
+</Form.Select>
         </Form.Group>
       </Row>
 

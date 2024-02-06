@@ -32,7 +32,7 @@ export default function ProjectCard({project}) {
   
 
     let altText = `${project.username}'s avatar`
-console.log(project.username)
+// console.log(project.username)
 
   return (
 

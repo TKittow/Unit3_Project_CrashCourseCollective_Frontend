@@ -52,7 +52,7 @@ export const UsersProvider = ({children}) => {
         try {
             const response = await axios.put(`${process.env.REACT_APP_BACKEND_URL}/users/${username}`, updatedData)
             if (response.status === 200) {
-                console.log('User profile updated successfully')
+                console.log('User profile updated successfully', updatedData)
                 
                 // merge updatedData with userDetails
                 setUserDetails(prevUserDetails => ({
