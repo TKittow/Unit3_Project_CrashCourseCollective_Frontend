@@ -1,6 +1,5 @@
 //! Imports
 import { useState } from 'react'
-import Navbar from '../../components/NavBar/NavBar'
 import AddProjectModal from '../../components/AddProjectModal'
 import ProjectCard from '../../components/ProjectCard'
 
@@ -16,14 +15,13 @@ function closeModal() {
 }
 
 function renderProjects() {
-    return projects.map((project) => (
+    return projects ? projects.map((project) => (
         <ProjectCard key={project.id} project={project} />
-    ))
+    )) : null
 }
 
 return (
-    <div className="profilePage">
-        <Navbar />
+    <div className="profilePage">        
         <div className='userInfo'>
             <img src={userData.avatar_url} alt="UserImage" className='profileImage'/>
             <div className='profileInfo'>

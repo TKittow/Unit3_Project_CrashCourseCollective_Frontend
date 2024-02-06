@@ -52,21 +52,22 @@ useEffect(() => {
 }, []) // empty array to make the use effect only run once
 
 async function getUserData() {
-  await fetch('http://localhost:4000/getUserData', {
-    method: 'GET',
-    headers: {
-      'Authorization' : 'Bearer ' + localStorage.getItem('accessToken')
-    }
-  }).then((response) => {
-    return response.json()
-  }).then((data) => {
-    console.log(data)
-    if (data.login) {
-      setUserData(data)
-    } else {
-      console.error('GitHub user data does not contain username')
-    }
-  })
+  
+    await fetch('http://localhost:4000/getUserData', {
+      method: 'GET',
+      headers: {
+        'Authorization' : 'Bearer ' + localStorage.getItem('accessToken')
+      }
+    }).then((response) => {
+      return response.json()
+    }).then((data) => {
+      console.log(data)
+      if (data.login) {
+        setUserData(data)
+      } else {
+        console.error('GitHub user data does not contain username')
+      }
+    })
   .catch((error) => {
     console.error('error fetching user data:', error)
   })
@@ -134,21 +135,12 @@ async function loginUser() {
           {localStorage.getItem('accessToken') ?
             <>
               {/* //insert if logged in items  */}
-              <h1>We have a token</h1>
+              <h1>Welcome {userData.login}</h1>
               <button onClick={() => { localStorage.removeItem('accessToken'); setRerender(!rerender)}}>
                 Log Out
-              </button>
-              <h3> Get user data </h3>
-              <button onClick={getUserData}>Get Data</button>
-              {Object.keys(userData).length !== 0 ?
-              <>
-                <h4> Hey there {userData.login}</h4>
-                <img width='100px' height='100px' src={userData.avatar_url} alt='profile pic'></img>
-                <a href={userData.html_url} style={{'color' : 'blue'}}>Link to GitHub profile</a>
-              </>
-              :
-              <>
-              </>}
+              </button> <br></br>
+              
+
             </>
           :
             <>
