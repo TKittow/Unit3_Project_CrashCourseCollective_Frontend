@@ -17,6 +17,7 @@ export default function EditProfilePage({userData}) {
     aboutMe: ''
   })
 
+  const loggedInUser = getUserDetails(userDetails.username)
   // console.log(loggedInUser)
 
   async function handleSubmit(loggedInUser) {
@@ -40,23 +41,27 @@ export default function EditProfilePage({userData}) {
   useEffect(() => {
     getCohorts()
     console.log("userdetails front end:", userDetailsF)
+    console.log(userDetails.username) 
     // if (userDetails.username) {
       // const loggedInUser = getUserDetails(userDetails.username)
       getUserDetails(userDetailsF.username)
+      const loggedInUser = userDetails
 
-      console.log("user details back end:", userDetails)
+      console.log(userDetails)
+      console.log(loggedInUser)
 
       setFormData({
-        fullName: userDetails.fullName || '',
-        email: userDetails.email || '',
-        linkedIn: userDetails.linkedIn || '',
-        cohort: userDetails.cohort || '',
-        aboutMe: userDetails.aboutMe || '',
+        fullName: loggedInUser.fullName || '',
+        email: loggedInUser.email || '',
+        linkedIn: loggedInUser.linkedIn || '',
+        cohort: loggedInUser.cohort || '',
+        aboutMe: loggedInUser.aboutMe || '',
       })
   }, [])
 
   return (
     <>
+    <p>{userData.login}</p>
     {localStorage.getItem('accessToken')
     ?
     <>
@@ -68,7 +73,7 @@ export default function EditProfilePage({userData}) {
           <Form.Control 
           type="text" 
           name="fullName"
-          placeholder={userDetails.fullName}
+          placeholder={loggedInUser.fullName}
           onChange={(e) => handleChange(e)} 
           />
         </Form.Group>
@@ -78,7 +83,7 @@ export default function EditProfilePage({userData}) {
           <Form.Control 
           type="email" 
           name="email"
-          placeholder={userDetails.email} />
+          placeholder={loggedInUser.email} />
         </Form.Group>
       </Row>
 
@@ -88,7 +93,7 @@ export default function EditProfilePage({userData}) {
           <Form.Control 
           type="text"
           name="linkedIn"
-          placeholder={userDetails.linkedIn}/>
+          placeholder={loggedInUser.linkedIn}/>
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridState">
@@ -109,14 +114,14 @@ export default function EditProfilePage({userData}) {
         <Form.Control 
         type="text"
         name="aboutMe"
-        placeholder={userDetails.aboutMe} />
+        placeholder={loggedInUser.aboutMe} />
       </Form.Group>
 
       <Button 
       variant="primary" 
       type="submit"
       onClick={() => {
-        handleSubmit(userDetails)
+        handleSubmit(loggedInUser)
       }}>
         Submit
       </Button>

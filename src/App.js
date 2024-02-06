@@ -19,7 +19,7 @@ function App() {
   const [rerender, setRerender] = useState(false)
   const [userData, setUserData] = useState({})
   const [showModal, setShowModal] = useState(false)
-  const { addUser, projects, getProjects } = useUsers()
+  const { addUser, projects, getProjects, getUserDetails } = useUsers()
   //! 'projects' as above will be moved to the project card
 
 useEffect(() => {
@@ -34,12 +34,11 @@ useEffect(() => {
           method:'GET'
       })
       const data = await response.json()
-        console.log(data)
         if(data.access_token) {
           localStorage.setItem('accessToken', data.access_token) // setItem does not force a rerender on react. We want it to so we can show a state with the user being logged in
           setRerender(!rerender)
           getUserData()
-          console.log(userData.login)
+
         }
       } catch (error) {
         console.error("Error fetching access token:", error)
@@ -59,9 +58,10 @@ async function getUserData() {
   }).then((response) => {
     return response.json()
   }).then((data) => {
-    console.log(data)
+    // console.log(data)
     if (data.login) {
       setUserData(data)
+      console.log("user data logged")
     } else {
       console.error('GitHub user data does not contain username')
     }
@@ -92,7 +92,7 @@ async function loginUser() {
     await addUser(newUser)
     console.log(`User ${userData.login}, gitUrl: ${userData.html_url} added to the database`)
   } else {
-    console.error("No username available in userData");
+    console.error("No username available in userData")
   }
 }
 
@@ -113,11 +113,11 @@ async function loginUser() {
       <main>
           <NavBar />
           <Routes>
-            <Route path='/' element={ <HomePage /> } />
-            <Route path='/about' element={ <AboutPage /> } />
+            <Route path='/' element={ <HomePage userData={userData} /> } />
+            <Route path='/about' element={ <AboutPage userData={userData}/> } />
             <Route path='/cohort' element={ <CohortPage /> } />
             <Route path='/profilepage' element={ <ProfilePage /> } />
-            <Route path='/editprofilepage' element={ <EditProfilePage userData={userData} /> } />
+            <Route path='/editprofilepage' element={ <EditProfilePage userData={userData}/> } />
             <Route path='/login' />
           </Routes>
         <div className='login'>
