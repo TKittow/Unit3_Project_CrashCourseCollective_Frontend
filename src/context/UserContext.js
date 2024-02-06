@@ -38,7 +38,7 @@ export const UsersProvider = ({children}) => {
     async function getUserDetails(username) {
         try {
             const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/users/${username}`)
-            const user = response.data;
+            const user = response.data
             console.log(user)
             setUserDetails(user)
 
@@ -48,17 +48,24 @@ export const UsersProvider = ({children}) => {
         }
     }
 
-    const editUser = async (userId, updatedData) => {
+      const sendEditUser = async (username, updatedData) => {
         try {
-          const response = await axios.put(`/users/${userId}`, updatedData)
-          if (response.status === 200) {
-            console.log('User profile updated successfully')
-            setUserDetails(updatedData)
-          }
+            const response = await axios.put(`${process.env.REACT_APP_BACKEND_URL}/users/${username}`, updatedData)
+            if (response.status === 200) {
+                console.log('User profile updated successfully')
+                
+                // merge updatedData with userDetails
+                setUserDetails(prevUserDetails => ({
+                    ...prevUserDetails,
+                    ...updatedData
+                }));
+            } else {
+                console.error('Error updating user profile:', response.status)
+            }
         } catch (error) {
-          console.error('Error updating user profile:', error)
+            console.error('Error updating user profile:', error)
         }
-      }
+    }
 
     function getCohorts() {
         axios.get(`${process.env.REACT_APP_BACKEND_URL}/cohorts`)
@@ -69,14 +76,6 @@ export const UsersProvider = ({children}) => {
         .catch(error => console.error("Error fetching cohorts", error))
     }
 
-    function getUsers() {
-        axios.get(`${process.env.REACT_APP_BACKEND_URL}/users`)
-        .then(response => {
-            setUsers(response.data)
-        })
-        .catch(error => console.error("Error fetching users", error))
-    }
-
     return (
         <UserContext.Provider value={{
             users,
@@ -85,9 +84,8 @@ export const UsersProvider = ({children}) => {
             cohorts,
             addUser,
             getUsers,
-            getProjects,
             getUserDetails,
-            editUser,
+            sendEditUser,
             getCohorts
         }}
         >
