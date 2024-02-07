@@ -5,13 +5,13 @@ import AboutPage from './pages/AboutPage/AboutPage'
 import CohortPage from './pages/CohortPage/CohortPage'
 import ProfilePage from './pages/ProfilePage/ProfilePage'
 import EditProfilePage from './pages/EditProfilePage/EditProfilePage'
-import ProjectPage from './pages/ProjectPage/ProjectPage';
+import UserProfilePage from './pages/UserProfilePage/UserProfilePage'
+import ProjectPage from './pages/ProjectPage/ProjectPage'
 import { Routes, Route } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { useUsers } from './context/UserContext'
-import { useProjects } from './context/ProjectContext';
+import { useProjects } from './context/ProjectContext'
 import {Button } from 'react-bootstrap'
-import ProjectCard from './components/ProjectCard';
 import Cookies from 'js-cookie'
 
 const CLIENT_ID = process.env.REACT_APP_CLIENT_ID
@@ -113,6 +113,7 @@ useEffect(() => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [])
 
+<<<<<<< HEAD
 
 
 async function loginUser() {
@@ -123,6 +124,17 @@ async function loginUser() {
   if (userData.login) {
     await addUser(newUser)
     Cookies.set('userData', JSON.stringify(newUser), { expires: 7})
+=======
+async function loginUser() {
+  const newUser = {
+    username: userData.login,
+    gitUrl: userData.html_url,
+    userAvatar: userData.avatar_url
+  }
+  if (userData.login) {
+    await addUser(newUser)
+    // Cookies.set('userData', JSON.stringify(newUser), { expires: 7})
+>>>>>>> dev
   } else {
     console.error("No username available in userData")
   }
@@ -131,8 +143,6 @@ async function loginUser() {
   function gitHubLogin(){ 
     window.location.assign('https://github.com/login/oauth/authorize?client_id=' + CLIENT_ID)
   }
-
- 
 
   return (
     <div className="App">
@@ -156,6 +166,7 @@ async function loginUser() {
             <Route path='/about' element={ <AboutPage userData={userData}/> } />
             <Route path='/cohort' element={ <CohortPage /> } />
             <Route path='/profilepage' element={ <ProfilePage userData={userData} /> } />
+            <Route path='/profilepage/:username' element={ <UserProfilePage userData={userData} /> } />
             <Route path='/editprofilepage' element={ <EditProfilePage userData={userData}/> } />
             <Route path='/login' />
             <Route path='/projects/:projectName' element={ <ProjectPage projects={projects} />} />

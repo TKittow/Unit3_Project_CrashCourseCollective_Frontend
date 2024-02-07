@@ -5,8 +5,12 @@ import { useProjects } from "../../context/ProjectContext"
 export default function HomePage({userData}) {
   
   const { projects, getProjects } = useProjects()
+<<<<<<< HEAD
   
-  console.log(projects)
+  // console.log(projects)
+=======
+
+>>>>>>> toby
 useEffect(() => {
   getProjects()
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -16,7 +20,6 @@ useEffect(() => {
     <>
     <div>HomePage</div>
     <div className='cardHolder'>
-        This is where the cards should display
         {projects.map((project, idx) => {
           return <ProjectCard project={project} key={idx} />
         })}
