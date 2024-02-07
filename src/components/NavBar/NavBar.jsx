@@ -10,7 +10,7 @@ export default function NavBar() {
           <Nav className="me-auto">
             <Nav.Link as={Link} to='/'>Home</Nav.Link>
             <Nav.Link as={Link} to='/about'>About</Nav.Link>
-            <Nav.Link as={Link} to='/cohort'>Cohort</Nav.Link>
+            <Nav.Link as={Link} to='/cohort'>My Cohort</Nav.Link>
             <Nav.Link as={Link} to='/profilepage'>My Page</Nav.Link>
             <Nav.Link as={Link} to='/'>Login</Nav.Link>
             <NavDropdown title="Settings">

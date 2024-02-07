@@ -1,3 +1,5 @@
+import { Button, Card, Stack } from "react-bootstrap"
+import { Link } from 'react-router-dom'
 import { useUsers } from "../context/UserContext"
 
 export default function UserCard({userId}) {
@@ -5,20 +7,24 @@ export default function UserCard({userId}) {
     const user = users.find(user => user._id === userId)
 
   return (
-    <div>
-        {user 
-        ? 
-        (
-        <div>
-            <p>Name: {user.fullName}</p>
-            <p>Email: {user.email}</p>
-            <p>LinkedIn: {user.linkedIn}</p>
-        </div>
-        ) 
-        : 
-        (
-            <p>User not found</p>
-        )}
-    </div>
+    <>
+    {user
+    ?
+    (
+    <Card 
+    style={{ width: '18rem'}}
+    as={Link} to={`/profilepage/${user.username}`}> 
+        <Card.Body>
+            <Card.Title className="d-flex justify-content-between align-items-baseline fw-normal mb-3">
+            {user.username}
+            </Card.Title>
+            <img src={user.userAvatar} alt={`${user.username}'s avatar`} width="50vmin" />
+        </Card.Body>
+    </Card>
+    )
+    :
+    <p>User not found</p>
+    }
+    </>
   )
 }

@@ -3,11 +3,13 @@ import { useState, useEffect } from 'react'
 import AddProjectModal from '../../components/AddProjectModal'
 import {Button } from 'react-bootstrap'
 import { useProjects } from '../../context/ProjectContext'
+import { useParams } from 'react-router-dom'
 import { useUsers } from "../../context/UserContext"
 
 
 export default function ProfilePage({ userData }){
-  const { getUserDetails, userDetails, userDetailsF } = useUsers()
+  const { username } = useParams()
+  const { getUserDetails, userDetails } = useUsers()
   const [showModal, setShowModal] = useState(false)
   const { getProjects } = useProjects()
 
@@ -17,11 +19,11 @@ export default function ProfilePage({ userData }){
   }
 
   useEffect(() => {
-    getUserDetails(userDetailsF.username)
+    getUserDetails(username)
     console.log(userDetails)
     getProjects()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [username])
 
 return (
   <>

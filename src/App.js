@@ -5,6 +5,7 @@ import AboutPage from './pages/AboutPage/AboutPage'
 import CohortPage from './pages/CohortPage/CohortPage'
 import ProfilePage from './pages/ProfilePage/ProfilePage'
 import EditProfilePage from './pages/EditProfilePage/EditProfilePage'
+import UserProfilePage from './pages/UserProfilePage/UserProfilePage'
 import { Routes, Route } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { useUsers } from './context/UserContext'
@@ -58,7 +59,7 @@ async function getUserData() {
   }).then((response) => {
     return response.json()
   }).then((data) => {
-    // console.log(data)
+    console.log(data)
     if (data.login) {
       setUserData(data)
       console.log("user data logged")
@@ -85,7 +86,8 @@ useEffect(() => {
 async function loginUser() {
   const newUser = {
     username: userData.login,
-    gitUrl: userData.html_url
+    gitUrl: userData.html_url,
+    userAvatar: userData.avatar_url
   }
   if (userData.login) {
     await addUser(newUser)
@@ -131,6 +133,7 @@ async function loginUser() {
             <Route path='/about' element={ <AboutPage userData={userData}/> } />
             <Route path='/cohort' element={ <CohortPage /> } />
             <Route path='/profilepage' element={ <ProfilePage userData={userData} /> } />
+            <Route path='/profilepage/:username' element={ <UserProfilePage userData={userData} /> } />
             <Route path='/editprofilepage' element={ <EditProfilePage userData={userData}/> } />
             <Route path='/login' />
           </Routes>
