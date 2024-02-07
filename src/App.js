@@ -5,7 +5,6 @@ import AboutPage from './pages/AboutPage/AboutPage'
 import CohortPage from './pages/CohortPage/CohortPage'
 import ProfilePage from './pages/ProfilePage/ProfilePage'
 import EditProfilePage from './pages/EditProfilePage/EditProfilePage'
-import UserProfilePage from './pages/UserProfilePage/UserProfilePage'
 import ProjectPage from './pages/ProjectPage/ProjectPage'
 import { Routes, Route } from 'react-router-dom'
 import { useEffect, useState } from 'react'
@@ -152,8 +151,7 @@ async function loginUser() {
             <Route path='/' element={ <HomePage userData={userData}/> } />
             <Route path='/about' element={ <AboutPage userData={userData}/> } />
             <Route path='/cohort' element={ <CohortPage /> } />
-            <Route path='/profilepage' element={ <ProfilePage userData={userData} /> } />
-            <Route path='/profilepage/:username' element={ <UserProfilePage userData={userData} /> } />
+            <Route path='/profilepage/:username' element={ <ProfilePage userData={userData} /> } />
             <Route path='/editprofilepage' element={ <EditProfilePage userData={userData}/> } />
             <Route path='/login' />
             <Route path='/projects/:projectName' element={ <ProjectPage projects={projects} />} />
