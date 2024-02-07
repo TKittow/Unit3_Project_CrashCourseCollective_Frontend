@@ -1,15 +1,15 @@
-import { Link, NavLink } from 'react-router-dom'
-import { Navbar, Container, Nav, NavDropdown, Button, Card } from 'react-bootstrap'
-import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { Navbar, Container, Nav, NavDropdown, } from 'react-bootstrap'
+// import { useState } from 'react'
 import './NavBar.css'
 
 
 export default function NavBar({ loggedIn, gitHubLogin, handleLogout, userData}) {
-  const [cardOpen, setCardOpen] = useState(false)
+  // const [cardOpen, setCardOpen] = useState(false)
 
-  const toggleCard = () => {
-    setCardOpen(!cardOpen)
-  }
+  // const toggleCard = () => {
+  //   setCardOpen(!cardOpen)
+  // }
 
   return (
     <Navbar sticky="top" bg="light" data-bs-theme="light">
