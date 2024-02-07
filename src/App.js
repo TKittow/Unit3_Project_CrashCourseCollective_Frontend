@@ -116,7 +116,8 @@ useEffect(() => {
 async function loginUser() {
   const newUser = {
     username: userData.login,
-    gitUrl: userData.html_url
+    gitUrl: userData.html_url,
+    userAvatar: userData.avatar_url
   }
   if (userData.login) {
     await addUser(newUser)
