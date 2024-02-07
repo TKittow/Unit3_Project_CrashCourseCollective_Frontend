@@ -6,11 +6,12 @@ import { useProjects } from '../../context/ProjectContext'
 import { useUsers } from "../../context/UserContext"
 import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+
 import './ProfilePage.css'
 
  
 export default function ProfilePage({ userData }){
-  const { getUserDetails, userDetails, userDetailsF, cohorts } = useUsers()
+  const { getUserDetails, userDetails, userDetailsF, cohorts, setUserDetails } = useUsers()
   const [showModal, setShowModal] = useState(false)
   const { getProjects } = useProjects()
   const { username } = useParams()
