@@ -6,6 +6,7 @@ import './UserCard.css'
 export default function UserCard({userId}) {
     const { users } = useUsers()
     const user = users.find(user => user._id === userId)
+    console.log(user.username)
 
   return (
     <>

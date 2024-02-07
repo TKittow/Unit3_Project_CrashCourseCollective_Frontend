@@ -12,7 +12,6 @@ import { useEffect, useState } from 'react'
 import { useUsers } from './context/UserContext'
 import { useProjects } from './context/ProjectContext'
 import {Button } from 'react-bootstrap'
-import ProjectCard from './components/ProjectCard';
 import Cookies from 'js-cookie'
 
 const CLIENT_ID = process.env.REACT_APP_CLIENT_ID
@@ -117,7 +116,8 @@ useEffect(() => {
 async function loginUser() {
   const newUser = {
     username: userData.login,
-    gitUrl: userData.html_url
+    gitUrl: userData.html_url,
+    userAvatar: userData.avatar_url
   }
   if (userData.login) {
     await addUser(newUser)
