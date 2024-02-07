@@ -4,6 +4,7 @@ import { Button } from 'react-bootstrap'
 import AddProjectModal from '../../components/AddProjectModal'
 import { useProjects } from '../../context/ProjectContext'
 import { useUsers } from "../../context/UserContext"
+import { useParams } from 'react-router-dom'
 import './ProfilePage.css'
 
  

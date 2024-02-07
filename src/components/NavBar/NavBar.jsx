@@ -1,9 +1,12 @@
 import { Link } from 'react-router-dom'
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap'
 import './NavBar.css'
+import { useUsers } from "../../context/UserContext"
+
 
 
 export default function NavBar({ loggedIn, gitHubLogin, handleLogout, userData}) {
+const { userDetailsF } = useUsers()
 
   return (
     <Navbar sticky="top" bg="light" data-bs-theme="light">
@@ -12,7 +15,7 @@ export default function NavBar({ loggedIn, gitHubLogin, handleLogout, userData})
           <Nav className="me-auto">
             <Nav.Link as={Link} to='/'>Home</Nav.Link> 
             <Nav.Link as={Link} to='/cohort'>Cohort</Nav.Link>
-            <Nav.Link as={Link} to={`/profilepage/${user.username}`}>My Page</Nav.Link>
+            <Nav.Link as={Link} to={`/profilepage/${userDetailsF.username}`}>My Page</Nav.Link>
               <NavDropdown title="Settings">
                 {loggedIn ? (
                 <>
