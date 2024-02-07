@@ -20,7 +20,7 @@ const CLIENT_ID = process.env.REACT_APP_CLIENT_ID
 function App() {
   const [userData, setUserData] = useState({})
   const [loggedIn, SetLoggedIn] = useState(false)
-  const { addUser } = useUsers()
+  // const { users } = useUsers()
  const { getProjects, projects } = useProjects()
   
   //! 'projects' as above will be moved to the project card
@@ -112,8 +112,6 @@ useEffect(() => {
   getProjects()
   // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [])
-
-
 
 // async function loginUser() {
 //   const newUser = {

@@ -33,7 +33,6 @@ export const UsersProvider = ({children}) => {
         .then(response => {
             setUsers(response.data)
         })
-        .then(() => getUsers())
         .catch(error => console.error("Error fetching users", error))
     }
 
