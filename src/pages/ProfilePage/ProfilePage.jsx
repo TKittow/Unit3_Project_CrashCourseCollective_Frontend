@@ -31,7 +31,6 @@ export default function ProfilePage({ userData, loggedIn }){
     } else {
       getUserDetails(username)
     }
-    console.log(username)
     getProjects()
     getUserProjects(username)
     // eslint-disable-next-line react-hooks/exhaustive-deps
