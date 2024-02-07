@@ -101,12 +101,12 @@ const handleLogout = () => {
   setUserData({})
 }
 
-// useEffect(() => {
-//   if (userData.login) {
-//     loginUser()
-//   }
-//   // eslint-disable-next-line react-hooks/exhaustive-deps
-// }, [userData.login])
+useEffect(() => {
+  if (userData.login) {
+    loginUser()
+  }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+}, [userData.login])
 
 useEffect(() => {
   getProjects()
@@ -115,18 +115,18 @@ useEffect(() => {
 
 
 
-// async function loginUser() {
-//   const newUser = {
-//     username: userData.login,
-//     gitUrl: userData.html_url
-//   }
-//   if (userData.login) {
-//     await addUser(newUser)
-//     Cookies.set('userData', JSON.stringify(newUser), { expires: 7})
-//   } else {
-//     console.error("No username available in userData")
-//   }
-// }
+async function loginUser() {
+  const newUser = {
+    username: userData.login,
+    gitUrl: userData.html_url
+  }
+  if (userData.login) {
+    await addUser(newUser)
+    Cookies.set('userData', JSON.stringify(newUser), { expires: 7})
+  } else {
+    console.error("No username available in userData")
+  }
+}
 
   function gitHubLogin(){ 
     window.location.assign('https://github.com/login/oauth/authorize?client_id=' + CLIENT_ID)

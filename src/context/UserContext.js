@@ -33,7 +33,6 @@ export const UsersProvider = ({children}) => {
         .then(response => {
             setUsers(response.data)
         })
-        .then(() => getUsers())
         .catch(error => console.error("Error fetching users", error))
     }
 
@@ -85,10 +84,7 @@ export const UsersProvider = ({children}) => {
             cohorts,
             addUser,
             getUsers,
-<<<<<<< HEAD
             //getProjects,
-=======
->>>>>>> 56abe65 (edit user working on fe)
             getUserDetails,
             sendEditUser,
             getCohorts
