@@ -6,11 +6,14 @@ import { useProjects } from '../../context/ProjectContext'
 import { useUsers } from "../../context/UserContext"
 import './ProfilePage.css'
 
-
+ 
 export default function ProfilePage({ userData }){
   const { getUserDetails, userDetails, userDetailsF, cohorts } = useUsers()
   const [showModal, setShowModal] = useState(false)
   const { getProjects } = useProjects()
+
+  const { username } = useParams()
+
 
  //? Modal Logic
  function handleClose(){
@@ -22,7 +25,7 @@ export default function ProfilePage({ userData }){
     console.log(userDetails)
     getProjects()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [username])
 
   function getCohortName(cohortId) {
     const foundCohort = cohorts.find(cohort => cohort._id === cohortId)
