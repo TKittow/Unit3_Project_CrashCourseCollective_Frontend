@@ -7,12 +7,13 @@ import { useUsers } from "../../context/UserContext"
 import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import './ProfilePage.css'
+import ProjectCard from '../../components/ProjectCard'
 
  
 export default function ProfilePage({ userData }){
   const { getUserDetails, userDetails, userDetailsF, cohorts } = useUsers()
   const [showModal, setShowModal] = useState(false)
-  const { getProjects } = useProjects()
+  const { getProjects, getUserProjects, userProjects } = useProjects()
   const { username } = useParams()
 
 
@@ -29,6 +30,7 @@ export default function ProfilePage({ userData }){
     }
     console.log(username)
     getProjects()
+    getUserProjects(username)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [username])
 
@@ -58,7 +60,9 @@ return (
                 <span>{userDetails.html_url}</span>
             </div>
         </div>      
-        {/* Cards */}
+        {userProjects.map((project, idx)=>{
+            return <ProjectCard project={project} key={idx} />
+        })}
         <div>
 
         </div>
