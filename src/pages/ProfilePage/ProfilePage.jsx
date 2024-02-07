@@ -28,7 +28,7 @@ export default function ProfilePage({ userData }){
       getUserDetails(username)
     }
     getProjects()
-    getUserProjects()
+    getUserProjects(username)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [username])
 
@@ -56,8 +56,8 @@ return (
                 <span>{userDetails.html_url}</span>
             </div>
         </div>      
-        {userProjects.map((userProject, idx)=>{
-            return <ProjectCard project={userProject} key={idx} />
+        {userProjects.map((project, idx)=>{
+            return <ProjectCard project={project} key={idx} />
         })}
         <div>
 
