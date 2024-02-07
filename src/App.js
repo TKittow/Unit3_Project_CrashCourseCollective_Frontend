@@ -21,7 +21,7 @@ const CLIENT_ID = process.env.REACT_APP_CLIENT_ID
 function App() {
   const [userData, setUserData] = useState({})
   const [loggedIn, SetLoggedIn] = useState(false)
-  const { addUser } = useUsers()
+  // const { users } = useUsers()
  const { getProjects, projects } = useProjects()
   
   //! 'projects' as above will be moved to the project card
@@ -114,6 +114,7 @@ useEffect(() => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [])
 
+<<<<<<< HEAD
 async function loginUser() {
   const newUser = {
     username: userData.login,
@@ -126,6 +127,20 @@ async function loginUser() {
     console.error("No username available in userData")
   }
 }
+=======
+// async function loginUser() {
+//   const newUser = {
+//     username: userData.login,
+//     gitUrl: userData.html_url
+//   }
+//   if (userData.login) {
+//     await addUser(newUser)
+//     Cookies.set('userData', JSON.stringify(newUser), { expires: 7})
+//   } else {
+//     console.error("No username available in userData")
+//   }
+// }
+>>>>>>> toby
 
   function gitHubLogin(){ 
     window.location.assign('https://github.com/login/oauth/authorize?client_id=' + CLIENT_ID)
