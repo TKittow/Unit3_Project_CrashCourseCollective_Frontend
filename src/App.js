@@ -9,6 +9,7 @@ import { Routes, Route } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { useUsers } from './context/UserContext'
 import { useProjects } from './context/ProjectContext';
+import {Button } from 'react-bootstrap'
 import ProjectCard from './components/ProjectCard';
 import Cookies from 'js-cookie'
 
@@ -16,8 +17,8 @@ const CLIENT_ID = process.env.REACT_APP_CLIENT_ID
 
 
 function App() {
-  const [rerender, setRerender] = useState(false)
   const [userData, setUserData] = useState({})
+  const [loggedIn, SetLoggedIn] = useState(false)
   const { addUser } = useUsers()
   const { projects, } = useProjects()
   
@@ -28,114 +29,130 @@ useEffect(() => {
   const urlParams = new URLSearchParams(queryString) 
   const codeParam = urlParams.get('code')
   
-  if(codeParam && !localStorage.getItem('accessToken')) {
-    async function getAccessToken() {
-      try {
-        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/getAccessToken?code=${codeParam}`, {
-          method:'GET'
+  const fetchUserData = async () => {
+    if (codeParam && !localStorage.getItem('accessToken')) {
+      getAccessToken(codeParam)
+    }
+    if (localStorage.getItem('accessToken')) {
+      await getUserData()
+      SetLoggedIn(true)
+    }
+  }
+  fetchUserData()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+}, []) // empty array to make the use effect only run once
+
+  const getAccessToken = async (codeParam) => {
+    try {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/getAccessToken?code=${codeParam}`, {
+        method:'GET'
       })
       const data = await response.json()
-        if(data.access_token) {
-          localStorage.setItem('accessToken', data.access_token) // setItem does not force a rerender on react. We want it to so we can show a state with the user being logged in
-          setRerender(!rerender)
-          getUserData()
-
+      if (data.access_token) {
+        localStorage.setItem('accessToken', data.access_token) // setItem does not force a rerender on react. We want it to so we can show a state with the user being logged in
+        SetLoggedIn(true)
+        getUserData()
         }
       } catch (error) {
         console.error("Error fetching access token:", error)
       }
     }
-    getAccessToken()
-  }
-// eslint-disable-next-line react-hooks/exhaustive-deps
-}, []) // empty array to make the use effect only run once
 
-async function getUserData() {
-  await fetch(`${process.env.REACT_APP_BACKEND_URL}/getUserData`, {
-    method: 'GET',
-    headers: {
-      'Authorization' : 'Bearer ' + localStorage.getItem('accessToken')
-    }
-  }).then((response) => {
-    return response.json()
-  }).then((data) => {
-    // console.log(data)
+
+const getUserData = async () => {
+  try {
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/getUserData`, {
+      method: 'GET',
+      headers: {
+        'Authorization' : 'Bearer ' + localStorage.getItem('accessToken')
+      }
+    })
+    const data = await response.json()
     if (data.login) {
       setUserData(data)
-      console.log("user data logged")
+      console.log('User data logged')
     } else {
-      console.error('GitHub user data does not contain username')
+      console.error('Github user incorrect')
     }
-  })
-  .catch((error) => {
+  } catch (error) {
     console.error('error fetching user data:', error)
-  })
-}
-
-
-useEffect(() => {
-  if (userData.login) {
-    loginUser()
-  }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-}, [userData.login])
-
-
-
-
-async function loginUser() {
-  const newUser = {
-    username: userData.login,
-    gitUrl: userData.html_url
-  }
-  if (userData.login) {
-    await addUser(newUser)
-    Cookies.set('userData', JSON.stringify(newUser), { expires: 7})
-  } else {
-    console.error("No username available in userData")
   }
 }
+
+  //.then((response) => {
+  //   return response.json()
+  // }).then((data) => {
+  //   // console.log(data)
+  //   if (data.login) {
+  //     setUserData(data)
+  //     console.log("user data logged")
+  //   } else {
+  //     console.error('GitHub user data does not contain username')
+  //   }
+  // })
+
+
+const handleLogout = () => {
+  localStorage.removeItem('accessToken')
+  Cookies.remove('userData')
+  SetLoggedIn(false)
+  setUserData({})
+}
+
+// useEffect(() => {
+//   if (userData.login) {
+//     loginUser()
+//   }
+//   // eslint-disable-next-line react-hooks/exhaustive-deps
+// }, [userData.login])
+
+
+
+
+// async function loginUser() {
+//   const newUser = {
+//     username: userData.login,
+//     gitUrl: userData.html_url
+//   }
+//   if (userData.login) {
+//     await addUser(newUser)
+//     Cookies.set('userData', JSON.stringify(newUser), { expires: 7})
+//   } else {
+//     console.error("No username available in userData")
+//   }
+// }
 
   function gitHubLogin(){ 
     window.location.assign('https://github.com/login/oauth/authorize?client_id=' + CLIENT_ID)
   }
-
 
  
 
   return (
     <div className="App">
       <main>
-      <NavBar />
+        <NavBar 
+          loggedIn={loggedIn} 
+          handleLogout={handleLogout} 
+          userData={userData}
+          gitHubLogin={gitHubLogin}
+        />
         <div className='login'>
-          {localStorage.getItem('accessToken') ?
-            <>
-              {/* //insert if logged in items  */}
-              <h1>Welcome {userData.login}</h1>
-              <button onClick={() => { localStorage.removeItem('accessToken'); setRerender(!rerender)}}>
-                Log Out
-              </button> <br></br>
-              
-
-            </>
-          :
-            <>
-            <button onClick={gitHubLogin}>
-              Sign in with Git
-            </button>
-            </>
-          }
+          {!loggedIn ? (
+            <Button onClick={gitHubLogin}>
+              Sign in with GitHub
+            </Button>
+          ) : null }
         </div>
         <hr/>
-          <Routes>
-            <Route path='/' element={ <HomePage userData={userData} projects={projects}/> } />
-            <Route path='/about' element={ <AboutPage userData={userData}/> } />
-            <Route path='/cohort' element={ <CohortPage /> } />
-            <Route path='/profilepage' element={ <ProfilePage userData={userData} /> } />
-            <Route path='/editprofilepage' element={ <EditProfilePage userData={userData}/> } />
-            <Route path='/login' />
-          </Routes>
-        
+        <Routes>
+          <Route path='/' element={ <HomePage userData={userData} projects={projects}/> } />
+          <Route path='/about' element={ <AboutPage userData={userData}/> } />
+          <Route path='/cohort' element={ <CohortPage /> } />
+          <Route path='/profilepage' element={ <ProfilePage userData={userData} /> } />
+          <Route path='/editprofilepage' element={ <EditProfilePage userData={userData}/> } />
+          <Route path='/login' />
+        </Routes>
       </main>
     </div>
   );
