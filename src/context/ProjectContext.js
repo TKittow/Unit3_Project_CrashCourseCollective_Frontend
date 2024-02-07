@@ -9,7 +9,7 @@ export function useProjects(){
 
 export const ProjectsProvider = ({children}) => {
     const [projects, setProjects] = useState([])
-
+    const [userProjects, setUserProjects] = useState([])
 
 
 async function getProjects(){
@@ -20,6 +20,19 @@ async function getProjects(){
     .catch(err => {
         console.error('Error fetchiing projects', err)
     })
+}
+
+async function getUserProjects(username) {
+    try {
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/projects/${username}`)
+        const userProjects = response.data
+        console.log(userProjects)
+        setUserProjects(userProjects)
+
+    } catch (error) {
+        console.error("Error fetching user details:", error)
+        return null
+    }
 }
 
 
@@ -35,8 +48,10 @@ async function addProject(newProject){
 return (
     <ProjectContext.Provider value={{
         projects,
+        userProjects,
         addProject,
         getProjects,
+        getUserProjects,
     }}
     >
         {children}
