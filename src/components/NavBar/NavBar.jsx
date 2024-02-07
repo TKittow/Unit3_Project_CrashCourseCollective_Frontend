@@ -2,9 +2,10 @@ import { Link } from 'react-router-dom'
 import { Navbar, Container, Nav, NavDropdown, } from 'react-bootstrap'
 // import { useState } from 'react'
 import './NavBar.css'
-
+import { useUsers } from "../../context/UserContext"
 
 export default function NavBar({ loggedIn, gitHubLogin, handleLogout, userData}) {
+const { userDetailsF } = useUsers()
   // const [cardOpen, setCardOpen] = useState(false)
 
   // const toggleCard = () => {
@@ -18,7 +19,7 @@ export default function NavBar({ loggedIn, gitHubLogin, handleLogout, userData})
           <Nav className="me-auto">
             <Nav.Link as={Link} to='/'>Home</Nav.Link> 
             <Nav.Link as={Link} to='/cohort'>Cohort</Nav.Link>
-            {loggedIn && <Nav.Link as={Link} to='/profilepage'>My Page</Nav.Link>}
+            {loggedIn && <Nav.Link as={Link} to={`/profilepage/${userDetailsF.username}`}>My Page</Nav.Link>}
               <NavDropdown title="☰">
                 {loggedIn ? (
                 <>
