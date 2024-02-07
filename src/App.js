@@ -2,7 +2,8 @@ import './App.css';
 import NavBar from './components/NavBar/NavBar'
 import HomePage from './pages/HomePage/HomePage'
 import AboutPage from './pages/AboutPage/AboutPage'
-import CohortPage from './pages/CohortPage/CohortPage'
+import MyCohortPage from './pages/MyCohortPage/MyCohortPage'
+import CohortsPage from './pages/CohortsPage/CohortsPage';
 import ProfilePage from './pages/ProfilePage/ProfilePage'
 import EditProfilePage from './pages/EditProfilePage/EditProfilePage'
 import ProjectPage from './pages/ProjectPage/ProjectPage'
@@ -151,7 +152,9 @@ async function loginUser() {
           <Routes>
             <Route path='/' element={ <HomePage userData={userData}/> } />
             <Route path='/about' element={ <AboutPage userData={userData}/> } />
-            <Route path='/cohort' element={ <CohortPage /> } />
+            <Route path='/mycohort' element={ <MyCohortPage /> } />
+            <Route path='/cohorts' element={ <CohortsPage /> } />
+            <Route path='/cohorts/:cohortId' element={ <CohortsPage /> } />
             <Route path='/profilepage/:username' element={ <ProfilePage userData={userData} /> } />
             <Route path='/editprofilepage' element={ <EditProfilePage userData={userData}/> } />
             <Route path='/login' />
