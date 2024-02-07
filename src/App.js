@@ -5,6 +5,7 @@ import AboutPage from './pages/AboutPage/AboutPage'
 import CohortPage from './pages/CohortPage/CohortPage'
 import ProfilePage from './pages/ProfilePage/ProfilePage'
 import EditProfilePage from './pages/EditProfilePage/EditProfilePage'
+import ProjectPage from './pages/ProjectPage/ProjectPage';
 import { Routes, Route } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { useUsers } from './context/UserContext'
@@ -18,9 +19,10 @@ function App() {
   const [rerender, setRerender] = useState(false)
   const [userData, setUserData] = useState({})
   const { addUser } = useUsers()
-  const { projects, } = useProjects()
+ const { getProjects, projects } = useProjects()
   
   //! 'projects' as above will be moved to the project card
+
 
 useEffect(() => {
   const queryString = window.location.search
@@ -79,6 +81,10 @@ useEffect(() => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [userData.login])
 
+useEffect(() => {
+  getProjects()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+}, [])
 
 
 
@@ -127,12 +133,13 @@ async function loginUser() {
         </div>
         <hr/>
           <Routes>
-            <Route path='/' element={ <HomePage userData={userData} projects={projects}/> } />
+            <Route path='/' element={ <HomePage userData={userData}/> } />
             <Route path='/about' element={ <AboutPage userData={userData}/> } />
             <Route path='/cohort' element={ <CohortPage /> } />
             <Route path='/profilepage' element={ <ProfilePage userData={userData} /> } />
             <Route path='/editprofilepage' element={ <EditProfilePage userData={userData}/> } />
             <Route path='/login' />
+            <Route path='/projects/:projectName' element={ <ProjectPage projects={projects} />} />
           </Routes>
         
       </main>
