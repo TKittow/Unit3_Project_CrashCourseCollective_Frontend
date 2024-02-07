@@ -18,13 +18,14 @@ const { userDetailsF } = useUsers()
           <Navbar.Brand as={Link} to='/'>CCC(logo?)</Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link as={Link} to='/'>Home</Nav.Link> 
-            <Nav.Link as={Link} to='/cohort'>Cohort</Nav.Link>
+            <Nav.Link as={Link} to='/cohorts'>Cohorts</Nav.Link>
             {loggedIn && <Nav.Link as={Link} to={`/profilepage/${userDetailsF.username}`}>My Page</Nav.Link>}
               <NavDropdown title="☰">
                 {loggedIn ? (
                 <>
                 <NavDropdown.Item as={Link} to='/profilepage'>{userData.login}</NavDropdown.Item>
                   <NavDropdown.Item as={Link} to="/editprofilepage">Edit My Details</NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/mycohort">My Cohort</NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item onClick={handleLogout}>Log Out</NavDropdown.Item>
                 </>

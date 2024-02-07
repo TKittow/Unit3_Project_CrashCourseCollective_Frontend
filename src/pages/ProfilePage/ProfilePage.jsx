@@ -5,11 +5,12 @@ import AddProjectModal from '../../components/AddProjectModal'
 import { useProjects } from '../../context/ProjectContext'
 import { useUsers } from "../../context/UserContext"
 import { useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import './ProfilePage.css'
 
  
 export default function ProfilePage({ userData }){
-  const { getUserDetails, userDetails, userDetailsF, cohorts, setUserDetails } = useUsers()
+  const { getUserDetails, userDetails, userDetailsF, cohorts } = useUsers()
   const [showModal, setShowModal] = useState(false)
   const { getProjects } = useProjects()
   const { username } = useParams()
@@ -26,6 +27,7 @@ export default function ProfilePage({ userData }){
     } else {
       getUserDetails(username)
     }
+    console.log(username)
     getProjects()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [username])
@@ -49,7 +51,9 @@ return (
                 <h2>{userDetails.username}</h2>
                 <h2>{userDetails.fullName}</h2>
                 <h2>{userDetails.linkedIn}</h2>
-                <h2>{getCohortName(userDetails.cohort)}</h2>
+                <Link to={`/cohorts/${userDetails.cohort}`}>
+                {getCohortName(userDetails.cohort)}
+                </Link>
                 <p>{userDetails.aboutMe}</p>  {/* we will need to add in an info part so the user can complete. */}
                 <span>{userDetails.html_url}</span>
             </div>
