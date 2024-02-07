@@ -10,14 +10,8 @@ export default function NavBar({ loggedIn, gitHubLogin, handleLogout, userData})
         <Container>
           <Navbar.Brand as={Link} to='/'>CCC(logo?)</Navbar.Brand>
           <Nav className="me-auto">
-<<<<<<< HEAD
-            <Nav.Link as={Link} to='/'>Home</Nav.Link>
-            <Nav.Link as={Link} to='/about'>About</Nav.Link>
-            <Nav.Link as={Link} to='/cohort'>My Cohort</Nav.Link>
-=======
             <Nav.Link as={Link} to='/'>Home</Nav.Link> 
             <Nav.Link as={Link} to='/cohort'>Cohort</Nav.Link>
->>>>>>> dev
             <Nav.Link as={Link} to='/profilepage'>My Page</Nav.Link>
               <NavDropdown title="Settings">
                 {loggedIn ? (

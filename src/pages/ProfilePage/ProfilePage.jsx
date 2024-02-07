@@ -1,14 +1,10 @@
 //! Imports
-<<<<<<< HEAD
 import { useState, useEffect } from 'react'
-=======
 import { Button } from 'react-bootstrap'
-import { useState } from 'react'
->>>>>>> dev
 import AddProjectModal from '../../components/AddProjectModal'
-import {Button } from 'react-bootstrap'
 import { useProjects } from '../../context/ProjectContext'
 import { useUsers } from "../../context/UserContext"
+import './ProfilePage.css'
 
 
 export default function ProfilePage({ userData }){
@@ -37,7 +33,7 @@ return (
 
     <div className="profilePage">        
         <div className='userInfo'>
-            <img src={userDetails.avatar_url} alt="UserImage" className='profileImage'/>
+            <img id='profilePhoto' src={userDetails.userAvatar} alt="UserImage" className='profileImage'/>
             <div className='profileInfo'>
                 <h2>{userDetails.username}</h2>
                 <h2>{userDetails.fullName}</h2>

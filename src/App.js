@@ -5,15 +5,12 @@ import AboutPage from './pages/AboutPage/AboutPage'
 import CohortPage from './pages/CohortPage/CohortPage'
 import ProfilePage from './pages/ProfilePage/ProfilePage'
 import EditProfilePage from './pages/EditProfilePage/EditProfilePage'
-<<<<<<< HEAD
 import UserProfilePage from './pages/UserProfilePage/UserProfilePage'
-=======
-import ProjectPage from './pages/ProjectPage/ProjectPage';
->>>>>>> dev
+import ProjectPage from './pages/ProjectPage/ProjectPage'
 import { Routes, Route } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { useUsers } from './context/UserContext'
-import { useProjects } from './context/ProjectContext';
+import { useProjects } from './context/ProjectContext'
 import {Button } from 'react-bootstrap'
 import ProjectCard from './components/ProjectCard';
 import Cookies from 'js-cookie'
@@ -64,18 +61,6 @@ useEffect(() => {
       }
     }
 
-<<<<<<< HEAD
-async function getUserData() {
-  await fetch(`${process.env.REACT_APP_BACKEND_URL}/getUserData`, {
-    method: 'GET',
-    headers: {
-      'Authorization' : 'Bearer ' + localStorage.getItem('accessToken')
-    }
-  }).then((response) => {
-    return response.json()
-  }).then((data) => {
-    console.log(data)
-=======
 
 const getUserData = async () => {
   try {
@@ -86,7 +71,6 @@ const getUserData = async () => {
       }
     })
     const data = await response.json()
->>>>>>> dev
     if (data.login) {
       setUserData(data)
       console.log('User data logged')
@@ -118,55 +102,34 @@ const handleLogout = () => {
   setUserData({})
 }
 
-// useEffect(() => {
-//   if (userData.login) {
-//     loginUser()
-//   }
-//   // eslint-disable-next-line react-hooks/exhaustive-deps
-// }, [userData.login])
+useEffect(() => {
+  if (userData.login) {
+    loginUser()
+  }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+}, [userData.login])
 
 useEffect(() => {
   getProjects()
   // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [])
 
-
-
-<<<<<<< HEAD
-
 async function loginUser() {
   const newUser = {
     username: userData.login,
-    gitUrl: userData.html_url,
-    userAvatar: userData.avatar_url
+    gitUrl: userData.html_url
   }
   if (userData.login) {
     await addUser(newUser)
-    console.log(`User ${userData.login}, gitUrl: ${userData.html_url} added to the database`)
+    // Cookies.set('userData', JSON.stringify(newUser), { expires: 7})
   } else {
     console.error("No username available in userData")
   }
 }
-=======
-// async function loginUser() {
-//   const newUser = {
-//     username: userData.login,
-//     gitUrl: userData.html_url
-//   }
-//   if (userData.login) {
-//     await addUser(newUser)
-//     Cookies.set('userData', JSON.stringify(newUser), { expires: 7})
-//   } else {
-//     console.error("No username available in userData")
-//   }
-// }
->>>>>>> dev
 
   function gitHubLogin(){ 
     window.location.assign('https://github.com/login/oauth/authorize?client_id=' + CLIENT_ID)
   }
-
- 
 
   return (
     <div className="App">

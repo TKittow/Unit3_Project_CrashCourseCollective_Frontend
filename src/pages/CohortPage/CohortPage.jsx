@@ -1,7 +1,7 @@
 import { Container } from "react-bootstrap"
 import { useEffect, useState } from "react"
 import { useUsers } from "../../context/UserContext"
-import UserCard from "../../components/UserCard"
+import UserCard from "../../components/UserCard/UserCard"
 
 export default function CohortPage() {
   const [userCohort, setUserCohort] = useState(null)

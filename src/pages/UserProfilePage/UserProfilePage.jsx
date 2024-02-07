@@ -5,6 +5,7 @@ import {Button } from 'react-bootstrap'
 import { useProjects } from '../../context/ProjectContext'
 import { useParams } from 'react-router-dom'
 import { useUsers } from "../../context/UserContext"
+import '../ProfilePage/ProfilePage.css'
 
 
 export default function ProfilePage({ userData }){
@@ -34,7 +35,7 @@ return (
 
     <div className="profilePage">        
         <div className='userInfo'>
-            <img src={userDetails.avatar_url} alt="UserImage" className='profileImage'/>
+            <img id='profilePhoto' src={userDetails.userAvatar} alt="UserImage" className='profileImage'/>
             <div className='profileInfo'>
                 <h2>{userDetails.username}</h2>
                 <h2>{userDetails.fullName}</h2>
