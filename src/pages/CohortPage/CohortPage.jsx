@@ -26,9 +26,21 @@ export default function CohortPage() {
       {userCohort && (
           <div>My Cohort {userCohort.cohortName}</div>
         )}
+<<<<<<< HEAD
         <div id='cohortGrid'>
           {userCohort && userCohort.alumni.map((user, index) => (
             <UserCard key={index} userId={user} />
+=======
+        <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+                    gap: "1rem",
+                    alignItems: "flex-start",
+                  }}>
+          {userCohort && userCohort.alumni.map((user, idx) => (
+            <UserCard key={idx} userId={user} />
+>>>>>>> toby
           ))}
         </div>
     </Container>
