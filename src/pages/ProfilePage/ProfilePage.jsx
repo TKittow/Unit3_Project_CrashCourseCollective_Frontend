@@ -1,12 +1,7 @@
 //! Imports
-<<<<<<< HEAD
 import { useState, useEffect } from 'react'
-=======
 import { Button } from 'react-bootstrap'
-import { useState } from 'react'
->>>>>>> dev
 import AddProjectModal from '../../components/AddProjectModal'
-import {Button } from 'react-bootstrap'
 import { useProjects } from '../../context/ProjectContext'
 import { useUsers } from "../../context/UserContext"
 
