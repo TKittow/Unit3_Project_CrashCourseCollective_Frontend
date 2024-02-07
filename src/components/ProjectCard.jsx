@@ -27,13 +27,13 @@ export default function ProjectCard({project}) {
     }, [project.username]); // Run the effect when project.username changes
 
     let altText = `${project.username}'s avatar`
+    console.log(project.projectName)
 
   return (
 
 
-    
 
-<Link to={`projects/${project.projectName}`}>
+<Link to={`/projects/${project.projectName}`}>
     <Card className='card' >
         <Card.Body>
             <Card.Title>
