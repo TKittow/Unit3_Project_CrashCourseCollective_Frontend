@@ -21,15 +21,13 @@ export default function ProjectPage({ projects }) {
 
   return (
     <div className='projectPage'>
-     <p>{thisProject.projectName}</p>
+     <h1>{thisProject.projectName}</h1>
      {userDetails.userAvatar ?  <img src={userDetails.userAvatar} alt="" /> 
      : 
      <div>
         The user: {userDetails.username} does not have an avatar uploaded :(
      </div>
      }
-     <p>test</p>
-
     </div>
   )
 }
