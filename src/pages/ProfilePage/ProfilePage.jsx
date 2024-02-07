@@ -9,10 +9,9 @@ import './ProfilePage.css'
 
  
 export default function ProfilePage({ userData }){
-  const { getUserDetails, userDetails, userDetailsF, cohorts } = useUsers()
+  const { getUserDetails, userDetails, userDetailsF, cohorts, setUserDetails } = useUsers()
   const [showModal, setShowModal] = useState(false)
   const { getProjects } = useProjects()
-
   const { username } = useParams()
 
 
@@ -22,8 +21,11 @@ export default function ProfilePage({ userData }){
   }
 
   useEffect(() => {
-    getUserDetails(userDetailsF.username)
-    console.log(userDetails)
+    if (userDetailsF.username === username){
+      getUserDetails(userDetailsF.username)
+    } else {
+      getUserDetails(username)
+    }
     getProjects()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [username])
@@ -34,7 +36,7 @@ export default function ProfilePage({ userData }){
   }
 
 return (
-  <>
+  <> 
     {/* // display public projects for non logged in users */}
     <Button variant='primary' onClick={() => setShowModal(true)}>Add Project</Button>
     <AddProjectModal show={showModal} handleClose={handleClose} userData={userData}/>
@@ -52,6 +54,10 @@ return (
                 <span>{userDetails.html_url}</span>
             </div>
         </div>      
+        {/* Cards */}
+        <div>
+
+        </div>
     </div>
     </>
 )

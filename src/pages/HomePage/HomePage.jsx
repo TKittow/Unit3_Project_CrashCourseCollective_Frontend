@@ -5,6 +5,8 @@ import { useProjects } from "../../context/ProjectContext"
 export default function HomePage({userData}) {
   
   const { projects, getProjects } = useProjects()
+  
+  // console.log(projects)
 useEffect(() => {
   getProjects()
   // eslint-disable-next-line react-hooks/exhaustive-deps

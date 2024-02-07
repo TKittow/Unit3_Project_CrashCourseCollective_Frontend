@@ -6,7 +6,7 @@ import Row from 'react-bootstrap/Row'
 import { useUsers } from "../../context/UserContext"
 
 export default function EditProfilePage() {
-  const { userDetails, getCohorts, cohorts, userDetailsF, sendEditUser } = useUsers()
+  const { userDetails, getUserDetails, getCohorts, cohorts, userDetailsF, sendEditUser } = useUsers()
   const [editUser, setEditUser] = useState(null)
   const [formSubmitted, setFormSubmitted] = useState(false)
   
