@@ -5,6 +5,7 @@ import {Button } from 'react-bootstrap'
 import { useProjects } from '../../context/ProjectContext'
 import { useParams } from 'react-router-dom'
 import { useUsers } from "../../context/UserContext"
+import ProjectCard from '../../components/ProjectCard'
 import '../ProfilePage/ProfilePage.css'
 
 
@@ -12,7 +13,7 @@ export default function ProfilePage({ userData }){
   const { username } = useParams()
   const { getUserDetails, userDetails, cohorts } = useUsers()
   const [showModal, setShowModal] = useState(false)
-  const { getProjects } = useProjects()
+  const { getProjects, getUserProjects, userProjects } = useProjects()
 
  //? Modal Logic
  function handleClose(){
@@ -25,6 +26,12 @@ export default function ProfilePage({ userData }){
     getProjects()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [username])
+
+  useEffect(()=>{
+    getUserProjects(username)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[])
+  console.log(userProjects)
 
   function getCohortName(cohortId) {
     const foundCohort = cohorts.find(cohort => cohort._id === cohortId)
@@ -51,7 +58,9 @@ return (
             </div>
         </div>      
         <div>
-          
+          {userProjects.map((project, idx)=>{
+            return <ProjectCard project={project} key={idx} />
+          })}
         </div>
     </div>
     </>
