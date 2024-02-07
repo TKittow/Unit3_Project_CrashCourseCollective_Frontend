@@ -1,13 +1,15 @@
-import React from 'react'
+import { useParams } from 'react-router-dom'
 
-export default function ProjectPage({ project }) {
-  const { projectName, description, collaborators, deploymentLlink } = project
+export default function ProjectPage({ projects }) {
+
+    const { projectName } = useParams()
+
+    let thisProject = projects.find((project) => project.projectName === projectName)
+
   return (
     <div className='projectPage'>
-      <h2>{projectName}</h2>
-      <h5>Collaborators: {collaborators.join('. ')}</h5>
-      <p>{description}</p>
-      <p>Deployment Link: <a href={deploymentLlink}>{deploymentLlink}</a></p>
+     <p>{thisProject.projectName}</p>
+     <p>test</p>
 
     </div>
   )

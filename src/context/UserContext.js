@@ -1,4 +1,4 @@
-import { useContext, createContext, useState, useEffect } from "react"
+import { useContext, createContext, useState } from "react"
 import axios from 'axios'
 
 const UserContext = createContext()
