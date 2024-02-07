@@ -32,8 +32,8 @@ export default function CohortPage() {
                     gap: "1rem",
                     alignItems: "flex-start",
                   }}>
-          {userCohort && userCohort.alumni.map(user => (
-            <UserCard key={user._id} userId={user} />
+          {userCohort && userCohort.alumni.map((user, idx) => (
+            <UserCard key={idx} userId={user} />
           ))}
         </div>
     </Container>
