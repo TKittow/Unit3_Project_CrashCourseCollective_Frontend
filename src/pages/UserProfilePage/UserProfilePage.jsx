@@ -10,7 +10,7 @@ import '../ProfilePage/ProfilePage.css'
 
 export default function ProfilePage({ userData }){
   const { username } = useParams()
-  const { getUserDetails, userDetails } = useUsers()
+  const { getUserDetails, userDetails, cohorts } = useUsers()
   const [showModal, setShowModal] = useState(false)
   const { getProjects } = useProjects()
 
@@ -26,6 +26,11 @@ export default function ProfilePage({ userData }){
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [username])
 
+  function getCohortName(cohortId) {
+    const foundCohort = cohorts.find(cohort => cohort._id === cohortId)
+    return foundCohort ? foundCohort.cohortName : "Cohort not found"
+  }
+
 return (
   <>
     {/* // display public projects for non logged in users */}
@@ -39,6 +44,8 @@ return (
             <div className='profileInfo'>
                 <h2>{userDetails.username}</h2>
                 <h2>{userDetails.fullName}</h2>
+                <h2>{userDetails.linkedIn}</h2>
+                <h2>{getCohortName(userDetails.cohort)}</h2>
                 <p>{userDetails.aboutMe}</p>  {/* we will need to add in an info part so the user can complete. */}
                 <span>{userDetails.html_url}</span>
             </div>
