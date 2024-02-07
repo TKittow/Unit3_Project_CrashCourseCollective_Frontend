@@ -6,6 +6,7 @@ import { useProjects } from '../../context/ProjectContext'
 import { useUsers } from "../../context/UserContext"
 import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+
 import './ProfilePage.css'
 import ProjectCard from '../../components/ProjectCard'
 import Card from 'react-bootstrap/Card'
