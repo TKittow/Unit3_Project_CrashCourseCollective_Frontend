@@ -2,7 +2,21 @@
     width: 18rem;
 }
 
+#userCard .card-body {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    text-align: center; 
+  }
+
+#userCard .card-title {
+    margin-bottom: 1rem; 
+}
+
 #avatar {
     border-radius: 50%;
     width: 10vmin;
+    margin-left: auto;
+    display: block;
 }

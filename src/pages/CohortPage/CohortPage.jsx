@@ -2,6 +2,7 @@ import { Container } from "react-bootstrap"
 import { useEffect, useState } from "react"
 import { useUsers } from "../../context/UserContext"
 import UserCard from "../../components/UserCard/UserCard"
+import './CohortPage.css'
 
 export default function CohortPage() {
   const [userCohort, setUserCohort] = useState(null)
@@ -25,15 +26,9 @@ export default function CohortPage() {
       {userCohort && (
           <div>My Cohort {userCohort.cohortName}</div>
         )}
-        <div
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
-                    gap: "1rem",
-                    alignItems: "flex-start",
-                  }}>
-          {userCohort && userCohort.alumni.map(user => (
-            <UserCard key={user._id} userId={user} />
+        <div id='cohortGrid'>
+          {userCohort && userCohort.alumni.map((user, index) => (
+            <UserCard key={index} userId={user} />
           ))}
         </div>
     </Container>
