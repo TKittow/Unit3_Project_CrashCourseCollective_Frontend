@@ -68,6 +68,18 @@ export const UsersProvider = ({children}) => {
         }
     }
 
+    // function deleteAccount(userId) {
+    //     axios.delete(`${process.env.REACT_APP_BACKEND_URL}/users/${userId}`)
+    //         .then(() => {
+    //             // Remove the deleted user from the users state
+    //             setUsers(prevUsers => prevUsers.filter(user => user._id !== userId));
+    //             console.log("User deleted successfully");
+    //         })
+    //         .catch(error => {
+    //             console.error("Error deleting user:", error);
+    //         });
+    // }
+
     function getCohorts() {
         axios.get(`${process.env.REACT_APP_BACKEND_URL}/cohorts`)
         .then(response => {

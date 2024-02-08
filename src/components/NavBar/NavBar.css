@@ -1,5 +1,12 @@
-/* nav {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-} */
+#navContainer {
+    width: 100vmin;
+}
+
+#logo {
+    width: 50vmin;
+    margin-right: 2vmin;
+}
+
+#navBar {
+    /* background-color: rgba(125, 245, 39, 0.14); */
+}

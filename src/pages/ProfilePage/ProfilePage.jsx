@@ -53,9 +53,10 @@ return (
                 <h2>{userDetails.username}</h2>
                 <h2>{userDetails.fullName}</h2>
                 <h2>{userDetails.linkedIn}</h2>
-                <Link to={`/cohorts/${userDetails.cohort}`}>
+                {/* <Link to={`/cohorts/${userDetails.cohort}`}>
                 {getCohortName(userDetails.cohort)}
-                </Link>
+                </Link> */}
+                <Link to={`/cohorts/${userDetails.cohort}`}>{getCohortName(userDetails.cohort)}</Link>
                 <p>{userDetails.aboutMe}</p>  {/* we will need to add in an info part so the user can complete. */}
                 <span>{userDetails.html_url}</span>
             </div>

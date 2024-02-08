@@ -4,11 +4,13 @@ import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import Row from 'react-bootstrap/Row'
 import { useUsers } from "../../context/UserContext"
+import { useNavigate } from 'react-router-dom'
 
 export default function EditProfilePage() {
-  const { userDetails, getUserDetails, getCohorts, cohorts, userDetailsF, sendEditUser } = useUsers()
+  const { userDetails, getCohorts, cohorts, sendEditUser } = useUsers()
   const [editUser, setEditUser] = useState(null)
   const [formSubmitted, setFormSubmitted] = useState(false)
+  const navigate = useNavigate()
   
   const [formData, setFormData] = useState({
     fullName: userDetails.fullName,
@@ -26,10 +28,12 @@ export default function EditProfilePage() {
       await sendEditUser(userDetails.username, body)
       setFormData(body)
       setEditUser(null)
-      setFormSubmitted(true)      
+      setFormSubmitted(true) 
     } catch (error) {
       console.error(error)
     }
+    navigate(`/profilepage/${userDetails.username}`)
+
   }
 
   function handleChange(e) {
@@ -137,7 +141,8 @@ export default function EditProfilePage() {
 
       <Button 
       variant="primary" 
-      type="submit">
+      type="submit"
+      >
         Submit
       </Button>
     </Form>
