@@ -43,6 +43,9 @@ export default function EditProjectPage() {
 
   const saveEdit = async (e) => {
     e.preventDefault()
+
+    console.log('proj id', projectId);
+    console.log('proj details', projectDetails);
     try {
       // Make API call to save updated project details
       const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/project/${projectId}`, {
@@ -51,7 +54,7 @@ export default function EditProjectPage() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(projectDetails),
-      });
+      })
       if (response.ok) {
         setFormSubmitted(true)
       } else {
