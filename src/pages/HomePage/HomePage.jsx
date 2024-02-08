@@ -6,6 +6,12 @@ export default function HomePage({userData}) {
   
   const { projects, getProjects } = useProjects()
   let reversedProjects = projects.reverse()
+
+
+
+
+
+ 
   
   // console.log(projects)
 useEffect(() => {
@@ -18,6 +24,7 @@ useEffect(() => {
     <div>HomePage</div>
     <div className='cardHolder'>
         {reversedProjects.map((project, idx) => {
+          
           return <ProjectCard project={project} key={idx} />
         })}
         </div>

@@ -3,6 +3,7 @@ import { Card } from "react-bootstrap"
 import { useState, useEffect} from 'react'
 import { Link } from "react-router-dom"
 
+
 export default function ProjectCard({project}) {
 
     const [avatarUrl, setAvatarUrl] = useState('');
@@ -21,6 +22,7 @@ export default function ProjectCard({project}) {
         } catch (error) {
           console.error('Error fetching avatar:', error);
         }
+        
       };
   
       fetchAvatar(); // Call the fetchAvatar function when the component mounts

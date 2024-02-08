@@ -162,7 +162,7 @@ async function loginUser() {
             <Route path='/editprofilepage' element={ <EditProfilePage userData={userData}/> } />
             <Route path='/login' />
             <Route path='/projects/:projectName' element={ <ProjectPage projects={projects} userData={userData}/>} />
-            <Route path='/editprojectpage' element={<EditProjectPage />} />
+            <Route path='/editprojectpage/:projectId' element={<EditProjectPage />} />
           </Routes>
         </Container>
       </main>
