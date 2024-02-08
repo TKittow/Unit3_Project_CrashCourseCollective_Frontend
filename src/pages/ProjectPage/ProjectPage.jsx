@@ -22,7 +22,7 @@ export default function ProjectPage({ projects, userData }) {
       <h1>{thisProject.projectName}</h1>
       <div className='btn-primary'>
         {userData.login === thisProject.username && (
-          <Link to={{ pathname: '/editprojectpage', state: { projectDetails: thisProject }}}>
+          <Link to={`/editprojectpage/${thisProject._id}`}>
             <Button>Update Project</Button>
           </Link>
         )}

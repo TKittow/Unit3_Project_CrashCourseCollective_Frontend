@@ -9,6 +9,7 @@ export default function EditProjectPage() {
     projectName: '',
     description: '',
     deploymentLink: '',
+    collaborators: ''
   });
   const [formSubmitted, setFormSubmitted] = useState(false)
 
@@ -20,7 +21,7 @@ export default function EditProjectPage() {
   const fetchProjectDetails = async (projectId) => {
     try {
       // Make API call to fetch project details based on projectId
-      const response = await fetch(`/api/projects/${projectId}`) // Update the API endpoint as per your backend
+      const response = await fetch(`/project/${projectId}`) // Update the API endpoint as per your backend
       if (response.ok) {
         const data = await response.json()
         setProjectDetails(data)
@@ -34,15 +35,18 @@ export default function EditProjectPage() {
 
   const saveEdit = async (e) => {
     e.preventDefault()
+
+    console.log('proj id', projectId);
+    console.log('proj details', projectDetails);
     try {
       // Make API call to save updated project details
-      const response = await fetch(`/api/projects/${projectId}`, {
+      const response = await fetch(`/project/${projectId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(projectDetails),
-      });
+      })
       if (response.ok) {
         setFormSubmitted(true)
       } else {
