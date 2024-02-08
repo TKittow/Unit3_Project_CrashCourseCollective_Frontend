@@ -11,6 +11,7 @@ export default function AddProjectModal({show, handleClose, userData}) {
     const deploymentLinkRef = useRef()
     const {addProject, getProjects } = useProjects()
     // console.log(userData)
+    console.log(userData)
 
     async function handleSubmit(e){
         e.preventDefault()
@@ -19,7 +20,8 @@ export default function AddProjectModal({show, handleClose, userData}) {
             username: userData.login,
             collaborators: collabRef.current.value,
             description: descriptionRef.current.value,
-            deploymentLink: deploymentLinkRef.current.value
+            deploymentLink: deploymentLinkRef.current.value,
+            userAvatarUrl: userData.avatar_url
         })
         getProjects()
         handleClose()
@@ -36,9 +38,9 @@ export default function AddProjectModal({show, handleClose, userData}) {
                     <Form.Control ref={titleRef} type="text" required />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="collabs">
-                    <Form.Label>Collaborators</Form.Label>
+                    <Form.Label>Collaborators &nbsp; <span style={{fontSize: 'small'}}>*case sensetive</span></Form.Label>
                     {/* Should this fetch from a select menu of those in your  */}
-                    <Form.Control ref={collabRef} type="text" required />
+                    <Form.Control ref={collabRef} type="text" placeholder="Seperate by spaces eg. TKittow KiwiCJ JoelleLi" />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="description">
                     <Form.Label>Description</Form.Label>
@@ -48,7 +50,7 @@ export default function AddProjectModal({show, handleClose, userData}) {
                 <Form.Group className="mb-3" controlId="deploymentLink">
                     <Form.Label>Deployment Link</Form.Label>
                     {/* Should this fetch from a select menu of those in your  */}
-                    <Form.Control ref={deploymentLinkRef} type="text" required />
+                    <Form.Control ref={deploymentLinkRef} type="text" />
                 </Form.Group>
                 <div className="d-flex justify-content-end">
                 <Button variant="primary" type="submit">Post</Button>
