@@ -9,9 +9,9 @@ export default function AddProjectModal({show, handleClose, userData}) {
     const titleRef = useRef()
     const descriptionRef = useRef()
     const deploymentLinkRef = useRef()
+    const repoLinkRef = useRef()
     const {addProject, getProjects } = useProjects()
-    // console.log(userData)
-    console.log(userData)
+
 
     async function handleSubmit(e){
         e.preventDefault()
@@ -21,11 +21,14 @@ export default function AddProjectModal({show, handleClose, userData}) {
             collaborators: collabRef.current.value,
             description: descriptionRef.current.value,
             deploymentLink: deploymentLinkRef.current.value,
-            userAvatarUrl: userData.avatar_url
+            userAvatarUrl: userData.avatar_url,
+            repoLink: repoLinkRef.current.value
         })
         getProjects()
         handleClose()
     }
+
+    
   return (
     <Modal show={show} onHide={handleClose}>
         <Form onSubmit={handleSubmit}>
@@ -40,7 +43,7 @@ export default function AddProjectModal({show, handleClose, userData}) {
                 <Form.Group className="mb-3" controlId="collabs">
                     <Form.Label>Collaborators &nbsp; <span style={{fontSize: 'small'}}>*case sensetive</span></Form.Label>
                     {/* Should this fetch from a select menu of those in your  */}
-                    <Form.Control ref={collabRef} type="text" placeholder="Seperate by spaces eg. TKittow KiwiCJ JoelleLi" />
+                    <Form.Control ref={collabRef} type="text" />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="description">
                     <Form.Label>Description</Form.Label>
@@ -51,6 +54,10 @@ export default function AddProjectModal({show, handleClose, userData}) {
                     <Form.Label>Deployment Link</Form.Label>
                     {/* Should this fetch from a select menu of those in your  */}
                     <Form.Control ref={deploymentLinkRef} type="text" />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="repoLink">
+                    <Form.Label>GitHub Repo Link</Form.Label>
+                    <Form.Control ref={repoLinkRef} type="text"/>
                 </Form.Group>
                 <div className="d-flex justify-content-end">
                 <Button variant="primary" type="submit">Post</Button>

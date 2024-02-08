@@ -1,9 +1,9 @@
-import { useUsers } from "../../context/UserContext"
+
 import { useState, useEffect } from "react"
 import './AboutPage.css'
 
-export default function About({userData}) {
-  const { getUserDetails, userDetails, getUsers } = useUsers()
+export default function About() {
+
   const [creatorsInfo, setCreatorsInfo] = useState([])
 
   const creators = [

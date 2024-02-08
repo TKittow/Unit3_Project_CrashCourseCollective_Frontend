@@ -1,29 +1,34 @@
 import { Link } from 'react-router-dom'
 import { Navbar, Container, Nav, NavDropdown, Row, Col } from 'react-bootstrap'
-// import { useState } from 'react'
 import './NavBar.css'
 import { useUsers } from "../../context/UserContext"
-import CCCLogo from '../../images/CCClogo.png'
+import CCCLogo from '../../images/CCCLogo.png'
 
 export default function NavBar({ loggedIn, gitHubLogin, handleLogout, userData}) {
 const { userDetailsF } = useUsers()
-  // const [cardOpen, setCardOpen] = useState(false)
 
   // const toggleCard = () => {
   //   setCardOpen(!cardOpen)
   // }
 
+const textStyle = {
+  textDecoration: 'none', 
+  color: 'black'
+}
+
   return (
-    <Container id='navContainer'>
-    <Navbar id='navBar' sticky="top" data-bs-theme="light">
-        <Container>
-          <Navbar.Brand as={Link} to='/'></Navbar.Brand>
-          <Nav className="me-auto">
-          <img src={CCCLogo} alt='logo' id='logo' />
-            <Nav.Link as={Link} to='/'>Home</Nav.Link> 
-            <Nav.Link as={Link} to='/cohorts'>Cohorts</Nav.Link>
-            {loggedIn && <Nav.Link as={Link} to={`/profilepage/${userDetailsF.username}`}>My Page</Nav.Link>}
-              <NavDropdown title="☰">
+    <div id='navBar' sticky="top" data-bs-theme="light">
+        <Container id='navContainer'>
+          <Link to="/">
+            <img src={CCCLogo} alt="logo" id="logo" />
+          </Link> 
+          <div id='linksAccordianWrapper'>     
+          <div id='innerNavWrapper'>
+            <Link to='/' className='navLinks'>Home</Link> 
+            <Link to='/cohorts' className='navLinks'>Cohorts</Link>
+            {loggedIn && <Link to={`/profilepage/${userDetailsF.username}`} className='navLinks'>My Page</Link>}
+          </div>
+              <NavDropdown id='dropDown' title="☰">
                 {loggedIn ? (
                 <>
                 <NavDropdown.Item as={Link} to={`/profilepage/${userDetailsF.username}`}>{userDetailsF.username}</NavDropdown.Item>
@@ -37,28 +42,8 @@ const { userDetailsF } = useUsers()
                 )}
                 <NavDropdown.Item as={Link} to='/about'>About</NavDropdown.Item>
               </NavDropdown>
-          </Nav>
-          {/* <Button variant='outline-dark' onClick={toggleCard}>
-          ☰
-          </Button>
-          {cardOpen && (
-            <Card>
-              <Card.Body>
-                {loggedIn ? (
-                  <>
-                    <NavDropdown.Item as={Link} to='/profilepage'>{userData.login}</NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to="/editprofilepage">Edit My Details</NavDropdown.Item>
-                    <NavDropdown.Divider />
-                    <NavDropdown.Item onClick={handleLogout}>Log Out</NavDropdown.Item>
-                  </>
-                ) : (
-                  <NavLink as={Link} to='/about'>About</NavLink>
-                )}
-              </Card.Body>
-            </Card>
-          )} */}
+            </div>    
         </Container>
-    </Navbar>
-    </Container>
+    </div>
   )
 }

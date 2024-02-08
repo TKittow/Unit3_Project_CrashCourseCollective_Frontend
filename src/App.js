@@ -8,13 +8,12 @@ import ProfilePage from './pages/ProfilePage/ProfilePage'
 import EditProfilePage from './pages/EditProfilePage/EditProfilePage'
 import ProjectPage from './pages/ProjectPage/ProjectPage'
 import EditProjectPage from './pages/ProjectPage/EditProjectPage';
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { useUsers } from './context/UserContext'
 import { useProjects } from './context/ProjectContext'
-import {Button } from 'react-bootstrap'
+import { Button, Container } from 'react-bootstrap'
 import Cookies from 'js-cookie'
-import { Container } from 'react-bootstrap'
 
 
 const CLIENT_ID = process.env.REACT_APP_CLIENT_ID
@@ -24,10 +23,8 @@ function App() {
   const [userData, setUserData] = useState({})
   const [loggedIn, SetLoggedIn] = useState(false)
   const { addUser } = useUsers()
- const { getProjects, projects } = useProjects()
-  
-  //! 'projects' as above will be moved to the project card
-
+  const { getProjects, projects } = useProjects()
+  const navigate = useNavigate()
 
 useEffect(() => {
   const queryString = window.location.search
@@ -84,24 +81,13 @@ const getUserData = async () => {
   }
 }
 
-  //.then((response) => {
-  //   return response.json()
-  // }).then((data) => {
-  //   // console.log(data)
-  //   if (data.login) {
-  //     setUserData(data)
-  //     console.log("user data logged")
-  //   } else {
-  //     console.error('GitHub user data does not contain username')
-  //   }
-  // })
-
 
 const handleLogout = () => {
   localStorage.removeItem('accessToken')
   Cookies.remove('userData')
   SetLoggedIn(false)
   setUserData({})
+  navigate('/')
 }
 
 useEffect(() => {
@@ -161,7 +147,7 @@ async function loginUser() {
             <Route path='/profilepage/:username' element={ <ProfilePage userData={userData} loggedIn={loggedIn}/> } />
             <Route path='/editprofilepage' element={ <EditProfilePage userData={userData}/> } />
             <Route path='/login' />
-            <Route path='/projects/:projectName' element={ <ProjectPage projects={projects} userData={userData}/>} />
+            <Route path='/projects/:_id' element={ <ProjectPage projects={projects} userData={userData}/>} />
             <Route path='/editprojectpage/:projectId' element={<EditProjectPage />} />
           </Routes>
         </Container>

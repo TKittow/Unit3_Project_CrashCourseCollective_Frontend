@@ -14,15 +14,16 @@ export default function ProjectCard({project}) {
     
   }
 
-console.log(project.collaborators)
-
 
 
 
   return (
-<Link to={`/projects/${project.projectName}`}>
-    <Card style={cardStyle} className='card' >
-        <Card.Body >
+
+
+
+<Link to={`/projects/${project._id}`}>
+    <Card className='card' >
+        <Card.Body>
             <Card.Title>
                 <div className='d-flex'>{project.username} </div>
                 <div>{project.projectName}</div>

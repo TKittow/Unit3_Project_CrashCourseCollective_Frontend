@@ -27,7 +27,6 @@ async function getUserProjects(username) {
     try {
         const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/projects/${username}`)
         const userProjects = response.data
-        console.log(userProjects)
         setUserProjects(userProjects)
 
     } catch (error) {

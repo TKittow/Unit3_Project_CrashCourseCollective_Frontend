@@ -6,6 +6,7 @@ import { useProjects } from '../../context/ProjectContext'
 import { useUsers } from "../../context/UserContext"
 import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+
 import './ProfilePage.css'
 import ProjectCard from '../../components/ProjectCard'
 import Card from 'react-bootstrap/Card'
@@ -20,8 +21,10 @@ export default function ProfilePage({ userData, loggedIn }){
   const { getProjects, getUserProjects, userProjects } = useProjects()
   const { username } = useParams()
 
+
  //? Modal Logic
   function handleClose(){
+    getProjects()
     setShowModal(false)
   }
 
@@ -39,7 +42,6 @@ export default function ProfilePage({ userData, loggedIn }){
   function getCohortName(cohortId) {
     const foundCohort = cohorts.find(cohort => cohort._id === cohortId)
     return foundCohort ? foundCohort.cohortName : "Cohort not found"
-
 }
 let reversedUserProjects = userProjects.reverse()
 
@@ -54,7 +56,6 @@ return (
   <>  
     <Container id="profileContainer"> 
     {/* <iframe title='project' src="https://joelleli.github.io/Unit1_Project_Snake/" width="400" height="400" aria-hidden="true"></iframe> */}
-
       <div id='outerInfoContainer'>
         <div id='photoContainer'>
           <Image id='profilePhoto' src={userDetails.userAvatar} alt="UserImage" className='profileImage' roundedCircle fluid/>
@@ -62,29 +63,49 @@ return (
         <div id='innerInfoContainer'>
           <Card style={ cardStyle }>
             <Card.Body>
-            {userDetails.username ? <div className='profileName'>{userDetails.username}</div> : <div className='profileName'>""</div> }
+            <div className='profileName'>{userDetails.username}</div>
               <div id='innerInnerInfoWrapper'>
                 <div id='infoWrapper'>
-                  {userDetails.fullName ? <div id='fullName'>{userDetails.fullName}</div> : <div>""</div>}
+                  {userDetails.fullName 
+                  ? 
+                  <div id='fullName'>{userDetails.fullName}</div> 
+                  : 
+                  <div></div>
+                  }
                   <div>Junior Software Developer</div>
+                  {userDetails.cohort
+                  ?
                   <div>
                   My Cohort : <Link to={`/cohorts/${userDetails.cohort}`}>{getCohortName(userDetails.cohort)}</Link>
                   </div>
+                  : 
+                  <div></div>
+                  }
                 </div>
                 <div class="vr"></div>
                 <div id='outerLinksWrapper'>
+                  {userDetails.linkedIn
+                  ?
                   <div className='linksWrapper'>
-                    <img className='linksIcon' src="https://store-images.s-microsoft.com/image/apps.31120.9007199266245564.44dc7699-748d-4c34-ba5e-d04eb48f7960.bc4172bd-63f0-455a-9acd-5457f44e4473?h=210" alt="LinkedIn Icon" width='15vmin' />
+                    <img className='linksIcon' src="https://store-images.s-microsoft.com/image/apps.31120.9007199266245564.44dc7699-748d-4c34-ba5e-d04eb48f7960.bc4172bd-63f0-455a-9acd-5457f44e4473?h=210" alt="LinkedIn Icon" width='15vmin' height='15vmin' />
                     <Card.Link href="#">{userDetails.linkedIn}</Card.Link><br></br>
                   </div>
+                  :
+                  <div></div>
+                  }
                   <div className='linksWrapper'>
-                    <img className='linksIcon' src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/GitHub_Invertocat_Logo.svg/200px-GitHub_Invertocat_Logo.svg.png' alt='githublogo' width='15vmin'/>
+                    <img className='linksIcon' src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/GitHub_Invertocat_Logo.svg/200px-GitHub_Invertocat_Logo.svg.png' alt='githublogo' width='15vmin' height='15vmin'/>
                     <Card.Link href="#">{userDetails.gitUrl}</Card.Link>
                   </div>
+                  {userDetails.email
+                  ?
                   <div className='linksWrapper'>
-                    <img className='linksIcon' src='https://banner2.cleanpng.com/20180526/eio/kisspng-email-computer-icons-gmail-5b093a2abbd322.5464747815273313707693.jpg' alt='githublogo' width='15vmin'/>
+                    <img className='linksIcon' src='https://banner2.cleanpng.com/20180526/eio/kisspng-email-computer-icons-gmail-5b093a2abbd322.5464747815273313707693.jpg' alt='githublogo' width='15vmin' height='15vmin'/>
                     <Card.Link href="#">{userDetails.email}</Card.Link>
                   </div>
+                  :
+                  <div></div>
+                  }
                 </div>
               </div>
             </Card.Body>
@@ -95,12 +116,14 @@ return (
             <Card.Header>About Me</Card.Header>
             <Card.Body>
               <blockquote id='aboutMe'>
+                {userDetails.aboutMe
+                ?
                 <p>
                   {' '}{userDetails.aboutMe}{' '}
                 </p>
-                {/* <footer className="blockquote-footer">
-                  Someone famous in <cite title="Source Title">Source Title</cite>
-                </footer> */}
+                :
+                <div>Work in progress :)</div>
+                }
               </blockquote>
             </Card.Body>
           </Card>   
@@ -122,5 +145,4 @@ return (
       </div>
     </>
 )
-
 }
