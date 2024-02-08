@@ -2,8 +2,31 @@
 
 }
 
+#outerInfoContainer{
+    display: flex;
+    flex-direction: row;
+    height: 17vmin;
+    justify-content: space-between;
+    margin: 1vmin 0 10vmin 0;
+}
+
+#innerInfoContainer {
+    border: 1px solid lightgray;
+    height: 100%;
+    width: 78vmin;
+
+}
+
+#photoContainer {
+    background-color: rgba(125, 245, 39, 0.03);
+    border: 1px solid lightgray;
+    height: 100%;
+    padding: 1vmin;
+}
+
 #profilePhoto {
     border-radius: 50%;
+    height: 15vmin;
     width: 15vmin;
 }
 

@@ -44,37 +44,31 @@ let reversedUserProjects = userProjects.reverse()
 
 return (
   <> 
-    {/* // display public projects for non logged in users */}
-    <Button variant='primary' onClick={() => setShowModal(true)}>Add Project</Button>
-    <AddProjectModal show={showModal} handleClose={handleClose} userData={userData}/>
-  {/* Where the ProjectCard was */}
-
-    <div className="profilePage">        
-        <div className='userInfo'>
-            <img id='profilePhoto' src={userDetails.userAvatar} alt="UserImage" className='profileImage'/>
-            <div className='profileInfo'>
-                <h2>{userDetails.username}</h2>
-                <h2>{userDetails.fullName}</h2>
-                <h2>{userDetails.linkedIn}</h2>
-                {/* <Link to={`/cohorts/${userDetails.cohort}`}>
-                {getCohortName(userDetails.cohort)}
-                </Link> */}
-                <Link to={`/cohorts/${userDetails.cohort}`}>{getCohortName(userDetails.cohort)}</Link>
-                <p>{userDetails.aboutMe}</p>  {/* we will need to add in an info part so the user can complete. */}
-                <span>{userDetails.html_url}</span>
-            </div>
-        </div>  
-        <div></div>    
-        <div className='projectCards'>
-        {userProjects.length > 0 && reversedUserProjects.map((project, idx)=>{
-            return (
-                <div className='projectCard' key={idx+userProjects.length+1}>
-                    <ProjectCard project={project} key={idx} />
-                </div>
-            )
-        })}
-
+    <div className="profilePage"> 
+    {/* <iframe title='project' src="https://joelleli.github.io/Unit1_Project_Snake/" width="400" height="400"></iframe> */}
+   
+      <div id='outerInfoContainer'>
+        <div id='photoContainer'>
+          <img id='profilePhoto' src={userDetails.userAvatar} alt="UserImage" className='profileImage'/>
         </div>
+        <div id='innerInfoContainer'>
+          <h2>{userDetails.username}</h2>
+          <h2>{userDetails.fullName}</h2>
+          <h2>{userDetails.linkedIn}</h2>
+          <Link to={`/cohorts/${userDetails.cohort}`}>{getCohortName(userDetails.cohort)}</Link>
+          <p>{userDetails.aboutMe}</p>
+          <span>{userDetails.gitUrl}</span>
+        </div>
+      </div>    
+      {/* // display public projects for non logged in users */}
+      <Button variant='primary' onClick={() => setShowModal(true)}>Add Project</Button>
+      <AddProjectModal show={showModal} handleClose={handleClose} userData={userData}/>
+      {/* Where the ProjectCard was */}
+      <div className='cardHolder'>
+        {userProjects.map((project, idx)=>{
+            return <ProjectCard project={project} key={idx} />
+        })} 
+      </div>
     </div>
     </>
 )
