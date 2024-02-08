@@ -8,12 +8,6 @@ export default function HomePage({userData}) {
   let reversedProjects = projects.reverse()
 
 
-
-
-
- 
-  
-  // console.log(projects)
 useEffect(() => {
   getProjects()
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -21,11 +15,15 @@ useEffect(() => {
 
   return (
     <>
-    <div>HomePage</div>
+    <br />
     <div className='cardHolder'>
         {reversedProjects.map((project, idx) => {
           
-          return <ProjectCard project={project} key={idx} />
+          return (
+            <div className="card">
+          <ProjectCard project={project} key={idx} />
+          </div>
+          )
         })}
         </div>
     </>

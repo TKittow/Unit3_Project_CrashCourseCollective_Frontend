@@ -3,9 +3,12 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import { useParams } from 'react-router-dom' 
 import { useNavigate } from 'react-router-dom'
+import { useProjects } from '../../context/ProjectContext'
+
 
 export default function EditProjectPage() {
   const { projectId } = useParams()
+  const { getProjects } = useProjects()
   const [projectDetails, setProjectDetails] = useState({
     projectName: '',
     description: '',
@@ -21,7 +24,9 @@ export default function EditProjectPage() {
     fetchProjectDetails(projectId);
   }, [projectId])
 
+
   const fetchProjectDetails = async (projectId) => {
+
     try {
       // Make API call to fetch project details based on projectId
       const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/project/${projectId}`) // Update the API endpoint as per your backend
@@ -29,7 +34,6 @@ export default function EditProjectPage() {
       if (response.ok) {
         const data = await response.json()
         setProjectDetails(data)
-        
       } else {
         console.error('Failed to fetch project details')
         
@@ -43,6 +47,9 @@ export default function EditProjectPage() {
 
   const saveEdit = async (e) => {
     e.preventDefault()
+
+    console.log('proj id', projectId);
+    console.log('proj details', projectDetails);
     try {
       // Make API call to save updated project details
       const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/project/${projectId}`, {
@@ -51,19 +58,18 @@ export default function EditProjectPage() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(projectDetails),
-      });
+      })
       if (response.ok) {
         setFormSubmitted(true)
+        getProjects()
+        navigate(`/projects/${projectId}`)
       } else {
         console.error('Failed to save project details')
       }
     } catch (error) {
       console.error('Error saving project details:', error)
     }
-    navigate(`/profilepage/${projectDetails.username}`)
-  };
-
-  console.log(projectId)
+  }
 
   const deleteProject = async () => {
     try {
@@ -81,7 +87,7 @@ export default function EditProjectPage() {
       console.error('Error deleting project:', error);
     }
     navigate(`/profilepage/${projectDetails.username}`)
-  };
+  }
 
 
 

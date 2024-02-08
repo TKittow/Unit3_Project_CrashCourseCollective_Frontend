@@ -1,6 +1,7 @@
 import React from 'react'
 import { Card } from "react-bootstrap"
 import { Link } from "react-router-dom"
+import './ProjectCard.css'
 
 
 export default function ProjectCard({project}) {
@@ -14,15 +15,16 @@ export default function ProjectCard({project}) {
     
   }
 
-console.log(project.collaborators)
-
 
 
 
   return (
-<Link to={`/projects/${project.projectName}`}>
-    <Card style={cardStyle} className='card' >
-        <Card.Body >
+
+
+
+<Link to={`/projects/${project._id}`}>
+    <Card className='card' >
+        <Card.Body>
             <Card.Title>
                 <div className='d-flex'>{project.username} </div>
                 <div>{project.projectName}</div>

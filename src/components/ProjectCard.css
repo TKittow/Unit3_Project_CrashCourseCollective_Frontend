@@ -1,0 +1,16 @@
+.card.with-background-image .card-title,
+.card.with-background-image .card-subtitle,
+.card.with-background-image img {
+  opacity: 1;
+  transition: opacity 0.3s ease; /* Adjust the duration and timing function as needed */
+}
+
+.card.with-background-image:hover .card-title,
+.card.with-background-image:hover .card-subtitle,
+.card.with-background-image:hover img {
+  opacity: 0;
+}
+
+.card{
+  display: none;
+}

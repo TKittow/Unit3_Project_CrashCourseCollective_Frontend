@@ -11,8 +11,7 @@ export default function AddProjectModal({show, handleClose, userData}) {
     const deploymentLinkRef = useRef()
     const repoLinkRef = useRef()
     const {addProject, getProjects } = useProjects()
-    // console.log(userData)
-    console.log(userData)
+
 
     async function handleSubmit(e){
         e.preventDefault()
@@ -28,6 +27,8 @@ export default function AddProjectModal({show, handleClose, userData}) {
         getProjects()
         handleClose()
     }
+
+    
   return (
     <Modal show={show} onHide={handleClose}>
         <Form onSubmit={handleSubmit}>
@@ -42,7 +43,7 @@ export default function AddProjectModal({show, handleClose, userData}) {
                 <Form.Group className="mb-3" controlId="collabs">
                     <Form.Label>Collaborators &nbsp; <span style={{fontSize: 'small'}}>*case sensetive</span></Form.Label>
                     {/* Should this fetch from a select menu of those in your  */}
-                    <Form.Control ref={collabRef} type="text" placeholder="Seperate by spaces eg. TKittow KiwiCJ JoelleLi" />
+                    <Form.Control ref={collabRef} type="text" />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="description">
                     <Form.Label>Description</Form.Label>

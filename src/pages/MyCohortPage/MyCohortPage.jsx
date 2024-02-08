@@ -14,7 +14,6 @@ export default function CohortPage() {
     const cohortId = userDetails.cohort
     const foundCohort = cohorts.find(cohort => cohort._id === cohortId)
     setUserCohort(foundCohort)
-    console.log(cohortParams)
   }
 
   useEffect(() => {
