@@ -14,8 +14,6 @@ export default function ProjectCard({project}) {
     
   }
 
-console.log(project.collaborators)
-
 
 
 

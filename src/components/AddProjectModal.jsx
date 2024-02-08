@@ -25,6 +25,8 @@ export default function AddProjectModal({show, handleClose, userData}) {
         getProjects()
         handleClose()
     }
+
+    
   return (
     <Modal show={show} onHide={handleClose}>
         <Form onSubmit={handleSubmit}>

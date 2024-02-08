@@ -8,8 +8,7 @@ export default function ProjectPage({ projects, userData }) {
   const projectId = useParams()
   const { getUserDetails, userDetails } = useUsers()
   const [collabDetails, setCollabDetails] = useState([])
-
-  let thisProject = projects.find((project) => project.projectName === projectName)
+  let thisProject = projects.find((project) => project._id === projectId._id)
 
   useEffect(() => {
     getUserDetails(thisProject.username)
@@ -38,18 +37,16 @@ export default function ProjectPage({ projects, userData }) {
   }
 }
 
- function checkMultipleCollaborators(inputString) {
- if (!inputString){return} //what if it has one person
-  let seperated = inputString.split(" ") // 'KiwiCJ JoelleLi'
+  function checkMultipleCollaborators(inputString) {
+    if (!inputString){return} 
+    let seperated = inputString.split(" ") 
 
-  seperated.map((user) => ( //['KiwiCJ', 'JoelleLi']
+  seperated.map((user) => ( 
     getUserId(user)
   ))
 }
 
 
-
-console.log(collabDetails)
 
   return (
     <div className='projectPage'>

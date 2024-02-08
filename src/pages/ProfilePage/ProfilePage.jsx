@@ -20,10 +20,14 @@ export default function ProfilePage({ userData, loggedIn }){
   const [showModal, setShowModal] = useState(false)
   const { getProjects, getUserProjects, userProjects } = useProjects()
   const { username } = useParams()
+
+
  //? Modal Logic
   function handleClose(){
+    getProjects()
     setShowModal(false)
   }
+
   useEffect(() => {
     if (userDetailsF.username === username){
       getUserDetails(userDetailsF.username)
@@ -34,6 +38,7 @@ export default function ProfilePage({ userData, loggedIn }){
     getUserProjects(username)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [username])
+
   function getCohortName(cohortId) {
     const foundCohort = cohorts.find(cohort => cohort._id === cohortId)
     return foundCohort ? foundCohort.cohortName : "Cohort not found"

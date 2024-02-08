@@ -42,13 +42,10 @@ export default function EditProjectPage() {
       console.error('Error fetching project details:', error)
     }
   }
-console.log('proj', projectId);
+
 
   const saveEdit = async (e) => {
     e.preventDefault()
-
-    console.log('proj id', projectId);
-    console.log('proj details', projectDetails);
     try {
       // Make API call to save updated project details
       const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/project/${projectId}`, {
@@ -86,7 +83,7 @@ console.log('proj', projectId);
       console.error('Error deleting project:', error);
     }
     navigate(`/profilepage/${projectDetails.username}`)
-  };
+  }
 
 
 
