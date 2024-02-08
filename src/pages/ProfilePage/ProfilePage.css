@@ -1,7 +1,8 @@
-.profilePage {
-
+.profileContainer {
+    /* display: flex;
+    flex-direction: row; */
 }
-
+ 
 #outerInfoContainer{
     display: flex;
     flex-direction: row;
@@ -10,14 +11,14 @@
     margin: 1vmin 0 5vmin 0;
 }
 
-#innerInfoContainer {
+/* #innerInfoContainer {
     border: 1px solid lightgray;
     display: flex;
     height: 17vmin;
     justify-content: space-between;
     width: 70vmin;
     padding: 0 5vmin 0 5vmin;
-}
+} */
 
 #innerInnerInfoContainer {
     justify-content: flex-start;    
@@ -28,17 +29,17 @@
 }
 
 #aboutMe {
-
+    text-align: left;
 }
 #photoContainer {
     background-color: rgba(125, 245, 39, 0.03);
-    border: 1px solid lightgray;
+    /* border: 1px solid lightgray; */
     height: 100%;
     padding: 1vmin;
 }
 
 #profilePhoto {
-    border-radius: 50%;
+    /* border-radius: 50%; */
     height: 15vmin;
     width: 15vmin;
 }
