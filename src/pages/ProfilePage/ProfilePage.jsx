@@ -15,6 +15,7 @@ export default function ProfilePage({ userData }){
   const { getProjects, getUserProjects, userProjects } = useProjects()
   const { username } = useParams()
 
+console.log(userDetailsF)
 
  //? Modal Logic
  function handleClose(){
@@ -35,7 +36,9 @@ export default function ProfilePage({ userData }){
   function getCohortName(cohortId) {
     const foundCohort = cohorts.find(cohort => cohort._id === cohortId)
     return foundCohort ? foundCohort.cohortName : "Cohort not found"
-  }
+
+}
+let reversedUserProjects = userProjects.reverse()
 
 return (
   <> 
@@ -55,11 +58,16 @@ return (
                 <p>{userDetails.aboutMe}</p>  {/* we will need to add in an info part so the user can complete. */}
                 <span>{userDetails.html_url}</span>
             </div>
-        </div>      
-        {userProjects.map((project, idx)=>{
-            return <ProjectCard project={project} key={idx} />
+        </div>  
+        <div></div>    
+        <div className='projectCards'>
+        {userProjects.length > 0 && reversedUserProjects.map((project, idx)=>{
+            return (
+                <div className='projectCard' key={idx+userProjects.length+1}>
+                    <ProjectCard project={project} key={idx} />
+                </div>
+            )
         })}
-        <div>
 
         </div>
     </div>
