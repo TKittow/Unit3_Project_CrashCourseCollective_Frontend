@@ -15,11 +15,7 @@ export default function ProfilePage({ userData }){
   const { getProjects, getUserProjects, userProjects } = useProjects()
   const { username } = useParams()
 
-<<<<<<< HEAD
-=======
-console.log(userDetailsF)
 
->>>>>>> dev
  //? Modal Logic
  function handleClose(){
     setShowModal(false)
@@ -47,35 +43,19 @@ let reversedUserProjects = userProjects.reverse()
 return (
   <> 
     <div className="profilePage"> 
-<<<<<<< HEAD
-    {/* <iframe title='project' src="https://joelleli.github.io/Unit1_Project_Snake/" width="400" height="400" aria-hidden="true"></iframe> */}
-
-=======
     {/* <iframe title='project' src="https://joelleli.github.io/Unit1_Project_Snake/" width="400" height="400"></iframe> */}
    
->>>>>>> dev
       <div id='outerInfoContainer'>
         <div id='photoContainer'>
           <img id='profilePhoto' src={userDetails.userAvatar} alt="UserImage" className='profileImage'/>
         </div>
         <div id='innerInfoContainer'>
-<<<<<<< HEAD
-          <div id='innerInnerInfoContainer'>
-            <h3>{userDetails.username}</h3>
-            <h6>{userDetails.fullName}</h6>
-            <h6>{userDetails.linkedIn}</h6>
-            <h6>{userDetails.gitUrl}</h6>
-            <Link to={`/cohorts/${userDetails.cohort}`}>{getCohortName(userDetails.cohort)}</Link>
-          </div>
-          <div id='aboutMe'>{userDetails.aboutMe}</div>
-=======
           <h2>{userDetails.username}</h2>
           <h2>{userDetails.fullName}</h2>
           <h2>{userDetails.linkedIn}</h2>
           <Link to={`/cohorts/${userDetails.cohort}`}>{getCohortName(userDetails.cohort)}</Link>
           <p>{userDetails.aboutMe}</p>
           <span>{userDetails.gitUrl}</span>
->>>>>>> dev
         </div>
       </div>    
       {/* // display public projects for non logged in users */}
