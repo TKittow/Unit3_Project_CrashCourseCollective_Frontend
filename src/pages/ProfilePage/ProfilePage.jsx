@@ -8,14 +8,12 @@ import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import './ProfilePage.css'
 import ProjectCard from '../../components/ProjectCard'
-
  
 export default function ProfilePage({ userData }){
   const { getUserDetails, userDetails, userDetailsF, cohorts } = useUsers()
   const [showModal, setShowModal] = useState(false)
   const { getProjects, getUserProjects, userProjects } = useProjects()
   const { username } = useParams()
-
 
  //? Modal Logic
  function handleClose(){
@@ -42,19 +40,21 @@ export default function ProfilePage({ userData }){
 return (
   <> 
     <div className="profilePage"> 
-    {/* <iframe title='project' src="https://joelleli.github.io/Unit1_Project_Snake/" width="400" height="400"></iframe> */}
-   
+    {/* <iframe title='project' src="https://joelleli.github.io/Unit1_Project_Snake/" width="400" height="400" aria-hidden="true"></iframe> */}
+
       <div id='outerInfoContainer'>
         <div id='photoContainer'>
           <img id='profilePhoto' src={userDetails.userAvatar} alt="UserImage" className='profileImage'/>
         </div>
         <div id='innerInfoContainer'>
-          <h2>{userDetails.username}</h2>
-          <h2>{userDetails.fullName}</h2>
-          <h2>{userDetails.linkedIn}</h2>
-          <Link to={`/cohorts/${userDetails.cohort}`}>{getCohortName(userDetails.cohort)}</Link>
-          <p>{userDetails.aboutMe}</p>
-          <span>{userDetails.gitUrl}</span>
+          <div id='innerInnerInfoContainer'>
+            <h3>{userDetails.username}</h3>
+            <h6>{userDetails.fullName}</h6>
+            <h6>{userDetails.linkedIn}</h6>
+            <h6>{userDetails.gitUrl}</h6>
+            <Link to={`/cohorts/${userDetails.cohort}`}>{getCohortName(userDetails.cohort)}</Link>
+          </div>
+          <div id='aboutMe'>{userDetails.aboutMe}</div>
         </div>
       </div>    
       {/* // display public projects for non logged in users */}
