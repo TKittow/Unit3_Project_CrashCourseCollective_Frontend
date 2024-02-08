@@ -79,6 +79,7 @@ console.log(collabDetails)
           <div key={idx}>
           <div>{collaber.name}</div>
           <Link to={{ pathname: `/profilepage/${collaber.name}`}}>{`${collaber.name}'s page`}</Link>
+          <img src={collaber.userAvatar} alt="text" />
           </div>
         )
       })}
