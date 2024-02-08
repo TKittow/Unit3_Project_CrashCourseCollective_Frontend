@@ -8,12 +8,6 @@ export default function HomePage({userData}) {
   let reversedProjects = projects.reverse()
 
 
-
-
-
- 
-  
-  // console.log(projects)
 useEffect(() => {
   getProjects()
   // eslint-disable-next-line react-hooks/exhaustive-deps

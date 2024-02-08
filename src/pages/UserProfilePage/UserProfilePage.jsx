@@ -22,7 +22,6 @@ export default function ProfilePage({ userData }){
 
   useEffect(() => {
     getUserDetails(username)
-    console.log(userDetails)
     getProjects()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [username])
@@ -31,7 +30,7 @@ export default function ProfilePage({ userData }){
     getUserProjects(username)
         // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
-  console.log(userProjects)
+
 
   function getCohortName(cohortId) {
     const foundCohort = cohorts.find(cohort => cohort._id === cohortId)

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 
 
 export default function ProjectCard({project}) {
-
+console.log('projecet', project);
     const [avatarUrl, setAvatarUrl] = useState('');
 
     useEffect(() => {
@@ -33,7 +33,7 @@ export default function ProjectCard({project}) {
 
 
 
-<Link to={`/projects/${project.projectName}`}>
+<Link to={`/projects/${project._id}`}>
     <Card className='card' >
         <Card.Body>
             <Card.Title>

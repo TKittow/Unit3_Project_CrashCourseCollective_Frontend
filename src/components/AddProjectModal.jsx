@@ -10,7 +10,7 @@ export default function AddProjectModal({show, handleClose, userData}) {
     const descriptionRef = useRef()
     const deploymentLinkRef = useRef()
     const {addProject, getProjects } = useProjects()
-    // console.log(userData)
+
 
     async function handleSubmit(e){
         e.preventDefault()
@@ -38,7 +38,7 @@ export default function AddProjectModal({show, handleClose, userData}) {
                 <Form.Group className="mb-3" controlId="collabs">
                     <Form.Label>Collaborators</Form.Label>
                     {/* Should this fetch from a select menu of those in your  */}
-                    <Form.Control ref={collabRef} type="text" required />
+                    <Form.Control ref={collabRef} type="text" />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="description">
                     <Form.Label>Description</Form.Label>

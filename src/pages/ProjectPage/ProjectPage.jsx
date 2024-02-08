@@ -3,11 +3,13 @@ import { useUsers } from '../../context/UserContext'
 import { useEffect } from 'react'
 import { Button} from 'react-bootstrap'
 
-export default function ProjectPage({ projects, userData }) {
-  const { projectName } = useParams()
-  const { getUserDetails, userDetails } = useUsers()
 
-  let thisProject = projects.find((project) => project.projectName === projectName)
+export default function ProjectPage({ projects, userData }) {
+  const projectId = useParams()
+  const { getUserDetails, userDetails } = useUsers()
+  console.log('proj', projects);
+  console.log(projectId);
+  let thisProject = projects.find((project) => project._id === projectId._id)
 
   useEffect(() => {
     getUserDetails(thisProject.username)
@@ -22,7 +24,7 @@ export default function ProjectPage({ projects, userData }) {
       <h1>{thisProject.projectName}</h1>
       <div className='btn-primary'>
         {userData.login === thisProject.username && (
-          <Link to={{ pathname: `/editprojectpage/${thisProject._id}`, state: { projectDetails: thisProject }}}>
+          <Link to={{ pathname: `/editprojectpage/${thisProject._id}`, state: { projectDetails: thisProject._id }}}>
             <Button>Update Project</Button>
           </Link>
         )}
