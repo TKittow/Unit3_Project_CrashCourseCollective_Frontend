@@ -10,6 +10,7 @@ export default function EditProjectPage() {
     projectName: '',
     description: '',
     deploymentLink: '',
+    deploymentImage: ''
   });
   const [formSubmitted, setFormSubmitted] = useState(false)
   const navigate = useNavigate()
@@ -122,6 +123,17 @@ export default function EditProjectPage() {
             name="deploymentLink"
             value={projectDetails.deploymentLink}
             placeholder="Enter deployment link"
+            onChange={handleChange}
+          />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formDeploymentLink">
+          <Form.Label>Deployment Snapshot Image URL</Form.Label>
+          <Form.Control
+            type="text"
+            name="deploymentImage"
+            value={projectDetails.deploymentImage}
+            placeholder="Enter deployment image URL link"
             onChange={handleChange}
           />
         </Form.Group>

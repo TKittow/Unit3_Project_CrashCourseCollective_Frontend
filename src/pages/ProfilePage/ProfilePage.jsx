@@ -8,16 +8,12 @@ import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import './ProfilePage.css'
 import ProjectCard from '../../components/ProjectCard'
-<<<<<<< HEAD
 import Card from 'react-bootstrap/Card'
 import Image from 'react-bootstrap/Image'
 import Container from 'react-bootstrap/Container'
 
 
  
-=======
-
->>>>>>> dev
 export default function ProfilePage({ userData }){
   const { getUserDetails, userDetails, userDetailsF, cohorts } = useUsers()
   const [showModal, setShowModal] = useState(false)
