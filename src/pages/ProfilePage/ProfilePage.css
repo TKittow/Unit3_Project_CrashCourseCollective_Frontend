@@ -7,16 +7,11 @@
     flex-direction: row;
     height: 17vmin;
     justify-content: space-between;
-<<<<<<< HEAD
     margin: 1vmin 0 5vmin 0;
-=======
-    margin: 1vmin 0 10vmin 0;
->>>>>>> dev
 }
 
 #innerInfoContainer {
     border: 1px solid lightgray;
-<<<<<<< HEAD
     display: flex;
     height: 17vmin;
     justify-content: space-between;
@@ -35,13 +30,6 @@
 #aboutMe {
 
 }
-=======
-    height: 100%;
-    width: 78vmin;
-
-}
-
->>>>>>> dev
 #photoContainer {
     background-color: rgba(125, 245, 39, 0.03);
     border: 1px solid lightgray;
@@ -55,7 +43,6 @@
     width: 15vmin;
 }
 
-<<<<<<< HEAD
 .thumbnail-container {
     width: calc(1440px * 0.25);
     height: calc(900px * 0.25);
@@ -82,13 +69,4 @@
 .thumbnail iframe {
     /* width: 100vmin; */
     height: 50vmin;
-=======
-.projectCards{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-}
-
-.projectCard{
-    gap: 20px;
->>>>>>> dev
 }
