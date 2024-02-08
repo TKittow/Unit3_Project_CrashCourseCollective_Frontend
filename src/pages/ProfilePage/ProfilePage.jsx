@@ -10,11 +10,13 @@ import './ProfilePage.css'
 import ProjectCard from '../../components/ProjectCard'
  
 export default function ProfilePage({ userData }){
-  const { getUserDetails, userDetails, userDetailsF, cohorts } = useUsers()
+  const { getUserDetails, userDetails, userDetailsF, cohorts, setUserDetails } = useUsers()
   const [showModal, setShowModal] = useState(false)
+  const { getProjects, getUserProjects, userProjects } = useProjects()
   const { getProjects, getUserProjects, userProjects } = useProjects()
   const { username } = useParams()
 
+console.log(userDetailsF)
  //? Modal Logic
  function handleClose(){
     setShowModal(false)
@@ -27,7 +29,9 @@ export default function ProfilePage({ userData }){
       getUserDetails(username)
     }
     console.log(username)
+    console.log(username)
     getProjects()
+    getUserProjects(username)
     getUserProjects(username)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [username])
@@ -35,6 +39,9 @@ export default function ProfilePage({ userData }){
   function getCohortName(cohortId) {
     const foundCohort = cohorts.find(cohort => cohort._id === cohortId)
     return foundCohort ? foundCohort.cohortName : "Cohort not found"
+
+}
+let reversedUserProjects = userProjects.reverse()
 
 }
 let reversedUserProjects = userProjects.reverse()
@@ -68,6 +75,37 @@ return (
             return <ProjectCard project={project} key={idx} />
         })} 
       </div>
+    {/* // display public projects for non logged in users */}
+    <Button variant='primary' onClick={() => setShowModal(true)}>Add Project</Button>
+    <AddProjectModal show={showModal} handleClose={handleClose} userData={userData}/>
+  {/* Where the ProjectCard was */}
+
+    <div className="profilePage">        
+        <div className='userInfo'>
+            <img id='profilePhoto' src={userDetails.userAvatar} alt="UserImage" className='profileImage'/>
+            <div className='profileInfo'>
+                <h2>{userDetails.username}</h2>
+                <h2>{userDetails.fullName}</h2>
+                <h2>{userDetails.linkedIn}</h2>
+                {/* <Link to={`/cohorts/${userDetails.cohort}`}>
+                {getCohortName(userDetails.cohort)}
+                </Link> */}
+                <Link to={`/cohorts/${userDetails.cohort}`}>{getCohortName(userDetails.cohort)}</Link>
+                <p>{userDetails.aboutMe}</p>  {/* we will need to add in an info part so the user can complete. */}
+                <span>{userDetails.html_url}</span>
+            </div>
+        </div>  
+        <div></div>    
+        <div className='projectCards'>
+        {userProjects.length > 0 && reversedUserProjects.map((project, idx)=>{
+            return (
+                <div className='projectCard' key={idx+userProjects.length+1}>
+                    <ProjectCard project={project} key={idx} />
+                </div>
+            )
+        })}
+
+        </div>
     </div>
     </>
 )
