@@ -14,10 +14,12 @@ export default function ProjectCard({project}) {
     
   }
 
+console.log(project.collaborators)
+
+
+
+
   return (
-
-
-
 <Link to={`/projects/${project.projectName}`}>
     <Card style={cardStyle} className='card' >
         <Card.Body >
@@ -27,7 +29,9 @@ export default function ProjectCard({project}) {
             </Card.Title>
             
             {project.userAvatarUrl && <img src={project.userAvatarUrl} alt={altText} style={{ width: '50px', height: '50px' }} />}
-           
+            <Card.Subtitle>
+          {project.collaborators ? `Collaborators: ${project.collaborators}` : 'Solo'}
+        </Card.Subtitle>
         </Card.Body>
     </Card>
 </Link>
