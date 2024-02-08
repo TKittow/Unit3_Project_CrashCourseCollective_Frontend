@@ -144,7 +144,7 @@ async function loginUser() {
             <Route path='/mycohort' element={ <MyCohortPage /> } />
             <Route path='/cohorts' element={ <CohortsPage /> } />
             <Route path='/cohorts/:cohortId' element={ <CohortsPage /> } />
-            <Route path='/profilepage/:username' element={ <ProfilePage userData={userData} /> } />
+            <Route path='/profilepage/:username' element={ <ProfilePage userData={userData} loggedIn={loggedIn}/> } />
             <Route path='/editprofilepage' element={ <EditProfilePage userData={userData}/> } />
             <Route path='/login' />
             <Route path='/projects/:_id' element={ <ProjectPage projects={projects} userData={userData}/>} />

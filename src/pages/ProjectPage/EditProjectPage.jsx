@@ -13,7 +13,7 @@ export default function EditProjectPage() {
     projectName: '',
     description: '',
     deploymentLink: '',
-    collaborators: ''
+    deploymentImage: ''
   });
   const [formSubmitted, setFormSubmitted] = useState(false)
   const navigate = useNavigate()
@@ -46,6 +46,9 @@ console.log('proj', projectId);
 
   const saveEdit = async (e) => {
     e.preventDefault()
+
+    console.log('proj id', projectId);
+    console.log('proj details', projectDetails);
     try {
       // Make API call to save updated project details
       const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/project/${projectId}`, {
@@ -126,6 +129,17 @@ console.log('proj', projectId);
             name="deploymentLink"
             value={projectDetails.deploymentLink}
             placeholder="Enter deployment link"
+            onChange={handleChange}
+          />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formDeploymentLink">
+          <Form.Label>Deployment Snapshot Image URL</Form.Label>
+          <Form.Control
+            type="text"
+            name="deploymentImage"
+            value={projectDetails.deploymentImage}
+            placeholder="Enter deployment image URL link"
             onChange={handleChange}
           />
         </Form.Group>
