@@ -14,7 +14,7 @@ import Container from 'react-bootstrap/Container'
 
 
  
-export default function ProfilePage({ userData }){
+export default function ProfilePage({ userData, loggedIn }){
   const { getUserDetails, userDetails, userDetailsF, cohorts } = useUsers()
   const [showModal, setShowModal] = useState(false)
   const { getProjects, getUserProjects, userProjects } = useProjects()
@@ -44,6 +44,13 @@ export default function ProfilePage({ userData }){
 }
 let reversedUserProjects = userProjects.reverse()
 
+const cardStyle = {
+  backgroundImage: 'url(https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Lightblue_empty_grid.svg/640px-Lightblue_empty_grid.svg.png)',
+  backgroundSize: 'cover', 
+  backgroundPosition: 'center',
+  width: '70vmin'
+}
+
 return (
   <>  
     <Container id="profileContainer"> 
@@ -54,21 +61,38 @@ return (
           <Image id='profilePhoto' src={userDetails.userAvatar} alt="UserImage" className='profileImage' roundedCircle fluid/>
         </div>
         <div id='innerInfoContainer'>
-          <Card style={{ width: '70vmin' }}>
+          <Card style={ cardStyle }>
             <Card.Body>
-              <Card.Title>{userDetails.username}</Card.Title>
-              <Card.Subtitle className="mb-2 text-muted">{userDetails.fullName}</Card.Subtitle>
-              <Card.Text><Link to={`/cohorts/${userDetails.cohort}`}>{getCohortName(userDetails.cohort)}</Link>
-                Some quick example text to build on the card title and make up the
-                bulk of the card's content.
-              </Card.Text>
-              <Card.Link href="#">{userDetails.linkedIn}</Card.Link>
-              <Card.Link href="#">{userDetails.gitUrl}</Card.Link>
+            {userDetails.username ? <div className='profileName'>{userDetails.username}</div> : <div className='profileName'>""</div> }
+              <div id='innerInnerInfoWrapper'>
+                <div id='infoWrapper'>
+                  {userDetails.fullName ? <div id='fullName'>{userDetails.fullName}</div> : <div>""</div>}
+                  <div>Junior Software Developer</div>
+                  <div>
+                  My Cohort : <Link to={`/cohorts/${userDetails.cohort}`}>{getCohortName(userDetails.cohort)}</Link>
+                  </div>
+                </div>
+                <div class="vr"></div>
+                <div id='outerLinksWrapper'>
+                  <div className='linksWrapper'>
+                    <img className='linksIcon' src="https://store-images.s-microsoft.com/image/apps.31120.9007199266245564.44dc7699-748d-4c34-ba5e-d04eb48f7960.bc4172bd-63f0-455a-9acd-5457f44e4473?h=210" alt="LinkedIn Icon" width='15vmin' />
+                    <Card.Link href="#">{userDetails.linkedIn}</Card.Link><br></br>
+                  </div>
+                  <div className='linksWrapper'>
+                    <img className='linksIcon' src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/GitHub_Invertocat_Logo.svg/200px-GitHub_Invertocat_Logo.svg.png' alt='githublogo' width='15vmin'/>
+                    <Card.Link href="#">{userDetails.gitUrl}</Card.Link>
+                  </div>
+                  <div className='linksWrapper'>
+                    <img className='linksIcon' src='https://banner2.cleanpng.com/20180526/eio/kisspng-email-computer-icons-gmail-5b093a2abbd322.5464747815273313707693.jpg' alt='githublogo' width='15vmin'/>
+                    <Card.Link href="#">{userDetails.email}</Card.Link>
+                  </div>
+                </div>
+              </div>
             </Card.Body>
           </Card>
           </div>
         </div>
-      <Card>
+      <Card id='aboutMeCard'>
             <Card.Header>About Me</Card.Header>
             <Card.Body>
               <blockquote id='aboutMe'>
@@ -82,10 +106,16 @@ return (
             </Card.Body>
           </Card>   
     </Container>
-    {/* // display public projects for non logged in users */}
-    <Button variant='primary' onClick={() => setShowModal(true)}>Add Project</Button>
+    <div id='myProjectsHeader'>
+      <div id='myProjectsTitle'>My Projects</div>
+      {loggedIn && userData.login === userDetails.username
+      ?
+      <Button id='addProjectButton' variant='primary' onClick={() => setShowModal(true)}>Add Project</Button>
+      :
+      <div></div>
+      } 
+    </div>
       <AddProjectModal show={showModal} handleClose={handleClose} userData={userData}/>
-      {/* Where the ProjectCard was */}
       <div className='cardHolder'>
         {reversedUserProjects.map((project, idx)=>{
             return <ProjectCard project={project} key={idx} />
