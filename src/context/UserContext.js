@@ -18,7 +18,6 @@ export const UsersProvider = ({children}) => {
         try {
             const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/users/new`, newUser)
             setUsers([...users, response.data])
-            console.log(newUser)
             setUserDetailsF(newUser)
             getUserDetails(newUser.username)
             getCohorts()
@@ -54,7 +53,6 @@ export const UsersProvider = ({children}) => {
         try {
             const response = await axios.put(`${process.env.REACT_APP_BACKEND_URL}/users/${username}`, updatedData)
             if (response.status === 200) {
-                console.log('User profile updated successfully', updatedData)
                 
                 // merge updatedData with userDetails
                 setUserDetails(prevUserDetails => ({
@@ -69,17 +67,6 @@ export const UsersProvider = ({children}) => {
         }
     }
 
-    // function deleteAccount(userId) {
-    //     axios.delete(`${process.env.REACT_APP_BACKEND_URL}/users/${userId}`)
-    //         .then(() => {
-    //             // Remove the deleted user from the users state
-    //             setUsers(prevUsers => prevUsers.filter(user => user._id !== userId));
-    //             console.log("User deleted successfully");
-    //         })
-    //         .catch(error => {
-    //             console.error("Error deleting user:", error);
-    //         });
-    // }
 
     function getCohorts() {
         axios.get(`${process.env.REACT_APP_BACKEND_URL}/cohorts`)

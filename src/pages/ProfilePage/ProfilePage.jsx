@@ -21,8 +21,10 @@ export default function ProfilePage({ userData, loggedIn }){
   const { getProjects, getUserProjects, userProjects } = useProjects()
   const { username } = useParams()
 
+
  //? Modal Logic
   function handleClose(){
+    getProjects()
     setShowModal(false)
   }
 
@@ -40,7 +42,6 @@ export default function ProfilePage({ userData, loggedIn }){
   function getCohortName(cohortId) {
     const foundCohort = cohorts.find(cohort => cohort._id === cohortId)
     return foundCohort ? foundCohort.cohortName : "Cohort not found"
-
 }
 let reversedUserProjects = userProjects.reverse()
 
@@ -55,7 +56,6 @@ return (
   <>  
     <Container id="profileContainer"> 
     {/* <iframe title='project' src="https://joelleli.github.io/Unit1_Project_Snake/" width="400" height="400" aria-hidden="true"></iframe> */}
-
       <div id='outerInfoContainer'>
         <div id='photoContainer'>
           <Image id='profilePhoto' src={userDetails.userAvatar} alt="UserImage" className='profileImage' roundedCircle fluid/>
@@ -145,5 +145,4 @@ return (
       </div>
     </>
 )
-
 }

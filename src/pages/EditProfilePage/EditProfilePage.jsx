@@ -40,7 +40,6 @@ export default function EditProfilePage() {
   function handleChange(e) {
     const { name, value } = e.target
     setFormData(prevFormData => ({ ...prevFormData, [name]: value }))
-    console.log(formData)
   }
 
   useEffect(() => {
