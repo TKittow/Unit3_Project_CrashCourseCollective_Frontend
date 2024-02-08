@@ -5,6 +5,7 @@ import Form from 'react-bootstrap/Form'
 import Row from 'react-bootstrap/Row'
 import { useUsers } from "../../context/UserContext"
 import { useNavigate } from 'react-router-dom'
+import './EditProfilePage.css'
 
 export default function EditProfilePage() {
   const { userDetails, getCohorts, cohorts, sendEditUser } = useUsers()
@@ -58,7 +59,9 @@ export default function EditProfilePage() {
     {localStorage.getItem('accessToken')
     ?
     <>
-    <p>Edit My Details</p>
+    <div id='editProfileWrapper'>
+    <div className='profileName'>Edit My Details</div>
+    <div id='formWrapper'>
     <Form onSubmit={(e) => saveEdit(userDetails, e)}>
       <Row className="mb-3">
         <Form.Group as={Col} controlId="formGridEmail">
@@ -89,7 +92,7 @@ export default function EditProfilePage() {
           <Form.Label>LinkedIn</Form.Label>
           <Form.Control 
           type="text"
-          name="linkedIn"
+          name="linkedIn" 
           value={formData.linkedIn}
           placeholder={userDetails.linkedIn}
           onChange={(e) => handleChange(e)} 
@@ -146,7 +149,8 @@ export default function EditProfilePage() {
         Submit
       </Button>
     </Form>
-    {formSubmitted ? <div>Form submitted</div> : null } 
+    </div>
+    </div>
     </>
     : 
     <p>Sign in to see your profile</p>
