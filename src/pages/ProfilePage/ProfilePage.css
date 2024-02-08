@@ -6,3 +6,12 @@
     border-radius: 50%;
     width: 15vmin;
 }
+
+.projectCards{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.projectCard{
+    gap: 20px;
+}
