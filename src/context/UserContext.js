@@ -13,6 +13,7 @@ export const UsersProvider = ({children}) => {
     const [userDetailsF, setUserDetailsF] = useState({})
     const [cohorts, setCohorts] = useState([])
 
+
     async function addUser(newUser) {
         try {
             const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/users/new`, newUser)
@@ -40,8 +41,8 @@ export const UsersProvider = ({children}) => {
         try {
             const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/users/${username}`)
             const user = response.data
-            console.log(user)
             setUserDetails(user)
+            
 
         } catch (error) {
             console.error("Error fetching user details:", error)
@@ -76,6 +77,9 @@ export const UsersProvider = ({children}) => {
         .catch(error => console.error("Error fetching cohorts", error))
     }
 
+
+
+
     return (
         <UserContext.Provider value={{
             users,
@@ -84,10 +88,9 @@ export const UsersProvider = ({children}) => {
             cohorts,
             addUser,
             getUsers,
-            //getProjects,
             getUserDetails,
             sendEditUser,
-            getCohorts
+            getCohorts,
         }}
         >
             {children}

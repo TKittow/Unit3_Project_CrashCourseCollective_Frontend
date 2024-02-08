@@ -9,7 +9,7 @@ import './ProfilePage.css'
 
  
 export default function ProfilePage({ userData }){
-  const { getUserDetails, userDetails, userDetailsF, cohorts, setUserDetails } = useUsers()
+  const { getUserDetails, userDetails, userDetailsF, cohorts } = useUsers()
   const [showModal, setShowModal] = useState(false)
   const { getProjects } = useProjects()
   const { username } = useParams()
