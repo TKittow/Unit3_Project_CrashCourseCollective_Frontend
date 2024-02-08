@@ -8,12 +8,16 @@ import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import './ProfilePage.css'
 import ProjectCard from '../../components/ProjectCard'
+<<<<<<< HEAD
 import Card from 'react-bootstrap/Card'
 import Image from 'react-bootstrap/Image'
 import Container from 'react-bootstrap/Container'
 
 
  
+=======
+
+>>>>>>> dev
 export default function ProfilePage({ userData }){
   const { getUserDetails, userDetails, userDetailsF, cohorts } = useUsers()
   const [showModal, setShowModal] = useState(false)
@@ -21,7 +25,7 @@ export default function ProfilePage({ userData }){
   const { username } = useParams()
 
  //? Modal Logic
- function handleClose(){
+  function handleClose(){
     setShowModal(false)
   }
 
@@ -87,7 +91,7 @@ return (
       <AddProjectModal show={showModal} handleClose={handleClose} userData={userData}/>
       {/* Where the ProjectCard was */}
       <div className='cardHolder'>
-        {userProjects.map((project, idx)=>{
+        {reversedUserProjects.map((project, idx)=>{
             return <ProjectCard project={project} key={idx} />
         })} 
       </div>
