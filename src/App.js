@@ -14,6 +14,8 @@ import { useUsers } from './context/UserContext'
 import { useProjects } from './context/ProjectContext'
 import {Button } from 'react-bootstrap'
 import Cookies from 'js-cookie'
+import { Container } from 'react-bootstrap'
+
 
 const CLIENT_ID = process.env.REACT_APP_CLIENT_ID
 
@@ -141,6 +143,7 @@ async function loginUser() {
           userData={userData}
           gitHubLogin={gitHubLogin}
         />
+        <Container id='viewContainer'>
         <div className='login'>
           {!loggedIn ? (
             <Button onClick={gitHubLogin}>
@@ -161,7 +164,7 @@ async function loginUser() {
             <Route path='/projects/:projectName' element={ <ProjectPage projects={projects} userData={userData}/>} />
             <Route path='/editprojectpage' element={<EditProjectPage />} />
           </Routes>
-        
+        </Container>
       </main>
     </div>
   );
