@@ -3,6 +3,7 @@ import { useUsers } from '../../context/UserContext'
 import { useEffect, useState } from 'react'
 import { Button} from 'react-bootstrap'
 import axios from 'axios'
+import './ProjectPage.css'
 
 export default function ProjectPage({ projects, userData }) {
   const { projectName } = useParams()
@@ -64,6 +65,19 @@ console.log(collabDetails)
       <div>
         <div>{thisProject.description}</div>
         <div>{thisProject.deploymentLink}</div>
+        <div id='collabWrapper'>
+        {collabDetails.length !== 0 && collabDetails.map((collaber, idx) => {
+        return (
+        <div id='singleCollabWrapper'>
+          <div>
+            <img id='collabAvatar' src={collaber.userAvatar} alt={`Avatar of ${collaber.name}`} />
+          </div>
+          <div>{collaber.name}</div>
+        </div>
+        )
+      })}
+        </div>
+
       </div>
       <hr />
       <span>

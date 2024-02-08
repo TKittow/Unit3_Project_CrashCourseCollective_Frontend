@@ -1,0 +1,10 @@
+#collabWrapper {
+    display: flex;
+    flex-direction: row;
+}
+
+#collabAvatar {
+    border-radius: 50%;
+    width: 8vmin;
+    height: 8vmin;
+}

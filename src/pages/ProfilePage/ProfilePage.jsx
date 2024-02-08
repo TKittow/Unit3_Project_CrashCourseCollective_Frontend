@@ -82,7 +82,7 @@ return (
                   <div></div>
                   }
                 </div>
-                <div class="vr"></div>
+                <div id='vr' class="vr"></div>
                 <div id='outerLinksWrapper'>
                   {userDetails.linkedIn
                   ?
