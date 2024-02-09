@@ -1,7 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Spectral:wght@200&display=swap');
 
 .App {
-  
+  align-items: center;
+  display: flex;
+  font-family: 'Spectral', serif;
+  justify-content: center;
+  text-align: center;
 }
 
 #viewContainer {
@@ -20,16 +24,6 @@
   gap: 5vmin;
 }
 
-<<<<<<< HEAD
-/* .card-body{
-  
-  justify-content: center;
-  width: 42vmin;
-  height: 25vmin;
-  
- 
-} */
-=======
 .projectCard{
   padding: 1vmin;
   display: flex;
@@ -43,7 +37,6 @@
   grid-template-columns: 1fr 6fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr;
 }
->>>>>>> dev
 
 a{
   text-decoration: none;
