@@ -1,23 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Spectral:wght@200&display=swap');
 
 .App {
-    align-items: center;
-    display: flex;
-    font-family: 'Spectral', serif;
-    justify-content: center;
-    text-align: center;
-  }
+  align-items: center;
+  display: flex;
+  font-family: 'Spectral', serif;
+  justify-content: center;
+  text-align: center;
+}
 
 #viewContainer {
   /* width:100% */
 }
 
+.link {
+  text-decoration: none;
+}
+
 .cardHolder{
-  display: flex;
-  flex-wrap: wrap; /* Allow cards to wrap to the next line */
-  max-height:100vh; /* Set max height to the viewport height minus some space for other elements (adjust 100px as needed) */
-  overflow-y: auto; /* Enable vertical scrolling if content exceeds max height */
-  gap: 5vmin;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5%;
 }
 
 .projectCard{
@@ -36,4 +38,14 @@
 
 a{
   text-decoration: none;
+}
+.github-button {
+  background-image: url('./images/GithubButton.png');
+  background-size: cover;
+  width: 250px;
+  height: 50px;
+  border: 1px;
+  border-color: black;
+  cursor: pointer;
+  margin-top: 15px;
 }

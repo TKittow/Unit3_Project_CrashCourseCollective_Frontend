@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import UserCard from "../../components/UserCard/UserCard";
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton'
+import './CohortsPage.css'
 
 export default function CohortsPage() {
     const { cohorts } = useUsers()
@@ -27,7 +28,11 @@ export default function CohortsPage() {
   return (
     <>
     <Container className="my-4">
-    <DropdownButton id="dropdown-basic-button" title="Select A Cohort">
+      <DropdownButton 
+        id="dropdown-basic-button" 
+        title="Select A Cohort"
+        className="dropdown-button"
+      >
         {cohorts.map(cohort => (
             <Dropdown.Item 
             key={cohort._id}
@@ -37,7 +42,7 @@ export default function CohortsPage() {
             </Dropdown.Item>
         ))}
         </DropdownButton>
-          <div>Cohort {selectedCohort ? selectedCohort.cohortName : ""}</div>
+          <h3>Cohort: {selectedCohort ? selectedCohort.cohortName : ""}</h3>
         <div id='cohortGrid'>
           {selectedCohort && selectedCohort.alumni.map((user, index) => (
             <UserCard key={index} userId={user} />

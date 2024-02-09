@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { Button} from 'react-bootstrap'
 import axios from 'axios'
 import './ProjectPage.css'
+import Card from 'react-bootstrap/Card'
 
 export default function ProjectPage({ projects, userData }) {
   const projectId = useParams()
@@ -51,40 +52,87 @@ export default function ProjectPage({ projects, userData }) {
 
   return (
     <div className='projectPage'>
-      <h1>{thisProject.projectName}</h1>
-      <div className='btn-primary'>
-        {userData.login === thisProject.username && (
-          <Link to={{ pathname: `/editprojectpage/${thisProject._id}`, state: { projectDetails: thisProject._id }}}>
-            <Button>Update Project</Button>
-          </Link>
-        )}
-      </div>
-      <div>
-        <div>{thisProject.description}</div>
-        <div>{thisProject.deploymentLink}</div>
-        <div id='collabWrapper'>
-        {collabDetails.length !== 0 && collabDetails.map((collaber, idx) => {
-        return (
-        <div id='singleCollabWrapper'>
-          <div>
-            <img id='collabAvatar' src={collaber.userAvatar} alt={`Avatar of ${collaber.name}`} />
-          </div>
-          <div>{collaber.name}</div>
-        </div>
-        )
-      })}
-        </div>
 
+      <div id='projectHeaderWrapper'>
+        <div id='innerCollabWrapper'>
+          {thisProject.collaborators
+          ?
+          <div>Collaborators</div>
+          :
+          <div>Created By</div>
+          }
+          <div id='collabWrapper'>
+          {collabDetails.length !== 0 && collabDetails.map((collaber, idx) => {
+          return (
+          <div id='singleCollabWrapper'>
+            <div>
+              <Link to={`/profilepage/${collaber.name}`}>
+              <img id='collabAvatar' src={collaber.userAvatar} alt={`Avatar of ${collaber.name}`} />
+              </Link>
+            </div>
+            <div>{collaber.name}</div>
+          </div>
+          )
+          })}
+          <div id='singleCollabWrapper'>
+            <div>
+            <Link to={`/profilepage/${userData.login}`}>
+              <img id='collabAvatar' src={userDetails.userAvatar} alt="" /> 
+            </Link>
+            <div>{userDetails.username}</div>
+            </div>
+          </div>
+          </div>
+        </div>
+        <div id='buttonTitleWrapper'>
+          <div className='btn-primary'>
+                    {userData.login === thisProject.username && (
+                      <Link to={{ pathname: `/editprojectpage/${thisProject._id}`, state: { projectDetails: thisProject._id }}}>
+                        <Button id='updateProjectButton'>Update Project</Button>
+                      </Link>
+                    )} 
+                  </div>
+          <div id='projectName'>{thisProject.projectName}</div>
+        </div>
       </div>
-      <hr />
-      <span>
-        {userDetails.userAvatar ?  <img src={userDetails.userAvatar} alt="" /> 
-        : 
-      <div>
-        The user: {userDetails.username} does not have an avatar uploaded :(
+
+      <hr />  
+
+      <div id='cardWrapper'>
+      <Card id='aboutProjectCard'>
+            <Card.Header>About</Card.Header>
+            <Card.Body>
+              <div id='projectAboutWrapper'>
+                <blockquote>
+                  <p>
+                    {' '}{thisProject.description}{' '}
+                  </p>
+                </blockquote>
+              </div>
+            </Card.Body>
+          </Card>
+          <Card id='projectInfoCard'>
+            <Card.Body id='linksBox'>
+                    <div id='linkWrapper'>
+                      <img className='linksIcon' src='https://uxwing.com/wp-content/themes/uxwing/download/location-travel-map/globe-line-icon.png' alt='githublogo' width='15vmin' height='15vmin'/>
+                      <Link to={thisProject.deploymentLink}>
+                        <div>Project</div>                  
+                      </Link>
+                    </div>
+                    <div id='linkWrapper'>
+                      <img className='linksIcon' src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/GitHub_Invertocat_Logo.svg/200px-GitHub_Invertocat_Logo.svg.png' alt='githublogo' width='15vmin' height='15vmin'/>
+                      <Link to={thisProject.repoLink}>
+                        <div>GitHub</div>
+                      </Link>
+                    </div>
+            </Card.Body>
+          </Card>
       </div>
-      }
-      <div>
+
+      <hr />  
+
+      <iframe src={`${thisProject.deploymentLink}`} title="how to host a website"></iframe>
+      {/* <div>
       {collabDetails.length !== 0 && collabDetails.map((collaber, idx) => {
         return (
           <div key={idx}>
@@ -94,8 +142,7 @@ export default function ProjectPage({ projects, userData }) {
           </div>
         )
       })}
-      </div>
-      </span>
+      </div> */}
     </div>
   )
 }

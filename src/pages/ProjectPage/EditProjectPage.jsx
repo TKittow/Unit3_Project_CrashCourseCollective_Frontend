@@ -48,8 +48,7 @@ export default function EditProjectPage() {
   const saveEdit = async (e) => {
     e.preventDefault()
 
-    console.log('proj id', projectId);
-    console.log('proj details', projectDetails);
+
     try {
       // Make API call to save updated project details
       const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/project/${projectId}`, {
@@ -149,7 +148,7 @@ export default function EditProjectPage() {
           <Form.Label>GitHub Repo</Form.Label>
           <Form.Control
             type="text"
-            name="repoLinkRef"
+            name="repoLink"
             value={projectDetails.repoLink}
             placeholder="Enter GitHub Repo URL link"
             onChange={handleChange}

@@ -25,7 +25,7 @@ const textStyle = {
           <div id='linksAccordianWrapper'>     
           <div id='innerNavWrapper'>
             <Link to='/' className='navLinks'>Home</Link> 
-            <Link to='/cohorts' className='navLinks'>Cohorts</Link>
+            <Link to='/cohorts/65c0b2d128caa0bb7a6e4107' className='navLinks'>Cohorts</Link>
             {loggedIn && <Link to={`/profilepage/${userDetailsF.username}`} className='navLinks'>My Page</Link>}
           </div>
               <NavDropdown id='dropDown' title="☰">
