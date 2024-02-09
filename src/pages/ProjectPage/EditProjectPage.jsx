@@ -12,6 +12,7 @@ export default function EditProjectPage() {
   const [projectDetails, setProjectDetails] = useState({
     projectName: '',
     description: '',
+    collaborators: '',
     deploymentLink: '',
     deploymentImage: '',
     repoLink: ''
@@ -118,6 +119,18 @@ export default function EditProjectPage() {
             name="description"
             value={projectDetails.description}
             placeholder="Enter description"
+            onChange={handleChange}
+          />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formCollaborators">
+          <Form.Label>Collaborators</Form.Label>
+          <Form.Control
+            as="textarea"
+            rows={3}
+            name="collaborators"
+            value={projectDetails.collaborators}
+            placeholder="Edit/Add Collaborators"
             onChange={handleChange}
           />
         </Form.Group>

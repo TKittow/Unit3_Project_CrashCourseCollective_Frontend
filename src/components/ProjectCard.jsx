@@ -15,6 +15,8 @@ export default function ProjectCard({project}) {
     
   }
 
+  let numberSmile = project.collaborators.length
+
 let seperated = project.collaborators.split(" ")
 
 
@@ -26,26 +28,33 @@ let seperated = project.collaborators.split(" ")
 
     <div className='projectCard' style={cardStyle}>
         <div className='imageCard' > 
-          <div > 
-            <div >{project.username} </div>
+          <div> 
+            <div className='placard'>&nbsp;&nbsp;{project.username}&nbsp;&nbsp; </div>
             <div>
             {project.userAvatarUrl && <img className='' src={project.userAvatarUrl} alt={altText} style={{ width: '50px', height: '50px', borderRadius: '50%' }} />}
             </div>
           </div>
-          <div>{project.projectName}</div>
         </div>
+          <div style={{display: 'flex', alignSelf: 'flex-end' }}>{project.projectName}</div>
         <div className='collaborators'>
+          {project.collaborators ? <div><div ></div></div> : ''}
           {project.collaborators ? 
           seperated.map((collaber, idx) => {
             return (
               <>
-              <div>&nbsp;</div>
-              <div>&nbsp;</div>
-            <div className='collaber' key={idx}>{`${collaber}`}</div>
+              <div key={idx+numberSmile}>&nbsp;</div>
+              <div key={idx+numberSmile*2}>&nbsp;</div>
+            <div className='collaber' style={{fontWeight: 'bold', color: 'black'}} key={idx}>
+              <div className='placard'>
+              &nbsp;{`${collaber}`}&nbsp;
+              </div>
+              </div>
             </>
             )
           })
-           : 'Solo'}
+           : <div >
+              <div className='placard'>&nbsp;Solo&nbsp;</div>
+             </div>}
         </div>
     </div>
 </Link>

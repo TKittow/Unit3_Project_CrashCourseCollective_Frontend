@@ -1,17 +1,23 @@
 import ProjectCard from "../../components/ProjectCard"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useProjects } from "../../context/ProjectContext"
 
 export default function HomePage({userData}) {
-  
+  const [flipped, setFlipped] = useState(false)
   const { projects, getProjects } = useProjects()
-  let reversedProjects = projects.reverse()
-
 
 useEffect(() => {
   getProjects()
   // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [])
+
+const reversedProjects = flipped ? projects.slice().reverse() : projects;
+
+useEffect(() => {
+  if (!flipped) {
+    setFlipped(true);
+  }
+}, [flipped])
 
   return (
     <>
