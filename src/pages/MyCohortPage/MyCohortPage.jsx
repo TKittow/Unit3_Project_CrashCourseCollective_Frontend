@@ -34,7 +34,6 @@ export default function CohortPage() {
           ))}
         </div>
     </Container>
-
     </>
   )
 }

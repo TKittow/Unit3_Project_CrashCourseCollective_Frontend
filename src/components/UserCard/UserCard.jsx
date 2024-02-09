@@ -12,22 +12,24 @@ export default function UserCard({userId}) {
     {user
     ?
     (
-    <Card id='userCard'
-    as={Link} to={`/profilepage/${user.username}`}> 
-        <Card.Body>
-          <div>
-            <img id='avatar' src={user.userAvatar} alt={`${user.username}'s avatar`} />
-          </div>
-          <div className="user-details">
-            <Card.Title className="fw-bold">
-              {user.fullName}
-            </Card.Title>
-            <Card.Text className="text-muted" >
-              {user.username}
-            </Card.Text>
-          </div>
-        </Card.Body>
-    </Card>
+    <div className="link">
+      <Card id='userCard'
+      as={Link} to={`/profilepage/${user.username}`}> 
+          <Card.Body className="user-card-grid">
+            <div>
+              <img id='avatar' src={user.userAvatar} alt={`${user.username}'s avatar`} />
+            </div>
+            <div className="user-details">
+              <Card.Title className="fw-bold">
+                {user.fullName}
+              </Card.Title>
+              <Card.Text className="text-muted" >
+                {user.username}
+              </Card.Text>
+            </div>
+          </Card.Body>
+      </Card>
+    </div>
     )
     :
     <p>User not found</p>
