@@ -1,0 +1,23 @@
+.container-flex {
+    display: flex;
+    flex-direction: column;
+}
+
+.cohort-info {
+    display: flex;
+    justify-content: space-between;  
+    align-items: center;
+    margin-bottom: 1vmin;
+}
+
+.cohort-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 5vmin;
+}
+
+.grid-container {
+    display: flex;
+    justify-content: center;
+}

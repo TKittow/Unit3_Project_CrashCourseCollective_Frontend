@@ -1,7 +1,9 @@
 #userCard {
     width: 18rem;
     margin-bottom: 20px;
+    text-decoration: none;
     background-color: rgba(226, 246, 255, 1)
+    
 }
 
 #userCard .card-body {
@@ -29,4 +31,11 @@
 .card-text {
     font-size: 1rem;
     color: #6c757d;
+}
+
+.user-card-grid {
+    padding: 1vmin;
+    border-radius: 14px;
+    box-shadow:  2.4vmin 2.4vmin 4.9vmin #bebebe,
+    -2.4vmin -2.4vmin 4.9vmin #ffffff;
 }
