@@ -24,7 +24,7 @@ export default function ProfilePage({ userData, loggedIn }){
 
  //? Modal Logic
   function handleClose(){
-    getProjects()
+    getUserProjects(username)
     setShowModal(false)
   }
 

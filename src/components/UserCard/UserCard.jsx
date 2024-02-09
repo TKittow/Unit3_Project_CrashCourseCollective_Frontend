@@ -15,10 +15,17 @@ export default function UserCard({userId}) {
     <Card id='userCard'
     as={Link} to={`/profilepage/${user.username}`}> 
         <Card.Body>
-            <Card.Title className="d-flex justify-content-between align-items-baseline fw-normal mb-3">
-            {user.username}
-            </Card.Title>
+          <div>
             <img id='avatar' src={user.userAvatar} alt={`${user.username}'s avatar`} />
+          </div>
+          <div className="user-details">
+            <Card.Title className="fw-bold">
+              {user.fullName}
+            </Card.Title>
+            <Card.Text className="text-muted" >
+              {user.username}
+            </Card.Text>
+          </div>
         </Card.Body>
     </Card>
     )
@@ -28,3 +35,5 @@ export default function UserCard({userId}) {
     </>
   )
 }
+
+// d-flex justify-content-between align-items-baseline fw-normal mb-3
