@@ -1,7 +1,6 @@
 import { Container } from "react-bootstrap"
 import { useEffect, useState } from "react"
 import { useUsers } from "../../context/UserContext"
-import { useParams } from 'react-router-dom'
 import UserCard from "../../components/UserCard/UserCard"
 import './MyCohortPage.css'
 
