@@ -26,8 +26,8 @@
   padding: 1vmin;
   display: flex;
   flex-direction: row;
-  border-radius: 14px;
   justify-content: space-between;
+  border-radius: 14px;
   width: 42vmin;
   height: 25vmin;
   box-shadow:  2.4vmin 2.4vmin 4.9vmin #bebebe,
