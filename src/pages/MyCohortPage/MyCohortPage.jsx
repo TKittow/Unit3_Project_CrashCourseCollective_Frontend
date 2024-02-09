@@ -8,7 +8,6 @@ import './MyCohortPage.css'
 export default function CohortPage() {
   const [userCohort, setUserCohort] = useState(null)
   const { cohorts, userDetails } = useUsers()
-  const { cohortParams } = useParams()
 
   function getUserCohort() {
     const cohortId = userDetails.cohort
@@ -20,6 +19,7 @@ export default function CohortPage() {
     if (userDetails.cohort) {
       getUserCohort()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
   return (

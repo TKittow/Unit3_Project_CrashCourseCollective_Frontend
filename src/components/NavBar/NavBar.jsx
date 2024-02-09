@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Navbar, Container, Nav, NavDropdown, Row, Col } from 'react-bootstrap'
+import { Container, NavDropdown } from 'react-bootstrap'
 import './NavBar.css'
 import { useUsers } from "../../context/UserContext"
 import CCCLogo from '../../images/CCClogo.png'
@@ -10,11 +10,6 @@ const { userDetailsF } = useUsers()
   // const toggleCard = () => {
   //   setCardOpen(!cardOpen)
   // }
-
-const textStyle = {
-  textDecoration: 'none', 
-  color: 'black'
-}
 
   return (
     <div id='navBar' sticky="top" data-bs-theme="light">
