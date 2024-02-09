@@ -1,12 +1,26 @@
-.projectCard.img .card-title,
-.card.img .card-subtitle,
-.card.img img {
-  opacity: 1;
-  transition: opacity 0.3s ease; /* Adjust the duration and timing function as needed */
+
+.imageCard{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.projectCard.img:hover .card-title,
-.card.img:hover .card-subtitle,
-.card.img:hover img {
-  opacity: 0;
+.collaborators{
+  display: flex;
+  flex-direction: row;
 }
+
+
+
+/* .projectCard .imageCard {
+  opacity: 1;
+  transition: opacity 0.3s ease; 
+}
+
+.projectCard.img .imageCard {
+  opacity: 1;
+}
+
+.projectCard.img:hover .imageCard {
+  opacity: 0;
+} */

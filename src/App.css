@@ -1,11 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Spectral:wght@200&display=swap');
 
 .App {
-  align-items: center;
-  display: flex;
-  font-family: 'Spectral', serif;
-  justify-content: center;
-  text-align: center;
+  
 }
 
 #viewContainer {
@@ -13,25 +9,27 @@
 }
 
 .cardHolder{
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-wrap: wrap; /* Allow cards to wrap to the next line */
+  max-height:100vh; /* Set max height to the viewport height minus some space for other elements (adjust 100px as needed) */
+  overflow-y: auto; /* Enable vertical scrolling if content exceeds max height */
   gap: 5vmin;
-  justify-content: center;
-}
-
-.card-body{
-  
-  justify-content: center;
-  width: 42vmin;
-  height: 25vmin;
-  
- 
 }
 
 .projectCard{
+  padding: 1vmin;
+  display: flex;
+  flex-direction: row;
   border-radius: 14px;
-  background: #e0e0e0;
+  justify-content: space-between;
+  width: 42vmin;
+  height: 25vmin;
   box-shadow:  2.4vmin 2.4vmin 4.9vmin #bebebe,
-             -2.4vmin -2.4vmin 4.9vmin #ffffff;
- 
+  -2.4vmin -2.4vmin 4.9vmin #ffffff;
+  grid-template-columns: 1fr 6fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+}
+
+a{
+  text-decoration: none;
 }
