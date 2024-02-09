@@ -147,6 +147,7 @@ return (
             return <ProjectCard project={project} key={idx} />
         })} 
       </div>
+      <br />
     </>
 )
 }

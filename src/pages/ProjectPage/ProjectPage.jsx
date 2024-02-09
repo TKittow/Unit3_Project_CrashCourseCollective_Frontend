@@ -112,7 +112,13 @@ export default function ProjectPage({ projects, userData }) {
           </Card>
       </div>
       <hr />
+      {thisProject.deploymentLink ? 
       <iframe src={`${thisProject.deploymentLink}`} title="how to host a website"></iframe>
+      :
+      <img style={{width: '80%'}} src={thisProject.deploymentImage} alt={thisProject.projectName}></img>
+      }
+      <br />
+      <br />
       {/* <div>
       {collabDetails.length !== 0 && collabDetails.map((collaber, idx) => {
         return (
