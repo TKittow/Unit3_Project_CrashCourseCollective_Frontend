@@ -131,10 +131,13 @@ async function loginUser() {
         />
         <Container id='viewContainer'>
         <div className='login'>
-          {!loggedIn ? (
-            <Button onClick={gitHubLogin} className='github-button'>
-            </Button>
-          ) : null }
+          <div className='login-content'>
+            <div className="ccc-image"></div> 
+            {!loggedIn ? (
+              <Button onClick={gitHubLogin} className='github-button'>
+              </Button>
+            ) : null }
+          </div>
         </div>
         <hr/>
           <Routes>
