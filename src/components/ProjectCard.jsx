@@ -24,7 +24,7 @@ export default function ProjectCard({project}) {
 
 <Link to={`/projects/${project._id}`}>
     <Card className='card' >
-        <Card.Body>
+        <Card.Body style={cardStyle} >
             <Card.Title>
                 <div className='d-flex'>{project.username} </div>
                 <div>{project.projectName}</div>

@@ -149,7 +149,7 @@ export default function EditProjectPage() {
           <Form.Label>GitHub Repo</Form.Label>
           <Form.Control
             type="text"
-            name="repoLinkRef"
+            name="repoLink"
             value={projectDetails.repoLink}
             placeholder="Enter GitHub Repo URL link"
             onChange={handleChange}

@@ -76,32 +76,32 @@ return (
                   {userDetails.cohort
                   ?
                   <div>
-                  My Cohort : <Link to={`/cohorts/${userDetails.cohort}`}>{getCohortName(userDetails.cohort)}</Link>
+                  My Cohort : <Link to={`/cohorts/${userDetails.cohort}`} className='link'>{getCohortName(userDetails.cohort)}</Link>
                   </div>
                   : 
                   <div></div>
                   }
                 </div>
-                <div id='vr' class="vr"></div>
+                <div id='vr' className="vr"></div>
                 <div id='outerLinksWrapper'>
                   {userDetails.linkedIn
                   ?
                   <div className='linksWrapper'>
                     <img className='linksIcon' src="https://store-images.s-microsoft.com/image/apps.31120.9007199266245564.44dc7699-748d-4c34-ba5e-d04eb48f7960.bc4172bd-63f0-455a-9acd-5457f44e4473?h=210" alt="LinkedIn Icon" width='15vmin' height='15vmin' />
-                    <Card.Link href="#">{userDetails.linkedIn}</Card.Link><br></br>
+                    <Link to={userDetails.linkedIn} target="_blank" className='link'>My LinkedIn</Link><br></br>
                   </div>
                   :
                   <div></div>
                   }
                   <div className='linksWrapper'>
                     <img className='linksIcon' src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/GitHub_Invertocat_Logo.svg/200px-GitHub_Invertocat_Logo.svg.png' alt='githublogo' width='15vmin' height='15vmin'/>
-                    <Card.Link href="#">{userDetails.gitUrl}</Card.Link>
+                    <Link to={userDetails.gitUrl} target="_blank" className='link'>My GitHub</Link>
                   </div>
-                  {userDetails.email
+                  {userDetails.email 
                   ?
                   <div className='linksWrapper'>
                     <img className='linksIcon' src='https://banner2.cleanpng.com/20180526/eio/kisspng-email-computer-icons-gmail-5b093a2abbd322.5464747815273313707693.jpg' alt='githublogo' width='15vmin' height='15vmin'/>
-                    <Card.Link href="#">{userDetails.email}</Card.Link>
+                    <div>{userDetails.email}</div>
                   </div>
                   :
                   <div></div>
