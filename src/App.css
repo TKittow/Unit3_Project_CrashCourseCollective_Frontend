@@ -1,8 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Spectral:wght@200&display=swap');
 
 .App {
-  
-}
+    align-items: center;
+    display: flex;
+    font-family: 'Spectral', serif;
+    justify-content: center;
+    text-align: center;
+  }
 
 #viewContainer {
   /* width:100% */
