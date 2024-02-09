@@ -43,7 +43,11 @@ export default function ProfilePage({ userData, loggedIn }){
     const foundCohort = cohorts.find(cohort => cohort._id === cohortId)
     return foundCohort ? foundCohort.cohortName : "Cohort not found"
 }
-let reversedUserProjects = userProjects.reverse()
+const [reversedUserProjects, setReversedUserProjects] = useState([]);
+
+useEffect(() => {
+  setReversedUserProjects(userProjects.slice().reverse());
+}, [userProjects]);
 
 const cardStyle = {
   backgroundImage: 'url(https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Lightblue_empty_grid.svg/640px-Lightblue_empty_grid.svg.png)',
