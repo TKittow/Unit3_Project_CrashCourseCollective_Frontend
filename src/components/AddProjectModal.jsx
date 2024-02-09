@@ -57,7 +57,7 @@ export default function AddProjectModal({show, handleClose, userData}) {
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="repoLink">
                     <Form.Label>GitHub Repo Link</Form.Label>
-                    <Form.Control ref={repoLinkRef} type="text"/>
+                    <Form.Control ref={repoLinkRef} type="text" required />
                 </Form.Group>
                 <div className="d-flex justify-content-end">
                 <Button variant="primary" type="submit">Post</Button>

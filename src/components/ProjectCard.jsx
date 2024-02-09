@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 
 export default function ProjectCard({project}) {
 
-    let altText = `${project.username}'s avatar`
+  let altText = `${project.username}'s avatar`
 
   const cardStyle = {
     backgroundImage: `url(${ project.deploymentImage })`,
@@ -15,11 +15,7 @@ export default function ProjectCard({project}) {
   }
 
 
-
-
   return (
-
-
 
 <Link to={`/projects/${project._id}`}>
     <Card className='card' >

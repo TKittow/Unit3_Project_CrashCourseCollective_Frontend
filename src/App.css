@@ -18,3 +18,13 @@
   gap: 5%;
 }
 
+.github-button {
+  background-image: url('./images/GithubButton.png');
+  background-size: cover;
+  width: 250px;
+  height: 50px;
+  border: 1px;
+  border-color: black;
+  cursor: pointer;
+  margin-top: 15px;
+}

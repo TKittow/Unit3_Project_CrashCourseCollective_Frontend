@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { Navbar, Container, Nav, NavDropdown, Row, Col } from 'react-bootstrap'
 import './NavBar.css'
 import { useUsers } from "../../context/UserContext"
-import CCCLogo from '../../images/CCCLogo.png'
+import CCCLogo from '../../images/CCClogo.png'
 
 export default function NavBar({ loggedIn, gitHubLogin, handleLogout, userData}) {
 const { userDetailsF } = useUsers()
@@ -25,7 +25,7 @@ const textStyle = {
           <div id='linksAccordianWrapper'>     
           <div id='innerNavWrapper'>
             <Link to='/' className='navLinks'>Home</Link> 
-            <Link to='/cohorts' className='navLinks'>Cohorts</Link>
+            <Link to='/cohorts' className='navLinks'>Cohorts</Link> 
             {loggedIn && <Link to={`/profilepage/${userDetailsF.username}`} className='navLinks'>My Page</Link>}
           </div>
               <NavDropdown id='dropDown' title="☰">

@@ -39,6 +39,7 @@ async function getUserProjects(username) {
 async function addProject(newProject){
     try{
         const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/project/add`, newProject)
+        setUserProjects(prevUserProjects => [...prevUserProjects, response.data])
         setProjects(prevProjects => [...prevProjects, response.data]);
     } catch (err) {
         console.error("Error adding Project", err)

@@ -132,8 +132,7 @@ async function loginUser() {
         <Container id='viewContainer'>
         <div className='login'>
           {!loggedIn ? (
-            <Button onClick={gitHubLogin}>
-              Sign in with GitHub
+            <Button onClick={gitHubLogin} className='github-button'>
             </Button>
           ) : null }
         </div>
