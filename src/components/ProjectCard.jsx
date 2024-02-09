@@ -22,22 +22,6 @@ let seperated = project.collaborators.split(" ")
 
 
 
-<<<<<<< HEAD
-<Link to={`/projects/${project._id}`}>
-    <Card className='card' >
-        <Card.Body style={cardStyle} >
-            <Card.Title>
-                <div className='d-flex'>{project.username} </div>
-                <div>{project.projectName}</div>
-            </Card.Title>
-            
-            {project.userAvatarUrl && <img src={project.userAvatarUrl} alt={altText} style={{ width: '50px', height: '50px' }} />}
-            <Card.Subtitle>
-          {project.collaborators ? `Collaborators: ${project.collaborators}` : 'Solo'}
-        </Card.Subtitle>
-        </Card.Body>
-    </Card>
-=======
 <Link to={`/projects/${project._id}`} style={{textDecoration: 'none'}}>
 
     <div className='projectCard' style={cardStyle}>
@@ -64,7 +48,6 @@ let seperated = project.collaborators.split(" ")
            : 'Solo'}
         </div>
     </div>
->>>>>>> dev
 </Link>
   )
 }
