@@ -1,3 +1,11 @@
+#navBar {
+    position: sticky;
+    top: 0;
+    /* overflow-y:scroll; */
+    /* overflow-x:hidden; */
+    z-index: 1000;
+}
+
 #navContainer {
     width: 100%;
 }
@@ -23,7 +31,7 @@
 }
 
 #navBar {
-    background-color: rgba(226, 246, 255, 1);
+    background-color: rgba(226, 246, 255, 0.9);
     width: 100vw;
 }
 
@@ -49,6 +57,7 @@
 
 #dropDown {
     color: gray;
+    z-index: 1000 !important;
 }
 
 

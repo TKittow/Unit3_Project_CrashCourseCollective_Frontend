@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import './ProjectCard.css'
 import UnderConstruction from '../images/UnderConstruction.jpg'
 
-
+ 
 export default function ProjectCard({project}) {
 
   let altText = `${project.username}'s avatar`
@@ -28,14 +28,16 @@ let seperated = project.collaborators.split(" ")
 
     <div className='projectCard' style={cardStyle}>
         <div className='imageCard' > 
-          <div> 
+          <div className='innerImageCard'> 
             <div className='placard'>&nbsp;&nbsp;{project.username}&nbsp;&nbsp; </div>
             <div>
             {project.userAvatarUrl && <img className='' src={project.userAvatarUrl} alt={altText} style={{ width: '50px', height: '50px', borderRadius: '50%' }} />}
             </div>
           </div>
         </div>
-          <div style={{display: 'flex', alignSelf: 'flex-end' }}>{project.projectName}</div>
+        <div id='cardProjectTitleWrapper'>
+          <div id='cardProjectTitle' style={{display: 'flex', alignSelf: 'flex-end' }}>{project.projectName}</div>
+        </div>
         <div className='collaborators'>
           {project.collaborators ? <div><div ></div></div> : ''}
           {project.collaborators ? 
@@ -53,7 +55,7 @@ let seperated = project.collaborators.split(" ")
             )
           })
            : <div >
-              <div className='placard'>&nbsp;Solo&nbsp;</div>
+              <div className='placard italic'>&nbsp;Solo&nbsp;</div>
              </div>}
         </div>
     </div>

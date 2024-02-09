@@ -98,14 +98,14 @@ export default function ProjectPage({ projects, userData }) {
             <Card.Body id='linksBox'>
                     <div id='linkWrapper'>
                       <img className='linksIcon' src='https://uxwing.com/wp-content/themes/uxwing/download/location-travel-map/globe-line-icon.png' alt='githublogo' width='15vmin' height='15vmin'/>
-                      <Link to={thisProject.deploymentLink}>
-                        <div>Project</div>
+                      <Link className='link' to={thisProject.deploymentLink}>
+                        <div className='italic'>Project</div>
                       </Link>
                     </div>
                     <div id='linkWrapper'>
                       <img className='linksIcon' src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/GitHub_Invertocat_Logo.svg/200px-GitHub_Invertocat_Logo.svg.png' alt='githublogo' width='15vmin' height='15vmin'/>
-                      <Link to={thisProject.repoLink}>
-                        <div>GitHub</div>
+                      <Link className='link'to={thisProject.repoLink}>
+                        <div className='italic' >GitHub</div>
                       </Link>
                     </div>
             </Card.Body>

@@ -1,22 +1,54 @@
 
-.imageCard{
+.imageCard {
+  background-color: rgba(226, 246, 255, 0.75);
+  border-radius: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  height: 10vmin;
+  justify-content: center;
+}
+
+#cardProjectTitleWrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#cardProjectTitleWrapper:hover {
+  opacity: 0;
+}
+
+#cardProjectTitle {
+  background-color: rgba(226, 246, 255, 0.75);
+  border-radius: 20px;
+  color: black;
+  padding: 1vmin 2vmin 1vmin 2vmin ;
 }
 
 .collaborators{
+  align-items: center;
+  background-color: rgba(225, 235, 236, 0.75);
+  border-radius: 10px;
   display: flex;
   flex-direction: row;
+  height: 3vmin;
+  justify-content: center;
+  padding: 1vmin;
+}
+
+.collaber {
+  display: flex;
+  justify-content: center;
 }
 
 .placard{
   background-color: rgba(255, 255, 255, 0.051);
   /* border: 1px solid rgba(126, 126, 126, 0.2); */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  /* text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); */
+  display: flex;
   border-radius: 5%;
   color: rgba(0, 0, 0, 1);
   font-weight: bold;
+  justify-content: center;
 }
 
 .title{

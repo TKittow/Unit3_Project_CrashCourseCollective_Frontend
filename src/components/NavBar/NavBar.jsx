@@ -10,9 +10,9 @@ const { userDetailsF } = useUsers()
   // const toggleCard = () => {
   //   setCardOpen(!cardOpen)
   // }
-
+ 
   return (
-    <div id='navBar' sticky="top" data-bs-theme="light">
+    <div id='navBar'>
         <Container id='navContainer'>
           <Link to="/">
             <img src={CCCLogo} alt="logo" id="logo" />
