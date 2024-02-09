@@ -9,8 +9,8 @@ import './EditProfilePage.css'
 
 export default function EditProfilePage() {
   const { userDetails, getCohorts, cohorts, sendEditUser } = useUsers()
-  const [editUser, setEditUser] = useState(null)
-  const [formSubmitted, setFormSubmitted] = useState(false)
+  const [setEditUser] = useState(null)
+  const [setFormSubmitted] = useState(false)
   const navigate = useNavigate()
   
   const [formData, setFormData] = useState({
@@ -51,6 +51,7 @@ export default function EditProfilePage() {
       cohort: userDetails.cohort,
       aboutMe: userDetails.aboutMe
     })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (

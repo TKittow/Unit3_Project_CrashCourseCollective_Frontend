@@ -23,6 +23,7 @@ export default function About() {
 
   useEffect(() => {
     setCreatorsInfo(creators)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
