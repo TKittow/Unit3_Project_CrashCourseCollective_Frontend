@@ -16,6 +16,10 @@
   text-decoration: none;
 }
 
+.italic {
+  font-style: italic;
+}
+
 .cardHolder{
   display: grid;
   grid-template-columns: repeat(3, 1fr);

@@ -48,12 +48,13 @@
 }
 
 #aboutProjectCard {
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     width: 80vmin;
 }
 
 #projectInfoCard {
-    height: 18vmin;
-    width: 18vmin;
+    height: 15vmin;
+    width: 15vmin;
 }
 
 #projectAboutWrapper {
@@ -64,6 +65,7 @@
 
 #linksBox {
     align-items: center;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;

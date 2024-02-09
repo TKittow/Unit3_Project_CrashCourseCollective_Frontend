@@ -28,7 +28,8 @@ export default function About() {
 
   return (
     <>
-    <h2>About</h2>
+    <div id='aboutContainer'>
+    <h2 id='aboutTitle'><span className="italic">About</span> Crash Course Collective</h2>
     <div id='aboutWrapper'>
       <div id='aboutCreatorsAvatars'>            
       {creatorsInfo.map((creator, index) => (
@@ -55,6 +56,7 @@ export default function About() {
       demonstrating the power of teamwork and innovation in the
       span of just one exhilarating week.
       </div>
+    </div>
     </div>
     </>
   )
