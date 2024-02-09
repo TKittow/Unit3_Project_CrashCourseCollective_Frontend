@@ -1,0 +1,32 @@
+#userCard {
+    width: 18rem;
+    margin-bottom: 20px;
+    background-color: rgba(226, 246, 255, 1)
+}
+
+#userCard .card-body {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+
+#avatar {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.user-details {
+    margin-left: 20px;
+}
+
+.card-title {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.card-text {
+    font-size: 1rem;
+    color: #6c757d;
+}

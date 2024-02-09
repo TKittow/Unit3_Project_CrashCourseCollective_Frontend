@@ -1,0 +1,19 @@
+#formWrapper {
+    width: 80vmin;
+}
+
+#editProfileWrapper {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.editProfileTitle {
+    align-items: center;
+    background-color: rgba(0, 174, 227, 0.5);
+    border-radius: 50%;
+    display: flex;
+    width: 12vmin;
+    height: 12vmin;
+}

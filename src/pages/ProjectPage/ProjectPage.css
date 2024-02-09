@@ -1,0 +1,87 @@
+#collabWrapper {
+    display: flex;
+    flex-direction: row;
+}
+
+#innerCollabWrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+#collabAvatar {
+    border-radius: 50%;
+    width: 8vmin;
+    height: 8vmin;
+    margin: 0 1vmin 0 1vmin;
+}
+
+#projectHeaderWrapper {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0 5vmin 0 5vmin;
+}
+
+#buttonTitleWrapper {
+    display: flex;
+    flex-direction: row;
+}
+
+#projectName {
+    align-items: center;
+    background-color: rgba(0, 174, 227, 0.5);
+    border-radius: 50px;
+    display: flex;
+    font-size: 3vmin;
+    padding: 1vmin 3vmin 1vmin 3vmin;
+    font-weight: bold;
+    font-style: italic;
+    margin: 0 1vmin 0 1vmin;
+}
+
+#cardWrapper {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#aboutProjectCard {
+    width: 80vmin;
+}
+
+#projectInfoCard {
+    height: 18vmin;
+    width: 18vmin;
+}
+
+#projectAboutWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#linksBox {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+#linkWrapper {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+}
+
+#updateProjectButton {
+    border-radius: 50%;
+    height: 10vmin;
+    width: 10vmin;
+}
+
+iframe {
+    width: 120vmin;
+    height: 100vmin;
+} 

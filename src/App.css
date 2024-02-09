@@ -1,38 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Spectral:wght@200&display=swap');
+
 .App {
+  align-items: center;
+  display: flex;
+  font-family: 'Spectral', serif;
+  justify-content: center;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#viewContainer {
+  /* width:100% */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.link {
+  text-decoration: none;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.cardHolder{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5%;
+}
+
+.projectCard{
+  padding: 1vmin;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-direction: row;
+  border-radius: 14px;
+  justify-content: space-between;
+  width: 42vmin;
+  height: 25vmin;
+  box-shadow:  2.4vmin 2.4vmin 4.9vmin #bebebe,
+  -2.4vmin -2.4vmin 4.9vmin #ffffff;
+  grid-template-columns: 1fr 6fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
 }
 
-.App-link {
-  color: #61dafb;
+a{
+  text-decoration: none;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.github-button {
+  background-image: url('./images/GithubButton.png');
+  background-size: cover;
+  width: 250px;
+  height: 50px;
+  border: 1px;
+  border-color: black;
+  cursor: pointer;
+  margin-top: 15px;
 }

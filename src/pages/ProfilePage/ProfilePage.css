@@ -1,0 +1,119 @@
+.profileContainer {
+    /* display: flex;
+    flex-direction: row; */
+}
+ 
+#outerInfoContainer{
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 1vmin 0 5vmin 0;
+}
+
+/* #innerInfoContainer {
+    border: 1px solid lightgray;
+    display: flex;
+    height: 17vmin;
+    justify-content: space-between;
+    width: 70vmin;
+    padding: 0 5vmin 0 5vmin;
+} */
+
+#innerInnerInfoContainer {
+    justify-content: flex-start;    
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    height: 17vmin;
+}
+
+#vr {
+    background-color: rgba(226, 246, 255, 1);
+    width: 1vmin;
+}
+
+#aboutMeCard {
+    margin: 0 0 1vmin 0s;
+}
+
+#aboutMe {
+    text-align: left;
+}
+
+#photoContainer {
+    height: 100%;
+    padding: 1vmin;
+}
+
+#profilePhoto {
+    /* border-radius: 50%; */
+    height: 15vmin;
+    width: 15vmin;
+}
+
+#outerLinksWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:last baseline;
+    margin: 0 0 0 3vmin;
+}
+
+.linksWrapper {
+    display: flex;
+    flex-direction: row;
+    width: 20vmin;
+}
+
+.linksIcon {
+    margin-right: 2vmin;
+}
+
+#innerInnerInfoWrapper {
+    display: flex;
+}
+
+#infoWrapper {
+    /* background-color: rgba(208, 217, 255, 0.3); */
+    /* border-radius: 50px; */
+    padding: 1vmin;
+    display: flex;
+    flex-direction: column;
+    align-items:last baseline;
+    margin: 0 2vmin 0 0;
+}
+
+.profileName {
+    background-color: rgba(0, 174, 227, 0.5);
+    border-radius: 50px;
+    padding: 1vmin;
+    font-weight: bold;
+    margin: 0 10vmin 0 10vmin;
+}
+
+#fullName {
+    margin-top: 1vmin;
+    font-weight: bold;
+    font-style: italic;
+}
+
+#myProjectsHeader {
+    align-items: center;
+    background-color: rgba(0, 174, 227, 0.5);
+    border-radius: 50px;
+    display: flex;
+    flex-direction: row;
+    height: 7vmin;
+    justify-content: space-between;
+    margin: 4vmin 1vmin 4vmin 1vmin;
+    padding: 0 5vmin 0 5vmin;
+}
+
+#myProjectsTitle {
+    font-weight: bold;
+}
+
+#addProjectButton {
+    margin: 2vmin;
+}

@@ -1,0 +1,26 @@
+
+.imageCard{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.collaborators{
+  display: flex;
+  flex-direction: row;
+}
+
+
+
+/* .projectCard .imageCard {
+  opacity: 1;
+  transition: opacity 0.3s ease; 
+}
+
+.projectCard.img .imageCard {
+  opacity: 1;
+}
+
+.projectCard.img:hover .imageCard {
+  opacity: 0;
+} */
