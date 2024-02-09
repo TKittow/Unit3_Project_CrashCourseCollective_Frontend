@@ -20,9 +20,7 @@ useEffect(() => {
         {reversedProjects.map((project, idx) => {
           
           return (
-            <div className="card">
           <ProjectCard project={project} key={idx} />
-          </div>
           )
         })}
         </div>
