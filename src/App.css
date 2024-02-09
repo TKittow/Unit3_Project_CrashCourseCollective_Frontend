@@ -22,7 +22,6 @@
   gap: 5%;
 }
 
-<<<<<<< HEAD
 .projectCard{
   padding: 1vmin;
   display: flex;
@@ -39,7 +38,7 @@
 
 a{
   text-decoration: none;
-=======
+}
 .github-button {
   background-image: url('./images/GithubButton.png');
   background-size: cover;
@@ -49,5 +48,4 @@ a{
   border-color: black;
   cursor: pointer;
   margin-top: 15px;
->>>>>>> dev
 }
