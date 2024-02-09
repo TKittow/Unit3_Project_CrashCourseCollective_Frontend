@@ -23,17 +23,18 @@ export default function CohortPage() {
 
   return (
     <>
-    <Container className="my-4">
+    <Container className="my-4 container-flex text-center">
       {userCohort && (
-          <div>My Cohort {userCohort.cohortName}</div>
+        <div className="cohort-info">
+          <h3>My Cohort {userCohort.cohortName}</h3> 
+        </div>
         )}
-        <div id='cohortGrid'>
+        <div className='cohort-grid'>
           {userCohort && userCohort.alumni.map((user, index) => (
             <UserCard key={index} userId={user} />
           ))}
         </div>
     </Container>
-
     </>
   )
 }

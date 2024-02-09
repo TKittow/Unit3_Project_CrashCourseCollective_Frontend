@@ -27,8 +27,10 @@ export default function CohortsPage() {
 
   return (
     <>
-    <Container className="my-4">
-      <DropdownButton 
+    <Container className="my-4 container-flex">
+      <div className="cohort-info">
+        <h3>Cohort: <strong>{selectedCohort ? selectedCohort.cohortName : ""}</strong></h3>
+        <DropdownButton 
         id="dropdown-basic-button" 
         title="Select A Cohort"
         className="dropdown-button"
@@ -41,13 +43,16 @@ export default function CohortsPage() {
             {cohort.cohortName}
             </Dropdown.Item>
         ))}
-        </DropdownButton>
-          <h3>Cohort: {selectedCohort ? selectedCohort.cohortName : ""}</h3>
-        <div id='cohortGrid'>
+        </DropdownButton> 
+      </div>
+      <hr />
+      <div className="grid-container">
+        <div className='cohort-grid'>
           {selectedCohort && selectedCohort.alumni.map((user, index) => (
             <UserCard key={index} userId={user} />
           ))}
         </div>
+      </div>
     </Container>
     </>
   )

@@ -60,7 +60,7 @@ export default function EditProfilePage() {
     ?
     <>
     <div id='editProfileWrapper'>
-    <div className='editProfileTitle'>Edit My Details</div>
+    <div className='editProfileTitle'>Edit<br />My<br />Details</div>
     <div id='formWrapper'>
     <Form onSubmit={(e) => saveEdit(userDetails, e)}>
       <Row className="mb-3">

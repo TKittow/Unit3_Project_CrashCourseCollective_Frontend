@@ -35,6 +35,7 @@
 
 #aboutMeCard {
     margin: 0 0 1vmin 0s;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 #aboutMe {
@@ -48,6 +49,8 @@
 
 #profilePhoto {
     /* border-radius: 50%; */
+    border: 5px solid rgba(149, 157, 165, 0.2);
+
     height: 15vmin;
     width: 15vmin;
 }
@@ -61,6 +64,7 @@
 }
 
 .linksWrapper {
+    align-items: center;
     display: flex;
     flex-direction: row;
     width: 20vmin;

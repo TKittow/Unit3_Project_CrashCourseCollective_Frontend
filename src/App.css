@@ -16,6 +16,10 @@
   text-decoration: none;
 }
 
+.italic {
+  font-style: italic;
+}
+
 .cardHolder{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -26,8 +30,8 @@
   padding: 1vmin;
   display: flex;
   flex-direction: row;
-  border-radius: 14px;
   justify-content: space-between;
+  border-radius: 14px;
   width: 42vmin;
   height: 25vmin;
   box-shadow:  2.4vmin 2.4vmin 4.9vmin #bebebe,
@@ -44,8 +48,31 @@ a{
   background-size: cover;
   width: 250px;
   height: 50px;
-  border: 1px;
-  border-color: black;
+  border: 1px solid black;
   cursor: pointer;
   margin-top: 15px;
+}
+
+.ccc-image {
+  background-image: url('./images/CCCtext.png');
+  width: 80vmin;
+  height: 10vmin; 
+  background-size: contain; 
+  background-repeat: no-repeat; 
+  margin-bottom: 0;
+  display: flex ;
+  justify-content: center;
+  margin: 0;
+}
+
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
