@@ -6,7 +6,7 @@ import UnderConstruction from '../images/UnderConstruction.jpg'
 
 export default function ProjectCard({project}) {
 
-    let altText = `${project.username}'s avatar`
+  let altText = `${project.username}'s avatar`
 
   const cardStyle = {
     backgroundImage: project.deploymentImage ? `url(${ project.deploymentImage })` : `url(${UnderConstruction})`,
