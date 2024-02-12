@@ -44,8 +44,8 @@ let seperated = project.collaborators.split(" ")
           seperated.map((collaber, idx) => {
             return (
               <>
-              <div key={idx+numberSmile+idx}>&nbsp;</div>
-              <div key={idx+numberSmile*2}>&nbsp;</div>
+              {/* <div key={idx+numberSmile+idx}>&nbsp;</div>
+              <div key={idx+numberSmile*2}>&nbsp;</div> */}
             <div className='collaber' style={{fontWeight: 'bold', color: 'black'}} key={idx}>
               <div className='placard'>
               &nbsp;{`${collaber}`}&nbsp;

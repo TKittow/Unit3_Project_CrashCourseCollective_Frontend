@@ -60,8 +60,8 @@ export default function ProjectPage({ projects, userData }) {
           })}
           <div id='singleCollabWrapper'>
             <div>
-            <Link to={`/profilepage/${userData.login}`}>
-              <img id='collabAvatar' src={userDetails.userAvatar} alt="" />
+            <Link to={`/profilepage/${userDetails.username}`}>
+              <img id='collabAvatar' src={userDetails.userAvatar} alt={`Avatar of ${userDetails.username}`} />
             </Link>
             <div>{userDetails.username}</div>
             </div>
