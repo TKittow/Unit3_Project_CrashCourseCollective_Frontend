@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { Button } from 'react-bootstrap'
 import AddProjectModal from '../../components/AddProjectModal'
 import { useProjects } from '../../context/ProjectContext'
-import { useUsers } from "../../context/UserContext"
+import { useUsers } from '../../context/UserContext'
 import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
@@ -13,14 +13,11 @@ import Card from 'react-bootstrap/Card'
 import Image from 'react-bootstrap/Image'
 import Container from 'react-bootstrap/Container'
 
-
- 
 export default function ProfilePage({ userData, loggedIn }){
   const { getUserDetails, userDetails, userDetailsF, cohorts } = useUsers()
   const [showModal, setShowModal] = useState(false)
   const { getProjects, getUserProjects, userProjects } = useProjects()
   const { username } = useParams()
-
 
  //? Modal Logic
   function handleClose(){
@@ -29,13 +26,14 @@ export default function ProfilePage({ userData, loggedIn }){
   }
 
   useEffect(() => {
-    if (userDetailsF.username === username){
+    if (userDetailsF.username === username) {
       getUserDetails(userDetailsF.username)
     } else {
       getUserDetails(username)
     }
     getProjects()
     getUserProjects(username)
+    //getUserPo
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [username])
 
@@ -43,11 +41,15 @@ export default function ProfilePage({ userData, loggedIn }){
     const foundCohort = cohorts.find(cohort => cohort._id === cohortId)
     return foundCohort ? foundCohort.cohortName : "Cohort not found"
 }
-const [reversedUserProjects, setReversedUserProjects] = useState([]);
+const [reversedUserProjects, setReversedUserProjects] = useState([])
 
 useEffect(() => {
-  setReversedUserProjects(userProjects.slice().reverse());
-}, [userProjects]);
+  setReversedUserProjects(userProjects.slice().reverse())
+}, [userProjects])
+
+const filteredProjectsUser = reversedUserProjects.filter(project => project.username === userDetails.username)
+
+const filteredProjectsCollab = reversedUserProjects.filter(project => project.username !== userDetails.username)
 
 const cardStyle = {
   backgroundImage: 'url(https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Lightblue_empty_grid.svg/640px-Lightblue_empty_grid.svg.png)',
@@ -59,7 +61,6 @@ const cardStyle = {
 return (
   <>  
     <Container id="profileContainer"> 
-    {/* <iframe title='project' src="https://joelleli.github.io/Unit1_Project_Snake/" width="400" height="400" aria-hidden="true"></iframe> */}
       <div id='outerInfoContainer'>
         <div id='photoContainer'>
           <Image id='profilePhoto' src={userDetails.userAvatar} alt="UserImage" className='profileImage' roundedCircle fluid/>
@@ -67,7 +68,7 @@ return (
         <div id='innerInfoContainer'>
           <Card style={ cardStyle }>
             <Card.Body>
-            <div className='profileName'>{userDetails.username}</div>
+              <div className='profileName'>{userDetails.username}</div>
               <div id='innerInnerInfoWrapper'>
                 <div id='infoWrapper'>
                   {userDetails.fullName 
@@ -76,7 +77,6 @@ return (
                   : 
                   <div></div>
                   }
-                  <div>Junior Software Developer</div>
                   {userDetails.cohort
                   ?
                   <div>
@@ -116,21 +116,21 @@ return (
           </Card>
           </div>
         </div>
-      <Card id='aboutMeCard'>
-            <Card.Header>About Me</Card.Header>
-            <Card.Body>
-              <blockquote id='aboutMe'>
-                {userDetails.aboutMe
-                ?
-                <p>
-                  {' '}{userDetails.aboutMe}{' '}
-                </p>
-                :
-                <div>Work in progress :)</div>
-                }
-              </blockquote>
-            </Card.Body>
-          </Card>   
+        <Card id='aboutMeCard'>
+          <Card.Header>About Me</Card.Header>
+          <Card.Body>
+            <blockquote id='aboutMe'>
+              {userDetails.aboutMe
+              ?
+              <p>
+              {' '}{userDetails.aboutMe}{' '}
+              </p>
+              :
+              <div>Work in progress :)</div>
+              }
+            </blockquote>
+          </Card.Body>
+        </Card>   
     </Container>
     <div id='myProjectsHeader'>
       <div id='myProjectsTitle'>My Projects</div>
@@ -143,10 +143,24 @@ return (
     </div>
       <AddProjectModal show={showModal} handleClose={handleClose} userData={userData}/>
       <div className='cardHolder'>
-        {reversedUserProjects.map((project, idx)=>{
+        {filteredProjectsUser.map((project, idx)=>{
             return <ProjectCard project={project} key={idx} />
         })} 
       </div>
+
+      <br />
+      <br />
+      <hr />
+        <div><span style={{fontWeight: 'bold'}}>Collaborated Projects:</span></div>
+      <hr />
+      <br />
+
+      <div className='cardHolder'>
+        {filteredProjectsCollab.map((project, idx)=>{
+            return <ProjectCard project={project} key={idx} />
+        })} 
+      </div>
+      <br />
       <br />
     </>
 )

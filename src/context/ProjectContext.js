@@ -10,7 +10,7 @@ export function useProjects(){
 export const ProjectsProvider = ({children}) => {
     const [projects, setProjects] = useState([])
     const [userProjects, setUserProjects] = useState([])
-
+    const [userProjectsCollab, setUserProjectsCollab] = useState([])
 
 async function getProjects(){
     axios.get(`${process.env.REACT_APP_BACKEND_URL}/projects`)
@@ -25,7 +25,7 @@ async function getProjects(){
 async function getUserProjects(username) {
     setUserProjects([])
     try {
-        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/projects/${username}`)
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/projects/collab/${username}`)
         const userProjects = response.data
         setUserProjects(userProjects)
 
@@ -34,6 +34,20 @@ async function getUserProjects(username) {
         return null
     }
 }
+
+async function getUserProjectsCollab(username) {
+    setUserProjectsCollab([])
+    try {
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/projects/collab/${username}`)
+        const userProjectsCollab = response.data
+        setUserProjects(userProjectsCollab)
+
+    } catch (error) {
+        console.error("Error fetching user details:", error)
+        return null
+    }
+}
+
 
 
 async function addProject(newProject){
@@ -50,9 +64,11 @@ return (
     <ProjectContext.Provider value={{
         projects,
         userProjects,
+        userProjectsCollab,
         addProject,
         getProjects,
         getUserProjects,
+        getUserProjectsCollab,
     }}
     >
         {children}

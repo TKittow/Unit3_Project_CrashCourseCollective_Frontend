@@ -11,7 +11,8 @@ export default function ProjectCard({project}) {
   const cardStyle = {
     backgroundImage: project.deploymentImage ? `url(${ project.deploymentImage })` : `url(${UnderConstruction})`,
     backgroundSize: 'cover', 
-    backgroundPosition: 'center'
+    backgroundPosition: 'center',
+    borderRadius: '14px'
     
   }
 
@@ -25,8 +26,8 @@ let seperated = project.collaborators.split(" ")
 
 
 <Link to={`/projects/${project._id}`} style={{textDecoration: 'none'}}>
-
-    <div className='projectCard' style={cardStyle}>
+    <div id='cardInfoWrapper' style={cardStyle}>
+      <div className='projectCard' >
         <div className='imageCard' > 
           <div className='innerImageCard'> 
             <div className='placard'>&nbsp;&nbsp;{project.username}&nbsp;&nbsp; </div>
@@ -39,13 +40,12 @@ let seperated = project.collaborators.split(" ")
           <div id='cardProjectTitle' style={{display: 'flex', alignSelf: 'flex-end' }}>{project.projectName}</div>
         </div>
         <div className='collaborators'>
-          {project.collaborators ? <div><div ></div></div> : ''}
           {project.collaborators ? 
           seperated.map((collaber, idx) => {
             return (
               <>
-              <div key={idx+numberSmile}>&nbsp;</div>
-              <div key={idx+numberSmile*2}>&nbsp;</div>
+              {/* <div key={idx+numberSmile+idx}>&nbsp;</div>
+              <div key={idx+numberSmile*2}>&nbsp;</div> */}
             <div className='collaber' style={{fontWeight: 'bold', color: 'black'}} key={idx}>
               <div className='placard'>
               &nbsp;{`${collaber}`}&nbsp;
@@ -58,6 +58,7 @@ let seperated = project.collaborators.split(" ")
               <div className='placard italic'>&nbsp;Solo&nbsp;</div>
              </div>}
         </div>
+      </div>
     </div>
 </Link>
   )
