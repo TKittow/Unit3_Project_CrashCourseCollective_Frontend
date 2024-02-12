@@ -16,7 +16,7 @@ export default function ProjectCard({project}) {
     
   }
 
-  let numberSmile = project.collaborators.length
+  // let numberSmile = project.collaborators.length
 
 let seperated = project.collaborators.split(" ")
 
