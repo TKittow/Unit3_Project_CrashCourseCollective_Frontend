@@ -39,7 +39,6 @@ let seperated = project.collaborators.split(" ")
           <div id='cardProjectTitle' style={{display: 'flex', alignSelf: 'flex-end' }}>{project.projectName}</div>
         </div>
         <div className='collaborators'>
-          {project.collaborators ? <div><div ></div></div> : ''}
           {project.collaborators ? 
           seperated.map((collaber, idx) => {
             return (

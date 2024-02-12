@@ -40,8 +40,7 @@ export default function ProjectPage({ projects, userData }) {
     <div className='projectPage'>
       <div id='projectHeaderWrapper'>
         <div id='innerCollabWrapper'>
-          {thisProject.collaborators
-          ?
+          {thisProject.collaborators ?
           <div>Collaborators</div>
           :
           <div>Created By</div>

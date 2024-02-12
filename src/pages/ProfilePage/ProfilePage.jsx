@@ -36,6 +36,7 @@ export default function ProfilePage({ userData, loggedIn }){
     }
     getProjects()
     getUserProjects(username)
+    //getUserPo
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [username])
 
