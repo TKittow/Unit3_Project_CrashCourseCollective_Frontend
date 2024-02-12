@@ -33,6 +33,7 @@ export default function ProfilePage({ userData, loggedIn }){
     }
     getProjects()
     getUserProjects(username)
+    //getUserPo
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [username])
 
@@ -45,6 +46,10 @@ const [reversedUserProjects, setReversedUserProjects] = useState([])
 useEffect(() => {
   setReversedUserProjects(userProjects.slice().reverse())
 }, [userProjects])
+
+const filteredProjectsUser = reversedUserProjects.filter(project => project.username === userDetails.username)
+
+const filteredProjectsCollab = reversedUserProjects.filter(project => project.username !== userDetails.username)
 
 const cardStyle = {
   backgroundImage: 'url(https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Lightblue_empty_grid.svg/640px-Lightblue_empty_grid.svg.png)',
@@ -138,10 +143,24 @@ return (
     </div>
       <AddProjectModal show={showModal} handleClose={handleClose} userData={userData}/>
       <div className='cardHolder'>
-        {reversedUserProjects.map((project, idx)=>{
+        {filteredProjectsUser.map((project, idx)=>{
             return <ProjectCard project={project} key={idx} />
         })} 
       </div>
+
+      <br />
+      <br />
+      <hr />
+        <div><span style={{fontWeight: 'bold'}}>Collaborated Projects:</span></div>
+      <hr />
+      <br />
+
+      <div className='cardHolder'>
+        {filteredProjectsCollab.map((project, idx)=>{
+            return <ProjectCard project={project} key={idx} />
+        })} 
+      </div>
+      <br />
       <br />
     </>
 )
