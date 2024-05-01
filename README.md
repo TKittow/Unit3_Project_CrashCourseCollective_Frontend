@@ -1,5 +1,7 @@
 # ReadMe Crash Course Collective
 
+![ccc](https://github.com/TKittow/Portfolio/blob/main/images/project3/Project%203%20-%20Final%20Product.png)
+
 ### Description
 
 As a group project we decided to create a website where a user can upload projects using the GitHub Login API. A user (once signed in) will be able to post a project on the website. We then added a ‘collaborators’ functionality to link users to your projects. We had a week to work on this together.
@@ -48,18 +50,27 @@ I worked on this with JoelleLi and KiwiCJ over the course of a week.
 
 ### Planning
 
-ERD
+ERD:
+
+![ERD](https://github.com/TKittow/Portfolio/blob/main/images/project3/Project%203%20-%20ERD.png)
 
 
 An early mockup of the homepage - navbar, features and project cards.
 
+![HomePage](https://github.com/TKittow/Portfolio/blob/main/images/project3/Project%203%20-%20HomePage.png)
+
 A plan for the user’s page:
 
+![MyPage](https://github.com/TKittow/Portfolio/blob/main/images/project3/Project%203%20-%20MyPage.png)
+
 The ‘project detail’ page:
+
+![ProjectDetail](https://github.com/TKittow/Portfolio/blob/main/images/project3/Project%203%20-%20Project%20Detail.png)
 
 
 A lot of planning went into this project. I created the majority of the illustrations and we worked as a team to manage workload, share ideas and assist with problems. The end projects of our excalidraw looked like this:
 
+![Overall Planning](https://github.com/TKittow/Portfolio/blob/main/images/project3/Project%203%20-%20Overall%20Planning.png)
 
 ### Build/Code Process
 
@@ -147,6 +158,8 @@ We knew from our planning that we wanted a modal to create a new project. For th
 ###### ProjectPage
 
 I then created a project page to display the information of a single project when clicked on. It allows authorized users to update the project (if they are the creator) and renders an iframe of the project if it has a ‘published’ link.
+
+![ProjectDetail Actual](https://github.com/TKittow/Portfolio/blob/main/images/project3/Project%203%20-%20Project%20Detail%20Actual.png)
 
 ###### EditProjectPage
 
